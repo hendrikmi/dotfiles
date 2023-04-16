@@ -34,18 +34,11 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 ## Shortcuts
 
-Prefix: `CTRL + <Space>`
-
-Create new tmux window: `Prefix + c`
-
-Navigate to window: `Prefix + number`
-
-Cycle through window: `Prefix + n/p`
-
-See all windows: `Prefix + w`
-
-Rename window: `Prefix + ,`
-
-Explore sessions: `Prefix + s`
-
-Install plugins: `Prefix + I`
+- Prefix: `CTRL + <Space>`
+- Create new tmux window: `Prefix + c`
+- Navigate to window: `Prefix + number`
+- Cycle through window: `Prefix + n/p`
+- See all windows: `Prefix + w`
+- Rename window: `Prefix + ,`
+- Explore sessions: `Prefix + s`
+- Install plugins: `Prefix + I`
