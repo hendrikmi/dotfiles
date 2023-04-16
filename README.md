@@ -51,3 +51,9 @@ Enable key repeats globally. This will enable pressing and holding 'hjkl' in Jup
 ```
 defaults write -g ApplePressAndHoldEnabled -bool false
 ```
+
+## Inspired by
+
+- [LunarVim/Neovim-from-scratch](https://github.com/LunarVim/Neovim-from-scratch)
+- [craftzdog/dotfiles-public](https://github.com/craftzdog/dotfiles-public)
+- [josean-dev/dev-environment-files](https://github.com/josean-dev/dev-environment-files)
