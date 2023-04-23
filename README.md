@@ -10,6 +10,13 @@ Install essential software
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
+Add Homebrew to PATH.
+
+```bash
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/<username>/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+```
+
 - [iTerm2](https://formulae.brew.sh/cask/iterm2) - Terminal emulator app
 
 ```bash
@@ -32,6 +39,52 @@ brew install ripgrep
 
 ```bash
 brew install --cask font-hack-nerd-font
+```
+
+- Git
+
+```bash
+brew install git
+```
+
+- Oh My Zsh
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+- PowerLevel10K Theme for Oh My Zsh
+
+```bash
+git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+```
+
+Modify the value of `ZSH_THEME` in `.zshrc`.
+
+```bash
+ZSH_THEME="powerlevel10k/powerlevel10k"
+```
+
+Configure PowerLevel10K.
+
+```bash
+p10k configure
+```
+
+- Plugins for Oh My Zsh
+
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+
+```bash
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+
+Modfiy the plugins line in `.zshrc`
+
+```bash
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting web-search)
 ```
 
 - [tmux](https://formulae.brew.sh/formula/tmux) - Terminal multiplexer
