@@ -13,8 +13,7 @@ Install essential software
 Add Homebrew to PATH.
 
 ```bash
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/<username>/.zprofile
-eval "$(/opt/homebrew/bin/brew shellenv)"
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/<username>/.zshrc
 ```
 
 - [iTerm2](https://formulae.brew.sh/cask/iterm2) - Terminal emulator app
@@ -38,6 +37,7 @@ brew install ripgrep
 - Hack Nerd Font
 
 ```bash
+brew tap homebrew/cask-fonts
 brew install --cask font-hack-nerd-font
 ```
 
