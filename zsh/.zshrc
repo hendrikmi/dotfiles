@@ -1,3 +1,24 @@
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Pipenv
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+# export PIPENV_VENV_IN_PROJECT=1
+
+# Poetry
+export PATH="/Users/hendrik/.local/bin:$PATH"
+
+# Pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# zettl
+export Z_EDITOR='nvim'
+export NOTE_NAME_AS_TITLE=1
+
 # Add /usr/local/bin to the beginning of the PATH environment variable.
 # This ensures that executables in /usr/local/bin are found before other directories in the PATH.
 export PATH="/usr/local/bin:$PATH"
@@ -14,27 +35,6 @@ export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
 # If uncommented, they would set LDFLAGS and CPPFLAGS for library and header files located in /opt/homebrew/lib and /opt/homebrew/include, respectively.
 # export LDFLAGS="-L/opt/homebrew/lib"
 # export CPPFLAGS="-I/opt/homebrew/include"
-
-# Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# zettl
-export Z_EDITOR='nvim'
-export NOTE_NAME_AS_TITLE=1
-
-# Pipenv
-export LANG="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
-export LC_CTYPE="en_US.UTF-8"
-# export PIPENV_VENV_IN_PROJECT=1
-
-# Poetry
-export PATH="/Users/hendrik/.local/bin:$PATH"
-
-# Pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -119,11 +119,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	git
-	zsh-autosuggestions
-  zsh-syntax-highlighting
-  web-search
-  vi-mode
+    git
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    web-search
+    vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -157,6 +157,7 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 eval "$(/usr/local/bin/brew shellenv)"
+
 
 # Change cursor shape for vi-mode
 function zle-keymap-select {

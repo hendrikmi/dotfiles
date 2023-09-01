@@ -8,15 +8,15 @@ mkdir -p "${backup_base_dir}"
 
 # Define a function to copy a source file to a target path within the backup directory
 copy_to_backup() {
-	src_file="$1"
-	target_path="${backup_base_dir}/$2"
-	target_dir=$(dirname "${target_path}")
+    src_file="$1"
+    target_path="${backup_base_dir}/$2"
+    target_dir=$(dirname "${target_path}")
 
-	# Create the target directory if it doesn't exist
-	mkdir -p "${target_dir}"
+    # Create the target directory if it doesn't exist
+    mkdir -p "${target_dir}"
 
-	# Copy the file/directory
-	cp -R "${HOME}/${src_file}" "${target_path}"
+    # Copy the file/directory
+    cp -R "${HOME}/${src_file}" "${target_path}"
 }
 
 # Call the copy_to_backup function for each dotfile/directory you want to back up,
@@ -25,5 +25,7 @@ copy_to_backup ".zshrc" "zsh/.zshrc"
 copy_to_backup ".config/nvim/init.lua" "nvim/init.lua"
 copy_to_backup ".config/nvim/lua" "nvim/lua"
 copy_to_backup ".tmux.conf" "tmux/.tmux.conf"
+copy_to_backup ".iterm" "iterm"
 
 echo "Dotfiles backed up in ${backup_base_dir} directory."
+
