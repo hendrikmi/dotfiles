@@ -28,6 +28,12 @@ brew install --cask iterm2
 brew install neovim
 ```
 
+- [Node](https://formulae.brew.sh/formula/node) - node.js/npm
+
+```bash
+brew install node
+```
+
 - [ripgrep](https://formulae.brew.sh/formula/ripgrep) - Search tool like grep. Enables live grep for the Telescope Neovim plugin.
 
 ```bash
