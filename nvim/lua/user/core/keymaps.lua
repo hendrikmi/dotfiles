@@ -28,6 +28,9 @@ keymap("n", "<Esc>", ":noh<CR>", opts)
 -- save file
 keymap("n", "<C-s>", "<cmd> w <CR>", opts)
 
+-- save file without auto-formatting
+keymap("n", "<C-w>", "<cmd>noautocmd w <CR>", opts)
+
 -- quit file
 keymap("n", "<C-q>", "<cmd> q <CR>", opts)
 
@@ -70,7 +73,7 @@ keymap("n", "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true }
 keymap("n", "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
 
 -- toggle line wrapping
-keymap("n", "<leader>w", "<cmd>set wrap!<CR>", opts)
+keymap("n", "<leader>lw", "<cmd>set wrap!<CR>", opts)
 
 -- Press jk fast to exit insert mode
 keymap("i", "jk", "<ESC>", opts)
@@ -89,6 +92,17 @@ keymap("v", "<A-k>", ":m .-2<CR>==", opts)
 
 -- keep last yanked when pasting
 keymap("v", "p", '"_dP', opts)
+
+-- toggle diagnostics
+local diagnostics_active = true
+vim.keymap.set("n", "<leader>d", function()
+	diagnostics_active = not diagnostics_active
+	if diagnostics_active then
+		vim.diagnostic.enable(0)
+	else
+		vim.diagnostic.disable(0)
+	end
+end)
 
 -- Terminal --
 -- Better terminal navigation
@@ -113,7 +127,8 @@ keymap("n", "<leader>e", ":NvimTreeFocus<CR>", opts) -- focus file explorer
 
 -- telescope
 keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts) -- find files within current working directory, respects .gitignore
-keymap("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", opts) -- find string in current working directory as you type
+-- keymap("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", opts) -- find string in current working directory as you type
+keymap("n", "<leader>fs", "<cmd>lua require('telescope.builtin').live_grep({additional_args={'-j1'}})<cr>", opts) -- fix for memory issue proposed here: https://github.com/nvim-telescope/telescope.nvim/issues/647
 keymap("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", opts) -- find string under cursor in current working directory
 keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts) -- list open buffers in current neovim instance
 keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", opts) -- list available help tags
