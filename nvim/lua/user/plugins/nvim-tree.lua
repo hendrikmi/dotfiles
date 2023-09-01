@@ -154,4 +154,11 @@ nvim_tree.setup({
 		custom = {},
 		exclude = {},
 	},
+	git = {
+		enable = true,
+		ignore = false, -- show files listed in .gitignore
+		show_on_dirs = true,
+		show_on_open_dirs = true,
+		timeout = 400,
+	},
 })
