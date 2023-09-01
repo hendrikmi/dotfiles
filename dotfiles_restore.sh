@@ -16,7 +16,7 @@ copy_from_backup() {
 # specifying the source file in the backup directory and the target path in your home directory
 copy_from_backup "zsh/.zshrc" ".zshrc"
 copy_from_backup "nvim/init.lua" ".config/nvim/init.lua"
-copy_from_backup "nvim/lua" ".config/nvim/lua"
+copy_from_backup "nvim/lua/" ".config/nvim/lua"
 copy_from_backup "tmux/.tmux.conf" ".tmux.conf"
 copy_from_backup "iterm" ".iterm"
 
