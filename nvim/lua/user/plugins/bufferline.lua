@@ -14,7 +14,7 @@ bufferline.setup({
 		right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
 		left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
 		middle_mouse_command = nil, -- can be a string | function, see "Mouse actions"
-		buffer_close_icon = "",
+		buffer_close_icon = "󰅖",
 		path_components = 1, -- Show only the file name without the directory
 		-- buffer_close_icon = '',
 		modified_icon = "●",
@@ -54,7 +54,7 @@ bufferline.setup({
 			-- style = "icon", -- can be set to underline
 			style = "none",
 		},
-		icon_pinned = "車",
+		icon_pinned = "󰐃",
 		minimum_padding = 1,
 		maximum_padding = 5,
 		maximum_length = 15,
