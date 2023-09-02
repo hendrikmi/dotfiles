@@ -59,8 +59,8 @@ return packer.startup(function(use)
 	use({ "szw/vim-maximizer", commit = "2e54952" }) -- maximizes and restores current window
 
 	-- essential plugins
-	use({ "tpope/vim-surround", commit = "3d188ed" }) -- add, delete, change surroundings (it's awesome)
-	use({ "inkarkat/vim-ReplaceWithRegister", commit = "aad1e8f" }) -- replace with register contents using motion (gr + motion)
+	use({ "tpope/vim-surround", commit = "3d188ed" }) -- add, delete, change surroundings
+	-- use({ "inkarkat/vim-ReplaceWithRegister", commit = "aad1e8f" }) -- replace with register contents using motion (gr + motion)
 
 	-- commenting with gc
 	use({ "numToStr/Comment.nvim", commit = "a89339f" })
