@@ -1,5 +1,5 @@
 # Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Pipenv
 export LANG="en_US.UTF-8"
@@ -17,6 +17,7 @@ eval "$(pyenv init -)"
 
 # zettl
 export Z_EDITOR='nvim'
+export NOTES_DIR="$HOME/Dropbox/zettl"
 export NOTE_NAME_AS_TITLE=1
 
 # Add /usr/local/bin to the beginning of the PATH environment variable.
@@ -119,10 +120,10 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git
+    git # gst, ga, gc
     zsh-autosuggestions
     zsh-syntax-highlighting
-    web-search
+    # web-search
     vi-mode
 )
 
@@ -158,7 +159,6 @@ source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 eval "$(/usr/local/bin/brew shellenv)"
 
-
 # Change cursor shape for vi-mode
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]]; then
@@ -174,3 +174,10 @@ zle-line-init() {
 }
 zle -N zle-line-init
 echo -ne '\e[5 q'
+
+# ColorLS
+alias ls='colorls'
+alias lc='colorls -lA --sd'
+source $(dirname $(gem which colorls))/tab_complete.sh
+
+

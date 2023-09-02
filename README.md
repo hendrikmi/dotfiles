@@ -93,6 +93,12 @@ Modfiy the plugins line in `.zshrc`
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting web-search)
 ```
 
+- [ColorLS](https://github.com/athityakumar/colorls)
+
+```bash
+sudo gem install colorls
+```
+
 - [tmux](https://formulae.brew.sh/formula/tmux) - Terminal multiplexer
 
 ```bash
