@@ -1,6 +1,6 @@
 local status, hop = pcall(require, "hop")
 if not status then
-	return
+    return
 end
 
 hop.setup()

@@ -1,6 +1,6 @@
 local setup, gitsigns = pcall(require, "gitsigns")
 if not setup then
-	return
+    return
 end
 
 gitsigns.setup()
