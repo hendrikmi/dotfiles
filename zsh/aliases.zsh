@@ -9,7 +9,7 @@ alias e='exit'
 # Git
 alias g='git'
 alias ga='git add'
-alias gafzf='git ls-files -m -o --exclude-standard | fzf -m --print0 | xargs -0 -o -t git add' # Git add with fzf
+alias gafzf='git ls-files -m -o --exclude-standard | grep -v "__pycache__" | fzf -m --print0 | xargs -0 -o -t git add' # Git add with fzf
 alias grmfzf='git ls-files -m -o --exclude-standard | fzf -m --print0 | xargs -0 -o -t git rm' # Git rm with fzf
 alias grfzf='git diff --name-only | fzf -m --print0 | xargs -0 -o -t git restore' # Git restore with fzf
 alias grsfzf='git diff --name-only | fzf -m --print0 | xargs -0 -o -t git restore --staged' # Git restore --staged with fzf
@@ -48,7 +48,7 @@ quick_commit() {
 
   if [[ "$push_flag" == "push" ]]; then
     # Remove 'push' from the commit message
-    commit_message="$ticket_id: ${*:5}"
+    commit_message="$ticket_id: ${*:2}" # take all positional parameters starting from the second one
     git commit --no-verify -m "$commit_message" && git push
   else
     git commit --no-verify -m "$commit_message"
