@@ -28,8 +28,8 @@ Holding `Tab + W` enables a window management layer, where other keys become sho
 
 **Examples:**
 
-- `Tab + W + [`: Resize window to the left half
-- `Tab + W + ]`: Resize window to the right half
+- `Tab + W + H`: Resize window to the left half
+- `Tab + W + L`: Resize window to the right half
 
 ### Access Exposé Layer
 
