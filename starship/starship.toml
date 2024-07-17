@@ -100,7 +100,7 @@ symbol = " "
 
 [docker_context]
 symbol = " "
-style = "bg:#06969A"
+style = "fg:#06969A"
 format = '[ $symbol $context ]($style) $path'
 
 [os.symbols]
