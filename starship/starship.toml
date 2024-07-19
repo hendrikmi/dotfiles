@@ -1,5 +1,18 @@
 add_newline = true
-format = """$directory$git_branch$git_status$fill$nodejs$lua$python$docker_context$time$cmd_duration$line_break$character"""
+format = """
+$directory\
+$git_branch\
+$git_status\
+$fill\
+$nodejs\
+$lua\
+$python\
+$docker_context\
+$jobs\
+$cmd_duration\
+$line_break\
+$character"""
+
 palette = "nord"
 
 [palettes.onedark]
@@ -65,11 +78,16 @@ min_time = 500
 style = "fg:gray"
 format = "[$duration]($style)"
 
+[jobs]
+symbol = " "
+style = "fg:red"
+number_threshold = 1
+format = "[$symbol]($style)"
+
 [package]
 symbol = "󰏗 "
 
 [aws]
-# symbol = " "
 symbol = " "
 format = '[$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
 
