@@ -77,6 +77,7 @@ apply_osx_system_defaults() {
     defaults write com.apple.dock tilesize -float 32
 
     # Rectangle
+    defaults write com.knollsoft.Rectangle curtainChangeSize -int 2
     defaults write com.knollsoft.Rectangle almostMaximizeHeight -float 1
     defaults write com.knollsoft.Rectangle almostMaximizeWidth -float 0.85
 }
