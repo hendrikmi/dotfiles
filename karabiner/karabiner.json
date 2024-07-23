@@ -12,8 +12,8 @@
         "parameters": {
           "basic.simultaneous_threshold_milliseconds": 50,
           "basic.to_delayed_action_delay_milliseconds": 500,
-          "basic.to_if_alone_timeout_milliseconds": 300,
-          "basic.to_if_held_down_threshold_milliseconds": 500,
+          "basic.to_if_alone_timeout_milliseconds": 200,
+          "basic.to_if_held_down_threshold_milliseconds": 200,
           "mouse_motion_to_scroll.speed": 100
         },
         "rules": [
@@ -790,6 +790,36 @@
                 "to": [
                   {
                     "shell_command": "open -g rectangle://execute-action?name=smaller"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "hyper_sublayer_w",
+                    "type": "variable_if",
+                    "value": 1
+                  }
+                ],
+                "description": "Window: Rectangle custom size",
+                "from": {
+                  "key_code": "c",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "n",
+                    "modifiers": [
+                      "left_command",
+                      "left_option",
+                      "left_control",
+                      "left_shift"
+                    ]
                   }
                 ],
                 "type": "basic"

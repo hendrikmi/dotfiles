@@ -80,6 +80,11 @@ apply_osx_system_defaults() {
     defaults write com.knollsoft.Rectangle curtainChangeSize -int 2
     defaults write com.knollsoft.Rectangle almostMaximizeHeight -float 1
     defaults write com.knollsoft.Rectangle almostMaximizeWidth -float 0.85
+
+    # Rectangle custom window size with Shift + Alt + Ctrl + Cmd + N
+    defaults write com.knollsoft.Rectangle specified -dict-add keyCode -float 45 modifierFlags -float 1966379
+    defaults write com.knollsoft.Rectangle specifiedHeight -float 1055
+    defaults write com.knollsoft.Rectangle specifiedWidth -float 1876
 }
 
 if [ "$(basename "$0")" = "$(basename "${BASH_SOURCE[0]}")" ]; then

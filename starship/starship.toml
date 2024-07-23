@@ -1,163 +1,118 @@
-add_newline = true
 format = """
 $directory\
 $git_branch\
 $git_status\
 $fill\
-$nodejs\
 $lua\
 $python\
+$nodejs\
+$aws\
 $docker_context\
 $jobs\
 $cmd_duration\
 $line_break\
 $character"""
 
-palette = "nord"
-
-[palettes.onedark]
-directory_fg = "#61afef"
-branch_fg = "#98c379"
-secondary_elems_fg = "#56b6c2"
-blue="#61afef"
-red="#e06c75"
-green="#98c379"
-purple="#c678dd"
-cyan="#56b6c2"
-orange="#be5046"
-yellow="#e5c07b"
-gray="#828997"
-white ="#abb2bf"
-black="#2c323c"
-
-[palettes.nord]
-directory_fg = "#5E81AC"
-# directory_fg = "#81A1C1"
-branch_fg = "#A3BE8C"
-secondary_elems_fg = "#616E88"
-blue = "#5E81AC"
-teal = "#88C0D0"
-red = "#BF616A"
-orange = "#D08770"
-green = "#A3BE8C"
-yellow = "#EBCB8B"
-purple = "#B48EAD"
-black = "#2E3440"
-# white = "#ECEFF4" # lighter white
-white="#D8DEE9" # darker white
-gray = "#434C5E"
+add_newline = true
+palette = 'nord'
 
 [fill]
-symbol = " "
+symbol = ' '
 
 [directory]
-style = "bold fg:directory_fg"
-format = "[$path ]($style)"
-read_only = " "
+style = 'bold fg:blue'
+format = '[$path ]($style)'
 truncation_length = 3
-truncation_symbol = "…/"
+truncation_symbol = '…/'
 truncate_to_repo = false
 
 [directory.substitutions]
-"Documents" = "󰈙"
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
+'Documents' = '󰈙'
+'Downloads' = ' '
+'Music' = ' '
+'Pictures' = ' '
 
 [git_branch]
-style = "fg:branch_fg"
-symbol = " "
-format = "[on](white) [$symbol$branch ]($style)"
+style = 'fg:green'
+symbol = ' '
+format = '[on](white) [$symbol$branch ]($style)'
 
 [git_status]
-style = "fg:branch_fg"
+style = 'fg:green'
 format = '([$all_status$ahead_behind]($style) )'
 
 [cmd_duration]
 min_time = 500
-style = "fg:gray"
-format = "[$duration]($style)"
+style = 'fg:gray'
+format = '[$duration]($style)'
 
 [jobs]
-symbol = " "
-style = "fg:red"
+symbol = ' '
+style = 'red'
 number_threshold = 1
-format = "[$symbol]($style)"
-
-[package]
-symbol = "󰏗 "
+format = '[$symbol]($style)'
 
 [aws]
-symbol = " "
-format = '[$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
+symbol = ' '
+style = 'yellow'
+format = '[$symbol($profile )(\[$duration\] )]($style)'
 
-[golang]
-symbol = " "
+[docker_context]
+symbol = ' '
+style = 'fg:#06969A'
+format = '[$symbol]($style) $path'
+detect_files = ['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
+detect_extensions = ['Dockerfile']
 
 [python]
-style = "bold fg:yellow"
-symbol = " "
+style = 'teal'
+symbol = ' '
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 pyenv_version_name = true
 pyenv_prefix = ""
 
+[golang]
+symbol = ' '
+
 [haskell]
-symbol = " "
+symbol = ' '
 
 [nodejs]
-symbol = " "
+symbol = ' '
 
 [rust]
-symbol = " "
+symbol = ' '
 
 [ruby]
-symbol = " "
+symbol = ' '
 
 [lua]
-symbol = " "
+symbol = ' '
 
-[docker_context]
-symbol = " "
-style = "fg:#06969A"
-format = '[ $symbol $context ]($style) $path'
+[package]
+symbol = '󰏗 '
 
-[os.symbols]
-Alpaquita = " "
-Alpine = " "
-Amazon = " "
-Android = " "
-Arch = " "
-Artix = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
-Emscripten = " "
-EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Garuda = "󰛓 "
-Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = "󰈸 "
-Linux = " "
-Mabox = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-OpenBSD = "󰈺 "
-openSUSE = " "
-OracleLinux = "󰌷 "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-Redox = "󰀘 "
-Solus = "󰠳 "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Windows = "󰍲 "
+[palettes.nord]
+blue = '#5E81AC'
+# blue = '#81A1C1'
+teal = '#88C0D0'
+red = '#BF616A'
+orange = '#D08770'
+green = '#A3BE8C'
+yellow = '#EBCB8B'
+purple = '#B48EAD'
+gray = '#434C5E'
+black = '#2E3440'
+white='#D8DEE9'
+
+[palettes.onedark]
+blue='#61afef'
+red='#e06c75'
+green='#98c379'
+purple='#c678dd'
+cyan='#56b6c2'
+orange='#be5046'
+yellow='#e5c07b'
+gray='#828997'
+white ='#abb2bf'
+black='#2c323c'
