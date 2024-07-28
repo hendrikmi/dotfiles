@@ -54,7 +54,7 @@ fh() {
 }
 
 # Tmux
-# Always work in a tmux session if Tmux is installed
+Always work in a tmux session if Tmux is installed
 if which tmux 2>&1 >/dev/null; then
   if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
     tmux attach -t default || tmux new -s default; exit
@@ -72,9 +72,11 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 # export ZSH_HIGHLIGHT_STYLES[precommand]=fg=blue
 # export ZSH_HIGHLIGHT_STYLES[arg0]=fg=blue
 
-
 # Activate autosuggestions
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Better ls
+alias ls="eza --all --icons=always"
 
 # Vi mode
 # ANSI cursor escape codes:

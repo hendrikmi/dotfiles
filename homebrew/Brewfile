@@ -45,6 +45,8 @@ brew "postgresql@14"
 brew "sqlite"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
+# Modern, maintained replacement for ls
+brew "eza"
 # Application uninstaller
 cask "appcleaner"
 # Web browser focusing on privacy
