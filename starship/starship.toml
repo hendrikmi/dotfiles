@@ -14,7 +14,7 @@ $line_break\
 $character"""
 
 add_newline = true
-palette = 'nord'
+palette = "nord"
 
 [fill]
 symbol = ' '
@@ -65,7 +65,7 @@ detect_files = ['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
 detect_extensions = ['Dockerfile']
 
 [python]
-style = 'blue'
+style = 'teal'
 symbol = ' '
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 pyenv_version_name = true
