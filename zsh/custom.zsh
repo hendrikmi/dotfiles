@@ -54,7 +54,7 @@ fh() {
 }
 
 # Tmux
-Always work in a tmux session if Tmux is installed
+# Always work in a tmux session if Tmux is installed
 if which tmux 2>&1 >/dev/null; then
   if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
     tmux attach -t default || tmux new -s default; exit
