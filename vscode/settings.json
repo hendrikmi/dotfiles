@@ -2,7 +2,7 @@
   //
   // === Appearance ===
   //
-  "workbench.colorTheme": "One Dark Pro",
+	"workbench.colorTheme": "Default Dark Modern",
   "workbench.iconTheme": "vscode-icons",
   "vsicons.presets.foldersAllDefaultIcon": true,
   "vsicons.presets.hideExplorerArrows": true,
@@ -28,7 +28,7 @@
   //
   // === Terminal ===
   //
-  "terminal.external.osxExec": "kitty.app",
+  "terminal.external.osxExec": "wezterm.app",
   "terminal.integrated.shell.osx": "/bin/zsh",
   "terminal.integrated.fontFamily": "Hack Nerd Font",
   "terminal.integrated.cursorStyle": "line",
