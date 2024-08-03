@@ -3,9 +3,14 @@ $directory\
 $git_branch\
 $git_status\
 $fill\
-$lua\
 $python\
+$lua\
 $nodejs\
+$golang\
+$haskell\
+$rust\
+$ruby\
+$package\
 $aws\
 $docker_context\
 $jobs\
@@ -14,10 +19,7 @@ $line_break\
 $character"""
 
 add_newline = true
-palette = "nord"
-
-[fill]
-symbol = ' '
+palette = 'nord'
 
 [directory]
 style = 'bold fg:dark_blue'
@@ -41,16 +43,41 @@ format = '[on](white) [$symbol$branch ]($style)'
 style = 'fg:green'
 format = '([$all_status$ahead_behind]($style) )'
 
-[cmd_duration]
-min_time = 500
-style = 'fg:gray'
-format = '[$duration]($style)'
+[fill]
+symbol = ' '
 
-[jobs]
-symbol = ' '
-style = 'red'
-number_threshold = 1
-format = '[$symbol]($style)'
+[python]
+style = 'teal'
+symbol = ' '
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+pyenv_version_name = true
+pyenv_prefix = ''
+
+[lua]
+symbol = ' '
+
+[nodejs]
+style = 'blue'
+symbol = ' '
+
+[golang]
+style = 'blue'
+symbol = ' '
+
+[haskell]
+style = 'blue'
+symbol = ' '
+
+[rust]
+style = 'orange'
+symbol = ' '
+
+[ruby]
+style = 'blue'
+symbol = ' '
+
+[package]
+symbol = '󰏗 '
 
 [aws]
 symbol = ' '
@@ -64,38 +91,16 @@ format = '[$symbol]($style) $path'
 detect_files = ['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
 detect_extensions = ['Dockerfile']
 
-[python]
-style = 'teal'
-symbol = ' '
-format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
-pyenv_version_name = true
-pyenv_prefix = ""
+[jobs]
+symbol = ' '
+style = 'red'
+number_threshold = 1
+format = '[$symbol]($style)'
 
-[golang]
-style = 'blue'
-symbol = ' '
-
-[haskell]
-style = 'blue'
-symbol = ' '
-
-[nodejs]
-style = 'blue'
-symbol = ' '
-
-[rust]
-style = 'orange'
-symbol = ' '
-
-[ruby]
-style = 'blue'
-symbol = ' '
-
-[lua]
-symbol = ' '
-
-[package]
-symbol = '󰏗 '
+[cmd_duration]
+min_time = 500
+style = 'fg:gray'
+format = '[$duration]($style)'
 
 [palettes.nord]
 dark_blue = '#5E81AC'
