@@ -61,6 +61,9 @@ if which tmux 2>&1 >/dev/null; then
   fi
 fi
 
+# zoxide - a better cd command
+eval "$(zoxide init zsh)"
+
 # Activate syntax highlighting
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Disable underline
@@ -74,9 +77,6 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
 # Activate autosuggestions
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# Better ls
-alias ls="eza --all --icons=always"
 
 # Vi mode
 # ANSI cursor escape codes:

@@ -47,6 +47,10 @@ brew "sqlite"
 brew "poppler"
 # Modern, maintained replacement for ls
 brew "eza"
+# A better cd command
+brew "zoxide"
+# Simple terminal UI for git commands
+brew "lazygit"
 # Application uninstaller
 cask "appcleaner"
 # Web browser focusing on privacy
