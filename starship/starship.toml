@@ -10,7 +10,6 @@ $golang\
 $haskell\
 $rust\
 $ruby\
-$package\
 $aws\
 $docker_context\
 $jobs\
@@ -19,7 +18,7 @@ $line_break\
 $character"""
 
 add_newline = true
-palette = 'nord'
+palette = "nord"
 
 [directory]
 style = 'bold fg:dark_blue'
