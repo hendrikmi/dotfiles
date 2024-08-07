@@ -10,7 +10,6 @@ $golang\
 $haskell\
 $rust\
 $ruby\
-$package\
 $aws\
 $docker_context\
 $jobs\
