@@ -9,28 +9,31 @@ return { -- Autocompletion
         -- Build Step is needed for regex support in snippets
         -- This step is not supported in many windows environments
         -- Remove the below condition to re-enable on windows
-        if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+        if vim.fn.has 'win32' == 1 then
           return
         end
         return 'make install_jsregexp'
       end)(),
     },
+    'rafamadriz/friendly-snippets', -- useful snippets
     'saadparwaiz1/cmp_luasnip',
-
     -- Adds other completion capabilities.
     --  nvim-cmp does not ship with all sources by default. They are split
     --  into multiple repos for maintenance purposes.
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
-
-    -- Adds a number of user-friendly snippets
-    'rafamadriz/friendly-snippets',
+    'hrsh7th/cmp-buffer', -- source for text in buffer
+    'onsails/lspkind.nvim', -- vs-code like pictograms
+    { 'antosha417/nvim-lsp-file-operations', config = true },
   },
   config = function()
     local cmp = require 'cmp'
-    require('luasnip.loaders.from_vscode').lazy_load()
     local luasnip = require 'luasnip'
-    luasnip.config.setup {}
+    local lspkind = require 'lspkind'
+
+    -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
+    require('luasnip.loaders.from_vscode').lazy_load()
+    -- luasnip.config.setup {}
 
     local kind_icons = {
       Text = '󰉿',
@@ -130,23 +133,31 @@ return { -- Autocompletion
       sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        { name = 'buffer' },
         { name = 'path' },
       },
+      -- configure lspkind for vs-code like pictograms in completion menu
       formatting = {
-        fields = { 'kind', 'abbr', 'menu' },
-        format = function(entry, vim_item)
-          -- Kind icons
-          vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
-          -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-          vim_item.menu = ({
-            nvim_lsp = '[LSP]',
-            luasnip = '[Snippet]',
-            buffer = '[Buffer]',
-            path = '[Path]',
-          })[entry.source.name]
-          return vim_item
-        end,
+        format = lspkind.cmp_format {
+          maxwidth = 50,
+          ellipsis_char = '...',
+        },
       },
+      -- formatting = {
+      --   fields = { 'kind', 'abbr', 'menu' },
+      --   format = function(entry, vim_item)
+      --     -- Kind icons
+      --     vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
+      --     -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+      --     vim_item.menu = ({
+      --       nvim_lsp = '[LSP]',
+      --       luasnip = '[Snippet]',
+      --       buffer = '[Buffer]',
+      --       path = '[Path]',
+      --     })[entry.source.name]
+      --     return vim_item
+      --   end,
+      -- },
     }
   end,
 }

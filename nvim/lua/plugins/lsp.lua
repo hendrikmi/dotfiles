@@ -2,7 +2,7 @@ return { -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for neovim
-    'williamboman/mason.nvim',
+    { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -24,6 +24,8 @@ return { -- LSP Configuration & Plugins
         },
       },
     },
+    -- Allows extra capabilities provided by nvim-cmp
+    'hrsh7th/cmp-nvim-lsp',
   },
   config = function()
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -156,6 +158,29 @@ return { -- LSP Configuration & Plugins
           },
         },
       },
+      -- basedpyright = {
+      --   enabled = true,
+      --   settings = {
+      --     disableOrganizeImports = true,
+      --     basedpyright = {
+      --       analysis = {
+      --         -- ignore = { "*" },
+      --         typeCheckingMode = 'standard',
+      --         diagnosticMode = 'openFilesOnly',
+      --         useLibraryCodeForTypes = true,
+      --       },
+      --     },
+      --   },
+      -- },
+      -- pylsp = {
+      --   settings = {
+      --     plugins = {
+      --       jedi_completion = {
+      --         include_params = true,
+      --       },
+      --     },
+      --   },
+      -- },
       ruff_lsp = {
         -- Notes on code actions: https://github.com/astral-sh/ruff-lsp/issues/119#issuecomment-1595628355
         -- Get isort like behavior: https://github.com/astral-sh/ruff/issues/8926#issuecomment-1834048218
