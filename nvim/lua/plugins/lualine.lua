@@ -70,19 +70,31 @@ return {
       options = {
         icons_enabled = true,
         theme = themes[env_var_nvim_theme], -- Set theme based on environment variable
-        section_separators = { left = '', right = '' },
-        component_separators = { left = '', right = '' },
+        -- Some useful glyphs:
+        -- https://www.nerdfonts.com/cheat-sheet
+        --        
+        section_separators = { left = '', right = '' },
+        component_separators = { left = '', right = '' },
         disabled_filetypes = { 'alpha', 'dashboard', 'NvimTree', 'Outline' },
         always_divide_middle = true,
       },
       sections = {
-        lualine_a = { 'mode' },
+        -- lualine_a = { 'mode' },
+        lualine_a = {
+          {
+            'mode',
+            fmt = function(str)
+              -- return ' ' .. str:sub(1, 1)
+              return ' ' .. str
+            end,
+          },
+        },
         lualine_b = { 'branch' },
         lualine_c = {
           {
             'filename',
             file_status = true, -- displays file status (readonly status, modified status)
-            path = 0,           -- 0 = just filename, 1 = relative path, 2 = absolute path
+            path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
           },
         },
         lualine_x = { diagnostics, 'encoding', 'filetype' },
@@ -96,7 +108,7 @@ return {
           {
             'filename',
             file_status = true, -- displays file status (readonly status, modified status)
-            path = 1,           -- 0 = just filename, 1 = relative path, 2 = absolute path
+            path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
           },
         },
         lualine_x = { { 'location', padding = 0 } },
