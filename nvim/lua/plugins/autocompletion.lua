@@ -1,6 +1,6 @@
 return { -- Autocompletion
   'hrsh7th/nvim-cmp',
-  event = 'InsertEnter',
+  -- event = 'InsertEnter',
   dependencies = {
     -- Snippet Engine & its associated nvim-cmp source
     {
@@ -21,6 +21,7 @@ return { -- Autocompletion
     --  nvim-cmp does not ship with all sources by default. They are split
     --  into multiple repos for maintenance purposes.
     'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
 
     -- Adds a number of user-friendly snippets
@@ -72,21 +73,11 @@ return { -- Autocompletion
       --     documentation = cmp.config.window.bordered(),
       -- },
       mapping = cmp.mapping.preset.insert {
-        -- Select the [n]ext item
-        ['<C-n>'] = cmp.mapping.select_next_item(),
-        -- Select the [p]revious item
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
-
-        -- Accept ([y]es) the completion.
-        --  This will auto-import if your LSP supports it.
-        --  This will expand snippets if the LSP sent a snippet.
-        ['<C-y>'] = cmp.mapping.confirm { select = true },
-        ['<CR>'] = cmp.mapping.confirm { select = true },
-
-        -- Manually trigger a completion from nvim-cmp.
-        --  Generally you don't need this, because nvim-cmp will display
-        --  completions whenever it has completion options available.
-        ['<C-c>'] = cmp.mapping.complete {},
+        ['<C-n>'] = cmp.mapping.select_next_item(),        -- Select the [n]ext item
+        ['<C-p>'] = cmp.mapping.select_prev_item(),        -- Select the [p]revious item
+        ['<C-y>'] = cmp.mapping.confirm { select = true }, -- Accept ([y]es) the completion.
+        ['<CR>'] = cmp.mapping.confirm { select = true },  -- Accept the completion with Enter.
+        ['<C-c>'] = cmp.mapping.complete {},               -- Manually trigger a completion from nvim-cmp.
 
         -- Think of <c-l> as moving to the right of your snippet expansion.
         --  So if you have a snippet that's like:
@@ -130,6 +121,7 @@ return { -- Autocompletion
       sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        { name = 'buffer' },
         { name = 'path' },
       },
       formatting = {
