@@ -138,25 +138,46 @@ return { -- LSP Configuration & Plugins
       },
       dockerls = {},
       docker_compose_language_service = {},
-      pyright = {
+      -- pylsp = {
+      --   filetypes = { 'python' }, -- Specify the filetypes for which you want to use pylsp
+      -- },
+      -- pyright = {
+      --   settings = {
+      --     pyright = {
+      --       -- Using Ruff's import organizer
+      --       disableOrganizeImports = true,
+      --     },
+      --     python = {
+      --       analysis = {
+      --         -- Ignore all files for analysis to exclusively use Ruff for linting
+      --         -- ignore = { '*' },
+      --         typeCheckingMode = 'off',
+      --         autoSearchPaths = true,
+      --         useLibraryCodeForTypes = true,
+      --       },
+      --       disableLanguageServices = false,
+      --     },
+      --   },
+      -- },
+      basedpyright = {
         settings = {
           pyright = {
             -- Using Ruff's import organizer
             disableOrganizeImports = true,
           },
-          python = {
+          basedpyright = {
             analysis = {
               -- Ignore all files for analysis to exclusively use Ruff for linting
               ignore = { '*' },
               typeCheckingMode = 'off',
-              autoSearchPaths = true,
+              diagnosticMode = 'openFilesOnly',
               useLibraryCodeForTypes = true,
             },
-            disableLanguageServices = false,
           },
         },
       },
       ruff_lsp = {
+        enabled = true,
         -- Notes on code actions: https://github.com/astral-sh/ruff-lsp/issues/119#issuecomment-1595628355
         -- Get isort like behavior: https://github.com/astral-sh/ruff/issues/8926#issuecomment-1834048218
         commands = {
@@ -184,7 +205,6 @@ return { -- LSP Configuration & Plugins
           },
         },
       },
-      ruff = {},
       rust_analyzer = {
         ['rust-analyzer'] = {
           cargo = {
