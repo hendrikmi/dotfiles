@@ -26,15 +26,16 @@ config = {
   background = {
     {
       source = {
-        File = "/Users/hendrik/code/dotfiles/img/bg-monterey.png",
+        File = "/Users/" .. os.getenv("USER") .. "/.config/wezterm/dark-desert.jpg",
       },
       hsb = {
         hue = 1.0,
         saturation = 1.02,
         brightness = 0.25,
       },
-      width = "100%",
-      height = "100%",
+      -- attachment = { Parallax = 0.3 },
+      -- width = "100%",
+      -- height = "100%",
     },
     {
       source = {
