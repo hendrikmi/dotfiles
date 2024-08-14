@@ -1,12 +1,11 @@
 return {
   'akinsho/bufferline.nvim',
-  commit = '243893b',
   dependencies = {
     'moll/vim-bbye',
     'nvim-tree/nvim-web-devicons',
   },
   config = function()
-    vim.opt.linespace = 8
+    -- vim.opt.linespace = 8
 
     require('bufferline').setup {
       options = {
@@ -28,23 +27,8 @@ return {
         max_name_length = 30,
         max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
         tab_size = 21,
-        diagnostics = false,    -- | "nvim_lsp" | "coc",
+        diagnostics = false,
         diagnostics_update_in_insert = false,
-        offsets = {
-          {
-            filetype = 'NvimTree',
-            -- display working dir
-            text = function()
-              local full_path = vim.fn.getcwd()
-              local current_folder = vim.fn.fnamemodify(full_path, ':t')
-              return current_folder
-            end,
-            highlight = 'Directory',
-            text_align = 'left',
-            -- padding = 1,
-            separator = true,
-          },
-        },
         color_icons = true,
         show_buffer_icons = true,
         show_buffer_close_icons = true,
@@ -55,9 +39,8 @@ return {
         always_show_bufferline = true,
         show_tab_indicators = false,
         indicator = {
-          -- icon = "▎", -- this should be omitted if indicator style is not 'icon'
-          -- style = "icon", -- can be set to underline
-          style = 'none',
+          -- icon = '▎', -- this should be omitted if indicator style is not 'icon'
+          style = 'none', -- Options: 'icon', 'underline', 'none'
         },
         icon_pinned = '󰐃',
         minimum_padding = 1,
@@ -66,32 +49,18 @@ return {
         sort_by = 'insert_at_end',
       },
       highlights = {
-        -- indicator_selected = {
-        -- 	fg = "#8EBB73",
-        -- },
-        -- separator = {
-        -- 	fg = "#8EBB73",
-        -- },
-        -- separator_selected = {
-        -- 	fg = "#8EBB73",
-        -- 	bg = "#8EBB73",
-        -- },
-        -- tab_selected = {
-        -- 	bg = "#8EBB73",
-        -- },
-        -- background = {
-        -- 	fg = "#657b83",
-        -- 	bg = "#002b36",
-        -- },
+        separator = {
+          fg = '#434C5E',
+        },
         buffer_selected = {
-          -- fg = "#8EBB73",
-          -- bg = "#8EBB73",
           bold = true,
           italic = false,
         },
-        -- fill = {
-        -- 	bg = "#073642",
-        -- },
+        -- separator_selected = {},
+        -- tab_selected = {},
+        -- background = {},
+        -- indicator_selected = {},
+        -- fill = {},
       },
     }
 
