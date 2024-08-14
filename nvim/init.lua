@@ -1,5 +1,5 @@
-require 'core.options'  -- Load general options
-require 'core.keymaps'  -- Load general keymaps
+require 'core.options' -- Load general options
+require 'core.keymaps' -- Load general keymaps
 require 'core.snippets' -- Custom code snippets
 
 -- Install package manager
@@ -44,7 +44,6 @@ require('lazy').setup({
   require 'plugins.debug',
   require 'plugins.gitsigns',
   require 'plugins.database',
-  require 'plugins.mini',
   require 'plugins.misc',
 }, {
   ui = {
