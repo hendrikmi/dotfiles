@@ -540,7 +540,7 @@
                 ],
                 "description": "Window: almost maximize",
                 "from": {
-                  "key_code": "k",
+                  "key_code": "spacebar",
                   "modifiers": {
                     "optional": [
                       "any"
@@ -804,7 +804,7 @@
                 ],
                 "description": "Window: Rectangle custom size",
                 "from": {
-                  "key_code": "c",
+                  "key_code": "k",
                   "modifiers": {
                     "optional": [
                       "any"
