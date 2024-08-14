@@ -93,18 +93,18 @@ export VI_MODE_SET_CURSOR=true
 
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]]; then
-    echo -ne '\e[1 q' # block
+    echo -ne '\e[2 q' # block
   else
-    echo -ne '\e[5 q' # beam
+    echo -ne '\e[6 q' # beam
   fi
 }
 zle -N zle-keymap-select
 zle-line-init() {
   zle -K viins # initiate 'vi insert' as keymap (can be removed if 'binkey -V has been set elsewhere')
-  echo -ne '\e[5 q'
+  echo -ne '\e[6 q'
 }
 zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup
+echo -ne '\e[6 q' # Use beam shape cursor on startup
 
 # Yank to the system clipboard
 function vi-yank-xclip {
