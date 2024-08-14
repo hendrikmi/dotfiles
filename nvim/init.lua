@@ -28,31 +28,24 @@ local themes = {
 
 -- Setup plugins
 require('lazy').setup({
-  -- Essential plugins
   require(themes[env_var_nvim_theme]),
   require 'plugins.telescope',
   require 'plugins.treesitter',
-  require 'plugins.vim-tmux-navigator',
   require 'plugins.lsp',
   require 'plugins.autocompletion',
   require 'plugins.none-ls',
   require 'plugins.lualine',
   require 'plugins.bufferline',
   require 'plugins.neo-tree',
-  -- Nice to have
   require 'plugins.alpha',
   require 'plugins.indent-blankline',
+  require 'plugins.lazygit',
   require 'plugins.comment',
-  require 'plugins.sleuth',
-  require 'plugins.fugitive',
   require 'plugins.debug',
-  require 'plugins.todo-comments',
   require 'plugins.gitsigns',
-  require 'plugins.which-key',
-  require 'plugins.autopairs',
-  require 'plugins.ts-autotag',
-  require 'plugins.colorizer',
   require 'plugins.database',
+  require 'plugins.mini',
+  require 'plugins.misc',
 }, {
   ui = {
     -- If you have a Nerd Font, set icons to an empty table which will use the
@@ -74,6 +67,26 @@ require('lazy').setup({
     },
   },
 })
+
+-- Function to check if a file exists
+local function file_exists(file)
+  local f = io.open(file, 'r')
+  if f then
+    f:close()
+    return true
+  else
+    return false
+  end
+end
+
+-- Path to the session file
+local session_file = '.session.vim'
+
+-- Check if the session file exists in the current directory
+if file_exists(session_file) then
+  -- Source the session file
+  vim.cmd('source ' .. session_file)
+end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
