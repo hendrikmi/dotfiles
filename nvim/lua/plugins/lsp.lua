@@ -138,46 +138,39 @@ return { -- LSP Configuration & Plugins
       },
       dockerls = {},
       docker_compose_language_service = {},
-      -- pylsp = {
-      --   filetypes = { 'python' }, -- Specify the filetypes for which you want to use pylsp
-      -- },
-      -- pyright = {
-      --   settings = {
-      --     pyright = {
-      --       -- Using Ruff's import organizer
-      --       disableOrganizeImports = true,
-      --     },
-      --     python = {
-      --       analysis = {
-      --         -- Ignore all files for analysis to exclusively use Ruff for linting
-      --         -- ignore = { '*' },
-      --         typeCheckingMode = 'off',
-      --         autoSearchPaths = true,
-      --         useLibraryCodeForTypes = true,
-      --       },
-      --       disableLanguageServices = false,
-      --     },
-      --   },
-      -- },
-      basedpyright = {
+      pylsp = {
         settings = {
-          pyright = {
-            -- Using Ruff's import organizer
-            disableOrganizeImports = true,
-          },
-          basedpyright = {
-            analysis = {
-              -- Ignore all files for analysis to exclusively use Ruff for linting
-              ignore = { '*' },
-              typeCheckingMode = 'off',
-              diagnosticMode = 'openFilesOnly',
-              useLibraryCodeForTypes = true,
+          pylsp = {
+            plugins = {
+              pyflakes = { enabled = false },
+              pycodestyle = { enabled = false },
+              autopep8 = { enabled = false },
+              yapf = { enabled = false },
+              mccabe = { enabled = false },
+              pylsp_mypy = { enabled = false },
+              pylsp_black = { enabled = false },
+              pylsp_isort = { enabled = false },
             },
           },
         },
       },
-      ruff_lsp = {
-        enabled = true,
+      -- basedpyright = {
+      --   -- Config options: https://github.com/DetachHead/basedpyright/blob/main/docs/settings.md
+      --   settings = {
+      --     basedpyright = {
+      --       disableOrganizeImports = true, -- Using Ruff's import organizer
+      --       disableLanguageServices = false,
+      --       analysis = {
+      --         ignore = { '*' },                 -- Ignore all files for analysis to exclusively use Ruff for linting
+      --         typeCheckingMode = 'off',
+      --         diagnosticMode = 'openFilesOnly', -- Only analyze open files
+      --         useLibraryCodeForTypes = true,
+      --         autoImportCompletions = true,     -- whether pyright offers auto-import completions
+      --       },
+      --     },
+      --   },
+      -- },
+      ruff = {
         -- Notes on code actions: https://github.com/astral-sh/ruff-lsp/issues/119#issuecomment-1595628355
         -- Get isort like behavior: https://github.com/astral-sh/ruff/issues/8926#issuecomment-1834048218
         commands = {
