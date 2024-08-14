@@ -80,3 +80,5 @@ alias r=". ranger"
 # Better ls
 alias ls="eza --all --icons=always"
 
+# Lazygit
+alias lg="lazygit"
