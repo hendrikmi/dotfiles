@@ -39,7 +39,7 @@ symbol = ' '
 format = '[on](white) [$symbol$branch ]($style)'
 
 [git_status]
-style = 'fg:green'
+style = 'fg:red'
 format = '([$all_status$ahead_behind]($style) )'
 
 [fill]
