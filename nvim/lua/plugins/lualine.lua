@@ -36,6 +36,29 @@ return {
       },
     }
 
+    -- Import color theme based on environment variable NVIM_THEME
+    local env_var_nvim_theme = os.getenv 'NVIM_THEME' or 'nord'
+
+    -- Define a table of themes
+    local themes = {
+      onedark = onedark_theme,
+      nord = 'nord',
+    }
+
+    local mode = {
+      'mode',
+      fmt = function(str)
+        -- return ' ' .. str:sub(1, 1) -- displays only the first character of the mode
+        return ' ' .. str
+      end,
+    }
+
+    local filename = {
+      'filename',
+      file_status = true, -- displays file status (readonly status, modified status)
+      path = 0,           -- 0 = just filename, 1 = relative path, 2 = absolute path
+    }
+
     local hide_in_width = function()
       return vim.fn.winwidth(0) > 80
     end
@@ -47,7 +70,8 @@ return {
       symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
       colored = false,
       update_in_insert = false,
-      always_visible = true,
+      always_visible = false,
+      cond = hide_in_width,
     }
 
     local diff = {
@@ -55,15 +79,6 @@ return {
       colored = false,
       symbols = { added = ' ', modified = ' ', removed = ' ' }, -- changes diff symbols
       cond = hide_in_width,
-    }
-
-    -- Import color theme based on environment variable NVIM_THEME
-    local env_var_nvim_theme = os.getenv 'NVIM_THEME' or 'nord'
-
-    -- Define a table of themes
-    local themes = {
-      onedark = onedark_theme,
-      nord = 'nord',
     }
 
     require('lualine').setup {
@@ -75,42 +90,21 @@ return {
         --        
         section_separators = { left = '', right = '' },
         component_separators = { left = '', right = '' },
-        disabled_filetypes = { 'alpha', 'dashboard', 'NvimTree', 'Outline' },
+        disabled_filetypes = { 'alpha', 'neo-tree' },
         always_divide_middle = true,
       },
       sections = {
-        -- lualine_a = { 'mode' },
-        lualine_a = {
-          {
-            'mode',
-            fmt = function(str)
-              -- return ' ' .. str:sub(1, 1)
-              return ' ' .. str
-            end,
-          },
-        },
+        lualine_a = { mode },
         lualine_b = { 'branch' },
-        lualine_c = {
-          {
-            'filename',
-            file_status = true, -- displays file status (readonly status, modified status)
-            path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
-          },
-        },
-        lualine_x = { diagnostics, 'encoding', 'filetype' },
+        lualine_c = { filename },
+        lualine_x = { diagnostics, diff, { 'encoding', cond = hide_in_width }, { 'filetype', cond = hide_in_width } },
         lualine_y = { 'location' },
         lualine_z = { 'progress' },
       },
       inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = {
-          {
-            'filename',
-            file_status = true, -- displays file status (readonly status, modified status)
-            path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
-          },
-        },
+        lualine_c = { { 'filename', path = 1 } },
         lualine_x = { { 'location', padding = 0 } },
         lualine_y = {},
         lualine_z = {},
