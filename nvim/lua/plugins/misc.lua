@@ -1,15 +1,11 @@
 -- Standalone plugins with less than 10 lines of config go here
 return {
   {
-    -- tmux & split window navigation
+    -- Tmux & split window navigation
     'christoomey/vim-tmux-navigator',
   },
   {
-    -- autoclose tags
-    'windwp/nvim-ts-autotag',
-  },
-  {
-    -- detect tabstop and shiftwidth automatically
+    -- Detect tabstop and shiftwidth automatically
     'tpope/vim-sleuth',
   },
   {
@@ -39,7 +35,7 @@ return {
     opts = { signs = false },
   },
   {
-    -- high-performance color highlighter
+    -- High-performance color highlighter
     'norcalli/nvim-colorizer.lua',
     config = function()
       require('colorizer').setup()
