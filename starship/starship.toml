@@ -53,6 +53,7 @@ pyenv_version_name = true
 pyenv_prefix = ''
 
 [lua]
+format = '[$symbol($version )]($style)'
 symbol = ' '
 
 [nodejs]
