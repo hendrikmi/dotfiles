@@ -156,8 +156,9 @@ noremap <silent> <leader>e :Lex<CR>
 syntax on
 
 " Colorscheme
-colorscheme industry
-" set background=dark
+" colorscheme industry
+colorscheme wildcharm
+set background=dark
 " hi Normal ctermbg=NONE guibg=NONE
 " hi NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 " hi VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
