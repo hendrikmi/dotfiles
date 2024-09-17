@@ -46,6 +46,7 @@ require('lazy').setup({
   require 'plugins.database',
   require 'plugins.misc',
   require 'plugins.harpoon',
+  require 'plugins.avante',
 }, {
   ui = {
     -- If you have a Nerd Font, set icons to an empty table which will use the
