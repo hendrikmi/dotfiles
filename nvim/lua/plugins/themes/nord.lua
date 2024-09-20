@@ -23,7 +23,7 @@ return {
     -- end
 
     -- Execute the function once after loading the colorscheme
-    set_menu_border_transparency()
+    -- set_menu_border_transparency()
 
     local bg_transparent = true
 
