@@ -2,6 +2,8 @@ return {
   'jackMort/ChatGPT.nvim',
   event = 'VeryLazy',
   config = function()
+    vim.api.nvim_set_hl(0, 'ChatGPTNormalFloat', { bg = 'NONE', fg = 'NONE' })
+    vim.api.nvim_set_hl(0, 'ChatGPTFloatBorder', { bg = 'NONE', fg = 'NONE' })
     require('chatgpt').setup {
       api_key_cmd = nil,
       yank_register = '+',
@@ -19,7 +21,8 @@ return {
       chat = {
         loading_text = 'Loading, please wait ...',
         question_sign = '', -- 🙂
-        answer_sign = 'ﮧ', -- 🤖
+        -- answer_sign = 'ﮧ', -- 🤖
+        answer_sign = '🤖',
         max_line_length = 120,
         sessions_window = {
           border = {
@@ -29,7 +32,7 @@ return {
             },
           },
           win_options = {
-            winhighlight = 'Normal:Normal,FloatBorder:FloatBorder',
+            winhighlight = 'Normal:ChatGPTNormalFloat,FloatBorder:ChatGPTFloatBorder',
           },
         },
       },
@@ -68,7 +71,7 @@ return {
       },
       popup_window = {
         border = {
-          highlight = 'FloatBorder',
+          highlight = 'Normal:ChatGPTNormalFloat,FloatBorder:ChatGPTFloatBorder',
           style = 'rounded',
           text = {
             top = ' ChatGPT ',
@@ -78,7 +81,7 @@ return {
           wrap = true,
           linebreak = true,
           foldcolumn = '1',
-          winhighlight = 'Normal:Normal,FloatBorder:FloatBorder',
+          winhighlight = 'Normal:ChatGPTNormalFloat,FloatBorder:ChatGPTFloatBorder',
         },
         buf_options = {
           filetype = 'markdown',
@@ -86,7 +89,7 @@ return {
       },
       system_window = {
         border = {
-          highlight = 'FloatBorder',
+          highlight = 'Normal:ChatGPTNormalFloat,FloatBorder:ChatGPTFloatBorder',
           style = 'rounded',
           text = {
             top = ' SYSTEM ',
@@ -96,13 +99,13 @@ return {
           wrap = true,
           linebreak = true,
           foldcolumn = '2',
-          winhighlight = 'Normal:Normal,FloatBorder:FloatBorder',
+          winhighlight = 'Normal:ChatGPTNormalFloat,FloatBorder:ChatGPTFloatBorder',
         },
       },
       popup_input = {
         prompt = '  ',
         border = {
-          highlight = 'FloatBorder',
+          highlight = 'Normal:ChatGPTNormalFloat,FloatBorder:ChatGPTFloatBorder',
           style = 'rounded',
           text = {
             top_align = 'center',
@@ -110,7 +113,7 @@ return {
           },
         },
         win_options = {
-          winhighlight = 'Normal:Normal,FloatBorder:FloatBorder',
+          winhighlight = 'Normal:ChatGPTNormalFloat,FloatBorder:ChatGPTFloatBorder',
         },
         submit = '<C-Enter>',
         submit_n = '<Enter>',
@@ -124,7 +127,7 @@ return {
           },
         },
         win_options = {
-          winhighlight = 'Normal:Normal,FloatBorder:FloatBorder',
+          winhighlight = 'Normal:ChatGPTNormalFloat,FloatBorder:ChatGPTFloatBorder',
         },
       },
       -- this config assumes you have OPENAI_API_KEY environment variable set
