@@ -20,13 +20,17 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   config = function()
+    local telescope = require 'telescope'
+    local actions = require 'telescope.actions'
+    local builtin = require 'telescope.builtin'
+
     require('telescope').setup {
       defaults = {
         mappings = {
           i = {
-            ['<C-k>'] = require('telescope.actions').move_selection_previous, -- move to prev result
-            ['<C-j>'] = require('telescope.actions').move_selection_next,     -- move to next result
-            ['<C-l>'] = require('telescope.actions').select_default,          -- open file
+            ['<C-k>'] = actions.move_selection_previous, -- move to prev result
+            ['<C-j>'] = actions.move_selection_next,     -- move to next result
+            ['<C-l>'] = actions.select_default,          -- open file
           },
         },
       },
@@ -35,6 +39,16 @@ return {
           file_ignore_patterns = { 'node_modules', '.git', '.venv' },
           hidden = true,
         },
+        buffers = {
+          mappings = {
+            i = {
+              ['<c-x>'] = actions.delete_buffer + actions.move_to_top,
+            },
+            n = {
+              ['<c-x>'] = actions.delete_buffer + actions.move_to_top,
+            },
+          },
+        },
       },
       live_grep = {
         file_ignore_patterns = { 'node_modules', '.git', '.venv' },
@@ -42,10 +56,14 @@ return {
           return { '--hidden' }
         end,
       },
+      path_display = 'filename_first',
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
         },
+      },
+      git_files = {
+        previewer = false,
       },
     }
 
@@ -53,8 +71,6 @@ return {
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
 
-    -- See `:help telescope.builtin`
-    local builtin = require 'telescope.builtin'
     vim.keymap.set('n', '<leader>?', builtin.oldfiles, { desc = '[?] Find recently opened files' })
     vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[S]earch existing [B]uffers' })
     vim.keymap.set('n', '<leader>sm', builtin.marks, { desc = '[S]earch [M]arks' })
@@ -70,6 +86,11 @@ return {
     vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
     vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]resume' })
     vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+    vim.keymap.set('n', '<leader>sds', function()
+      builtin.lsp_document_symbols {
+        symbols = { 'Class', 'Function', 'Method', 'Constructor', 'Interface', 'Module', 'Property' },
+      }
+    end, { desc = '[S]each LSP document [S]ymbols' })
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
     vim.keymap.set('n', '<leader>s/', function()
       builtin.live_grep {
@@ -80,7 +101,6 @@ return {
     vim.keymap.set('n', '<leader>/', function()
       -- You can pass additional configuration to telescope to change theme, layout, etc.
       builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-        winblend = 10,
         previewer = false,
       })
     end, { desc = '[/] Fuzzily search in current buffer' })
