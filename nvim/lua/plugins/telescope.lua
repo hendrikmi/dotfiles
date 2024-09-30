@@ -32,6 +32,9 @@ return {
             ['<C-j>'] = actions.move_selection_next,     -- move to next result
             ['<C-l>'] = actions.select_default,          -- open file
           },
+          n = {
+            ['q'] = actions.close,
+          },
         },
       },
       pickers = {
@@ -40,12 +43,13 @@ return {
           hidden = true,
         },
         buffers = {
+          initial_mode = 'normal',
+          -- sort_lastused = true,
+          sort_mru = true,
           mappings = {
-            i = {
-              ['<c-x>'] = actions.delete_buffer + actions.move_to_top,
-            },
             n = {
-              ['<c-x>'] = actions.delete_buffer + actions.move_to_top,
+              ['d'] = actions.delete_buffer,
+              ['l'] = actions.select_default,
             },
           },
         },
@@ -56,7 +60,11 @@ return {
           return { '--hidden' }
         end,
       },
-      path_display = 'filename_first',
+      path_display = {
+        filename_first = {
+          reverse_directories = true,
+        },
+      },
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
