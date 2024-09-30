@@ -48,6 +48,7 @@ require('lazy').setup({
   require 'plugins.harpoon',
   require 'plugins.avante',
   require 'plugins.chatgpt',
+  require 'plugins.aerial',
 }, {
   ui = {
     -- If you have a Nerd Font, set icons to an empty table which will use the
