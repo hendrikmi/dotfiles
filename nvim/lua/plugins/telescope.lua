@@ -44,8 +44,8 @@ return {
         },
         buffers = {
           initial_mode = 'normal',
-          -- sort_lastused = true,
-          sort_mru = true,
+          sort_lastused = true,
+          -- sort_mru = true,
           mappings = {
             n = {
               ['d'] = actions.delete_buffer,
