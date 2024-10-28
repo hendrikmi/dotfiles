@@ -21,10 +21,10 @@
   "window.commandCenter": false,
   "workbench.layoutControl.enabled": false,
   "update.showReleaseNotes": false,
-  "window.zoomLevel": 1.0,
+  "window.zoomLevel": 0.0,
   "editor.folding": false,
   "zenMode.hideLineNumbers": false,
-  "editor.rulers": [79],
+  "editor.rulers": [88],
   //
   // === Terminal ===
   //
@@ -35,6 +35,8 @@
   //
   // === Editor Behavior ===
   //
+  "files.autoSave": "afterDelay",
+  "editor.accessibilitySupport": "off",
   "editor.stickyScroll.enabled": true,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
@@ -209,14 +211,14 @@
       "commands": ["workbench.action.moveActiveEditorGroupUp"]
     },
     // Resize panes
-    {
-      "before": ["up"],
-      "commands": ["workbench.action.increaseViewSize"]
-    },
-    {
-      "before": ["down"],
-      "commands": ["workbench.action.decreaseViewSize"]
-    }
+    // {
+    //   "before": ["up"],
+    //   "commands": ["workbench.action.increaseViewSize"]
+    // },
+    // {
+    //   "before": ["down"],
+    //   "commands": ["workbench.action.decreaseViewSize"]
+    // }
   ],
   "vim.visualModeKeyBindings": [
     // Allow indenting from visual mode
