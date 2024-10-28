@@ -1,194 +1,259 @@
-" ========================================
-" Options
-" ========================================
-
-set encoding=UTF-8
-set spelllang=en_us,de_de,es_es
-set nohlsearch " Disable highlight on search
-set number " Enable line numbers
-set mouse=a " Enable mouse mode
-set breakindent " Enable break indent
-set undofile " Save undo history
-set ignorecase " Case-insensitive searching unless \C or capital in search
-set smartcase " Enable smart case
-set signcolumn=yes " Keep signcolumn on by default
-set updatetime=250 " Decrease update time
-set timeoutlen=300 " Time to wait for a mapped sequence to complete (in milliseconds)
-set nobackup " Don't create a backup file
-set nowritebackup " Don't write backup before overwriting
-set completeopt=menuone,noselect " Better completion experience
-set whichwrap+=<,>,[,],h,l " Allow certain keys to move to the next line
-set nowrap " Display long lines as one line
-set linebreak " Don't break words when wrapping
-set scrolloff=8 " Keep 8 lines above/below cursor
-set sidescrolloff=8 " Keep 8 columns to the left/right of cursor
-set relativenumber " Use relative line numbers
-set numberwidth=4 " Number column width
-set shiftwidth=4 " Spaces per indentation
-set tabstop=4 " Spaces per tab
-set softtabstop=4 " Spaces per tab during editing ops
-set expandtab " Convert tabs to spaces
-set nocursorline " Don't highlight the current line
-set splitbelow " Horizontal splits below current window
-set splitright " Vertical splits to the right
-set noswapfile " Don't use a swap file
-set smartindent " Smart indentation
-set showtabline=2 " Always show tab line
-set backspace=indent,eol,start " Configurable backspace behavior
-set pumheight=10 " Popup menu height
-set conceallevel=0 " Make `` visible in markdown
-set fileencoding=utf-8 " File encoding
-set cmdheight=1 " Command line height
-set autoindent " Auto-indent new lines
-set shortmess+=c " Don't show completion menu messages
-set iskeyword+=- " Treat hyphenated words as whole words
-set showmatch " show the matching part of pairs [] {} and ()
-set laststatus=2 " Show status bar
-set statusline=%f " Path to the file
-set statusline+=%= " Switch to the right side
-set statusline+=%l " Current line
-set statusline+=/ " Separator
-set statusline+=%L " Total lines
-
-
-" ========================================
-" Keymaps
-" ========================================
-
-" Set leader key
-let mapleader = " "
-let maplocalleader = " "
-
-" Disable the spacebar key's default behavior in Normal and Visual modes
-nnoremap <Space> <Nop>
-vnoremap <Space> <Nop>
-
-" Allow moving the cursor through wrapped lines with j, k
-nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
-nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
-
-" clear highlights
-nnoremap <Esc> :noh<CR>
-
-" save file
-nnoremap <C-s> :w<CR>
-
-" save file without auto-formatting
-nnoremap <leader>sn :noautocmd w<CR>
-
-" quit file
-nnoremap <C-q> :q<CR>
-
-" delete single character without copying into register
-nnoremap x "_x
-
-" Vertical scroll and center
-nnoremap <C-d> <C-d>zz
-nnoremap <C-u> <C-u>zz
-
-" Find and center
-nnoremap n nzzzv
-nnoremap N Nzzzv
-
-" Resize with arrows
-nnoremap <Up> :resize -2<CR>
-nnoremap <Down> :resize +2<CR>
-nnoremap <Left> :vertical resize -2<CR>
-nnoremap <Right> :vertical resize +2<CR>
-
-" Navigate buffers
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
-nnoremap <leader>sb :buffers<CR>:buffer<Space>
-
-" increment/decrement numbers
-nnoremap <leader>+ <C-a>
-nnoremap <leader>- <C-x>
-
-" window management
-nnoremap <leader>v <C-w>v
-nnoremap <leader>h <C-w>s
-nnoremap <leader>se <C-w>=
-nnoremap <leader>xs :close<CR>
-
-" Navigate between splits
-nnoremap <C-k> :wincmd k<CR>
-nnoremap <C-j> :wincmd j<CR>
-nnoremap <C-h> :wincmd h<CR>
-nnoremap <C-l> :wincmd l<CR>
-
-" tabs
-nnoremap <leader>to :tabnew<CR>
-nnoremap <leader>tx :tabclose<CR>
-nnoremap <leader>tn :tabn<CR>
-nnoremap <leader>tp :tabp<CR>
-
-nnoremap <leader>x :bdelete<CR>
-nnoremap <leader>b :enew<CR>
-
-" toggle line wrapping
-nnoremap <leader>lw :set wrap!<CR>
-
-" Press jk fast to exit insert mode
-inoremap jk <ESC>
-inoremap kj <ESC>
-
-" Stay in indent mode
-" vnoremap < <gv
-" vnoremap > >gv
-
-" Keep last yanked when pasting
-vnoremap p "_dP
-
-" Explicitly yank to system clipboard (highlighted and entire row)
-noremap <leader>y "+y
-noremap <leader>Y "+Y
-
-" Open file explorer
-noremap <silent> <leader>e :Lex<CR>
-
-
-" ========================================
-" Other
-" ========================================
-
-" Syntax highlighting
+"  ------ CONFIG -------
+" Don't try to be vi compatible
+set nocompatible
+" Turn on syntax highlighting
 syntax on
+" Ensure space isn't mapped to anything before making it the leader key
+nnoremap <SPACE> <Nop>
+" Set leader key as space
+let mapleader = " "
 
-" Colorscheme
-" colorscheme industry
-colorscheme wildcharm
-set background=dark
-" hi Normal ctermbg=NONE guibg=NONE
-" hi NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
-" hi VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
+" Security
+set modelines=0
 
-" Sync clipboard with OS
-if system('uname -s') == "Darwin\n"
-  set clipboard=unnamed "OSX
-else
-  set clipboard=unnamedplus "Linux
-endif
+" Show line numbers
+set number
 
-" True colors
-if !has('gui_running') && &term =~ '\%(screen\|tmux\)'
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
-set termguicolors
+" Show file stats
+set ruler
 
-" Use a line cursor within insert mode and a block cursor everywhere else.
-let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q"
+" Encoding
+set encoding=utf-8
 
-" Netrw
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 25 
-" Use 'l' instead of <CR> to open files
-augroup netrw_setup | au!
-    au FileType netrw nmap <buffer> l <CR>
+" Whitespace
+" set wrap
+" set textwidth=88
+set formatoptions=cqrn1
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set noshiftround
+
+" Cursor motion
+set scrolloff=3
+set backspace=indent,eol,start
+set matchpairs+=<:> " use % to jump between pairs
+runtime! macros/matchit.vim
+
+" Move up/down editor lines
+nnoremap j gj
+nnoremap k gk
+
+" Set hybrid line number in normal move
+" Set absolue line number in insert mode
+set number
+augroup numbertoggle
+autocmd!
+autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
 augroup END
 
+" Allow hidden buffers
+set hidden
+
+" Rendering
+set ttyfast
+
+" Status bar
+set laststatus=2
+
+" Last line
+set showmode
+set showcmd
+
+" Searching
+nnoremap / /\v
+vnoremap / /\v
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set showmatch
+map <leader><space> :let @/=''<cr> " clear search
+
+"make % vim match < > signs
+setglobal matchpairs+=<:>
+" This makes clipboard and yanking the same
+" set clipboard+=unnamed
+
+" TODO: This is no longer needed but leaving it in incase it is
+" Change the shape of the cursor in normal and insert mode
+" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+" let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+
+let &t_SI = "\e[6 q" " Inser mode, steady bar cursor
+let &t_EI = "\e[2 q" " Normal Mode strady block cursor
+let &t_SR = "\e[4 q" " Underline for replace cursor
+" reset the cursor on start (for older versions of vim, usually not required)
+augroup myCmds
+au!
+autocmd VimEnter * silent !echo -ne "\e[2 q"
+augroup END
+
+set ttimeout
+set ttimeoutlen=1
+set ttyfast
+
+" ------ MAPPINGS -------
+
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
+call plug#begin()
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+" You can specify a custom plugin directory by passing it as the argument
+"   - e.g. `call plug#begin('~/.vim/plugged')`
+"   - Avoid using standard Vim directory names like 'plugin'
+
+" Make sure you use single quotes
+Plug 'unblevable/quick-scope'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" LSP for coding
+Plug 'dense-analysis/ale'
+" Smooth scroll 
+Plug 'yuttie/comfortable-motion.vim'
+Plug 'dracula/vim', { 'as': 'dracula' } " Dracula theme
+Plug 'junegunn/vim-peekaboo'
+" {} will also jump to lines with only whitespace
+Plug 'dbakker/vim-paragraph-motion'
+" " Highlight copied text
+Plug 'machakann/vim-highlightedyank'
+call plug#end()
+
+" Setting bottomr vim-airline theme
+let g:airline_theme='bubblegum'
+" Use quickscope only when pressing one of these keys
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+" Remap help key.
+inoremap <F1> <ESC>:set invfullscreen<CR>a
+nnoremap <F1> :set invfullscreen<CR>
+vnoremap <F1> :set invfullscreen<CR>
+
+" Textmate holdouts
+
+" Visualize tabs and newlines
+set listchars=tab:▸\ ,eol:¬
+" Uncomment this to enable by default:
+" set list " To enable by default
+" Or use your leader key + l to toggle on/off
+" map <leader>l :set list!<CR> " Toggle tabs and EOL
+
+" Color scheme (terminal)
+colorscheme dracula
+
+" Mappings
+" Scrolling
+nnoremap z zz
+nnoremap G Gzz
+nnoremap gg ggzz
+" nnoremap <C-f> <C-f>zz
+" nnoremap <C-d> <C-d>zz
+" nnoremap <C-u> <C-u>zz
+" nnoremap <C-b> <C-b>zz
+nnoremap <CR> :noh<CR><CR>
+
+
+" -- Misc Mapping --
+" H moves down from top of page
+" Remap for addicental left arrow 
+map H h 
+
+"" Find impulse for given amount of lines
+"function! ComforableMotionFindImpulse(diff)
+"    let l:X = pow(abs(a:diff), 0.5)
+"    let l:impulse =  0.7642497185838693
+"                \  +11.916201835589376*l:X
+"                \   +1.4842847475051253*(pow(l:X, 2))
+"                \   +0.01733669295908215*(pow(l:X, 3))
+"                \   -0.00034498320824916107*(pow(l:X, 4))
+"                \   +2.941264385825093e-06*(pow(l:X, 5))
+"    return l:impulse
+"endfunction
+"
+"" Comforable-motion equivalent to zz
+"function! ComforableMotionCenter(...)
+"    " Save original cursor position
+"    let s:orig_line = line('.')
+"    let s:orig_curs = col('.')
+"
+"    " Count visble difference to top
+"    let s:abs_top = line('w0')
+"    let s:vis_top_diff = 0
+"    while (line('.') > s:abs_top)
+"        normal 1k
+"        let s:vis_top_diff += 1
+"    endwhile
+"
+"    let s:vis_center = winheight('.')/2
+"    let s:vis_center_diff = s:vis_top_diff - s:vis_center
+"
+"    " Restore original cursor position
+"    call cursor(s:orig_line, s:orig_curs)
+"
+"    if s:vis_center_diff == 0
+"        return
+"    endif
+"
+"    if (a:0 > 0 && ((a:1 == 'up' && s:vis_center_diff > 0) ||
+"                  \ (a:1 == 'down' && s:vis_center_diff < 0)))
+"        return
+"    endif
+"
+"    let l:impulse = ComforableMotionFindImpulse(s:vis_center_diff)
+"    call comfortable_motion#flick(s:vis_center_diff/abs(s:vis_center_diff)*l:impulse)
+"endfunction
+"
+"" Comforable-motion equivalent to zt
+"function! ComforableMotionTop()
+"    let s:curLine = line('.')
+"    let s:curCurs = col('.')
+"    let s:absTop =  line('w0')
+"    let s:visTopDif = 0
+"    while (line('.') > s:absTop )
+"        normal 1k
+"        let s:visTopDif = s:visTopDif + 1
+"    endwhile
+"
+"    let l:impulse = ComforableMotionFindImpulse(s:visTopDif)
+"    call comfortable_motion#flick(l:impulse)
+"    call cursor(s:curLine, s:curCurs)
+"endfunction
+"
+"" Comforable-motion equivalent to zb
+"function! ComforableMotionBottom()
+"    let s:curLine = line('.')
+"    let s:curCurs = col('.')
+"    let s:absTop =  line('w0')
+"    let s:visTopDif = 0
+"
+"    " counts difference to top
+"    while (line('.') > s:absTop )
+"        normal 1k
+"        let s:visTopDif = (s:visTopDif + 1)
+"    endwhile
+"
+"    let s:visBotDif = winheight('.') - s:visTopDif
+"    let l:impulse = ComforableMotionFindImpulse(s:visBotDif-1)
+"    call comfortable_motion#flick(-l:impulse)
+"    call cursor(s:curLine, s:curCurs)
+"endfunction
+"
+"nmap <silent> zz :call ComforableMotionCenter()<CR>
+"nmap <silent> zt :call ComforableMotionTop()<CR>
+"nmap <silent> zb :call ComforableMotionBottom()<CR>
+"nmap <silent> {  {:call ComforableMotionCenter('up')<CR>
+"nmap <silent> }  }:call ComforableMotionCenter('down')<CR>
