@@ -9,10 +9,16 @@ config = {
   default_cursor_style = "SteadyBar",
   automatically_reload_config = true,
   window_close_confirmation = "NeverPrompt",
+  
+  -- Exit code behaviour
+  exit_behavior = "Hold",
+  exit_behavior_messaging = "Brief",
+
   adjust_window_size_when_changing_font_size = false,
-  window_decorations = "RESIZE",
+  enable_tab_bar = true,
+  window_decorations = "TITLE | RESIZE",
   check_for_updates = false,
-  use_fancy_tab_bar = false,
+  use_fancy_tab_bar = true,
   tab_bar_at_bottom = false,
   font_size = 12.5,
   font = wezterm.font("JetBrains Mono", { weight = "Bold" }),
