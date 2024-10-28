@@ -39,8 +39,19 @@ symbol = ' '
 format = '[on](white) [$symbol$branch ]($style)'
 
 [git_status]
-style = 'fg:red'
-format = '([$all_status$ahead_behind]($style) )'
+disabled = false
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "red bold"
+stashed = '*${count}'
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕${count}"
+conflicted = "=${count}"
+deleted = "✘${count}"
+renamed = "»${count}"
+modified = "!${count}"
+staged = "+${count}"
+untracked = "?${count}"
 
 [fill]
 symbol = ' '
@@ -98,7 +109,7 @@ number_threshold = 1
 format = '[$symbol]($style)'
 
 [cmd_duration]
-min_time = 500
+min_time = 200
 style = 'fg:gray'
 format = '[$duration]($style)'
 
