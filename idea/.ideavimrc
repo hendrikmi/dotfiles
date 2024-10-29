@@ -1,3 +1,10 @@
+"" TODO:
+" - Keep copying useful imports form ~/.ideavimrc.bck
+" - Fix whichkey description for leacerx
+" - leaderG is overloaded
+
+" List of available idea actions: https://gist.github.com/zchee/9c78f91cc5ad771c1f5d
+
 "" Base Settings
 "" ========================================================
 
@@ -54,7 +61,7 @@ let g:WhichKey_SortOrder = "by_key_prefix_first"
 
 let g:WhichKeyDesc_leader = "<leader> Leader key"
 
-let g:WhichKeyDesc_leadert = "<leader>t NERDTree Explorer"
+let g:WhichKeyDesc_leader_t = "<leader>t NERDTree Explorer"
 
 let g:WhichKeyDesc_easymotion = "<leader>j Jump with Easymotion"
 let g:WhichKeyDesc_easymotion_prefix = "<leader><leader>"
@@ -62,8 +69,11 @@ let g:WhichKeyDesc_easymotion_prefix = "<leader><leader>"
 let g:WhichKeyDesc_comment = "<leader>c Comment line"
 
 let g:WhichKeyDesc_fold = "<leader>z Folding"
-let g:WhichKeyDesc_fold_all = "<leader>zc Fold all regions"
-let g:WhichKeyDesc_unfold_all = "<leader>zo Unfold all regions"
+let g:WhichKeyDesc_fold_region = "<leader>zc Collapse region"
+let g:WhichKeyDesc_fold_all_region = "<leader>zC Collapse all regions"
+let g:WhichKeyDesc_unfold_all = "<leader>zE Expand all regions"
+let g:WhichKeyDesc_unfold_all = "<leader>zE Expand all regions"
+let g:WhichKeyDesc_fold_toggle = "<leader>zz Toggle expand/collapse"
 
 let g:WhichKeyDesc_window = "<leader>w Window splits"
 let g:WhichKeyDesc_window_split_vertically = "<leader>wv Split vertically"
@@ -92,31 +102,28 @@ let g:WhichKeyDesc_file_nav_show_recent_locations = "<leader>fl Show recent loca
 let g:WhichKeyDesc_close_tab = "<leader>q Close active tab"
 
 let g:WhichKey_close = "<leader>x Close menu"
-
 let g:WhichKey_close_content = "<leader>xx Close Content"
 let g:WhichKey_close_all = "<leader>xa Close All Editors"
 let g:WhichKey_close_all_but_active = "<leader>xo Close All Editors But Active"
 
+let g:WhichKeyDesc_run = "<Space>r Run + Refactor"
+let g:WhichKeyDesc_refactoring = "<leader>rf  Refactoring menu"
+let g:WhichKeyDesc_refactoring_rename = "<leader>rfn Rename element"
+let g:WhichKeyDesc_refactoring_method = "<leader>rfm Extract method"
+let g:WhichKeyDesc_refactoring_variable = "<leader>rfv Introduce variable"
+let g:WhichKeyDesc_refactoring_field = "<leader>rff Introduce field"
+let g:WhichKeyDesc_refactoring_signature = "<leader>rfs Change signature"
+let g:WhichKeyDesc_refactoring_all = "<leader>rfr Open refactorings list"
 
-
-let g:WhichKeyDesc_refactoring = "<leader>r Refactoring menu"
-let g:WhichKeyDesc_refactoring_rename = "<leader>rn Rename element"
-let g:WhichKeyDesc_refactoring_method = "<leader>rm Extract method"
-let g:WhichKeyDesc_refactoring_variable = "<leader>rv Introduce variable"
-let g:WhichKeyDesc_refactoring_field = "<leader>rf Introduce field"
-let g:WhichKeyDesc_refactoring_signature = "<leader>rs Change signature"
-let g:WhichKeyDesc_refactoring_all = "<leader>rr Open refactorings list"
-
-let g:WhichKeyDesc_goto = "<leader>g Go to X"
+let g:WhichKeyDesc_goto = "<leader>g GOTO + Git"
 let g:WhichKeyDesc_goto_declaration = "<leader>gd Go to Definition"
-let g:WhichKeyDesc_goto_type_declaration = "<leader>gy Go to Type Definition"
+let g:WhichKeyDesc_goto_type_declaration = "<leader>gy Go to Type Declaration"
 let g:WhichKeyDesc_goto_implementation = "<leader>gi Go to Implementation"
 let g:WhichKeyDesc_goto_usages = "<leader>gu Go to Usages"
 let g:WhichKeyDesc_goto_test = "<leader>gt Go to Test"
 let g:WhichKeyDesc_goto_back = "<leader>gb Go Back"
 let g:WhichKeyDesc_goto_forward = "<leader>gf Go Forward"
 
-let g:WhichKeyDesc_git = "<leader>g Git operations"
 let g:WhichKeyDesc_git_commit = "<leader>gc Open Git commit sidebar"
 let g:WhichKeyDesc_git_status = "<leader>gs Open Git status dialog"
 let g:WhichKeyDesc_git_branches = "<leader>gb Open Git branches list"
@@ -125,6 +132,10 @@ let g:WhichKeyDesc_errors = "<leader>e Error navigation"
 let g:WhichKeyDesc_errors_next = "<leader>en Go to next error in solution"
 let g:WhichKeyDesc_errors_prev = "<leader>ep Go to previous error in solution"
 
+let g:WhichKeyDesc_Menu = "<leader>m Menu"
+" TODO: Menu items
+
+let g:WhichKeyDesc_run = "<Space>r Run + Refactor"
 
 "" Key mappings
 "" ========================================================
@@ -138,11 +149,11 @@ map K {
 nnoremap <A-n> :tabnext<CR>
 nnoremap <A-p> :tabprev<CR>
 
-" Pane navigation : TODO: Already have alt + hjkl. Can keep default <C-w>hjkl
-" nnoremap <A-h> <C-w>h
-" nnoremap <A-l> <C-w>l
-" nnoremap <A-k> <C-w>k
-" nnoremap <A-j> <C-w>j
+" Pane navigation - Ctrl hjkl
+nmap <C-k> <C-w>k
+nmap <C-j> <C-w>j
+nmap <C-h> <C-w>h
+nmap <C-l> <C-w>l
 
 " Jump between methods
 nnoremap [[ <Action>(MethodUp)
@@ -152,11 +163,9 @@ nnoremap ]] <Action>(MethodDown)
 vnoremap < <gv
 vnoremap > >gv
 
-
 " Popup navigation
 inoremap <C-j> <Action>(PopupMenu-selectNext)
 inoremap <C-k> <Action>(PopupMenu-selectPrev)
-
 
 "" Leader commands
 "" ========================================================
@@ -171,8 +180,11 @@ map <leader>j <Plug>(easymotion-s)
 map <leader>t :NERDTreeToggle<CR>
 
 " Folding
-map <leader>zc :action CollapseAllRegions<CR>
-map <leader>zo :action ExpandAllRegions<CR>
+map <leader>zC :action CollapseAllRegions<CR>
+map <leader>zE :action ExpandAllRegions<CR>
+map <leader>zc :action CollapseRegionRecursively<CR>
+map <leader>ze :action ExpandRegionRecursively<CR>
+map <leader>zz :action ExpandCollapseToggleAction<CR>
 
 " Window splits
 map <leader>wv <Action>(SplitVertically)
@@ -207,12 +219,12 @@ nmap <leader>xo <Action>(CloseAllEditorsButActive)
 
 
 " Refactoring
-map <leader>rn <Action>(RenameElement)
-map <leader>rm <Action>(ExtractMethod)
-map <leader>rv <Action>(IntroduceVariable)
-map <leader>rf <Action>(IntroduceField)
-map <leader>rs <Action>(ChangeSignature)
-map <leader>rr <Action>(Refactorings.QuickListPopupAction)
+map <leader>rfn <Action>(RenameElement)
+map <leader>rfm <Action>(ExtractMethod)
+map <leader>rfv <Action>(IntroduceVariable)
+map <leader>rff <Action>(IntroduceField)
+map <leader>rfs <Action>(ChangeSignature)
+map <leader>rfr <Action>(Refactorings.QuickListPopupAction)
 
 " Go to code
 nmap <leader>gd <Action>(GotoDeclaration)
@@ -231,3 +243,27 @@ map <leader>gb <Action>(Git.Branches)
 " Errors
 map <leader>en <Action>(ReSharperGotoNextErrorInSolution)
 map <leader>ep <Action>(ReSharperGotoPrevErrorInSolution)
+
+" Menu - TODO: Decide if i actually need these
+nmap <leader>mm <Action>(MainMenu)
+nmap <leader>ma <Action>(AnalyzeMenu)
+nmap <leader>mb <Action>(BuildMenu)
+nmap <leader>mc <Action>(CodeMenu)
+nmap <leader>mf <Action>(FindMenuGroup)
+nmap <leader>mg <Action>(GoToMenu)
+nmap <leader>ms <Action>(ScopeViewPopupMenu)
+nmap <leader>mt <Action>(EditorTabPopupMenu)
+nmap <leader>mw <Action>(ToolWindowsGroup)
+
+" run
+nmap <leader>rc <Action>(ContextRun)
+nmap <leader>rx <Action>(chooseRunConfiguration)
+nmap <leader>rr <Action>(Rerun)
+nmap <leader>rt <Action>(RunTests)
+nmap <leader>rs <Action>(Stop)
+nmap <leader>rf <Action>(ContextDebug)
+nmap <leader>rd <Action>(Debug)
+
+nmap <leader>bb <Action>(ToggleLineBreakpoint)
+nmap <leader>be <Action>(EditBreakpoint)
+nmap <leader>bv <Action>(ViewBreakpoints)
