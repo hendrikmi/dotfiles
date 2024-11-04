@@ -2,6 +2,7 @@
 " - Keep copying useful imports form ~/.ideavimrc.bck
 " - Fix whichkey description for leacerx
 " - leaderG is overloaded
+" - Add command for safe delete
 
 " List of available idea actions: https://gist.github.com/zchee/9c78f91cc5ad771c1f5d
 
@@ -66,7 +67,9 @@ let g:WhichKeyDesc_leader_t = "<leader>t NERDTree Explorer"
 let g:WhichKeyDesc_easymotion = "<leader>j Jump with Easymotion"
 let g:WhichKeyDesc_easymotion_prefix = "<leader><leader>"
 
-let g:WhichKeyDesc_comment = "<leader>c Comment line"
+let g:WhichKeyDesc_comment = "<leader>c Code menu"
+let g:WhichKeyDesc_comment_delete = "<leader>cd Safe delete"
+let g:WhichKeyDesc_comment_optimize = "<leader>co Optimize imports" 
 
 let g:WhichKeyDesc_fold = "<leader>z Folding"
 let g:WhichKeyDesc_fold_region = "<leader>zc Collapse region"
@@ -76,8 +79,9 @@ let g:WhichKeyDesc_unfold_all = "<leader>zE Expand all regions"
 let g:WhichKeyDesc_fold_toggle = "<leader>zz Toggle expand/collapse"
 
 let g:WhichKeyDesc_window = "<leader>w Window splits"
+let g:WhichKeyDesc_window_hide = "<leader>ww Toggle all tool windows"
 let g:WhichKeyDesc_window_split_vertically = "<leader>wv Split vertically"
-let g:WhichKeyDesc_window_split_horizontally = "<leader>wh Split horizontally"
+let g:WhichKeyDesc_window_split_horizontally = "<leader>ws Split horizontally"
 let g:WhichKeyDesc_window_split_unsplit = "<leader>wu Unsplit"
 let g:WhichKeyDesc_window_split_move_editor = "<leader>wm Move editor to opposite tab group"
 
@@ -101,12 +105,21 @@ let g:WhichKeyDesc_file_nav_show_recent_locations = "<leader>fl Show recent loca
 
 let g:WhichKeyDesc_close_tab = "<leader>q Close active tab"
 
-let g:WhichKey_close = "<leader>x Close menu"
-let g:WhichKey_close_content = "<leader>xx Close Content"
-let g:WhichKey_close_all = "<leader>xa Close All Editors"
-let g:WhichKey_close_all_but_active = "<leader>xo Close All Editors But Active"
+let g:WhichKeyDesc_close = "<leader>x Close Tabs"
+let g:WhichKeyDesc_close_content = "<leader>xx Close Current Tab"
+let g:WhichKeyDesc_close_all = "<leader>xa Close All Tabs"
+let g:WhichKeyDesc_close_all_but_active = "<leader>xo Close All Tabs But Active"
 
-let g:WhichKeyDesc_run = "<Space>r Run + Refactor"
+let g:WhichKeyDesc_run_prefix = "<leader>r Run + Refactor"
+let g:WhichKeyDesc_run_context = "<leader>rc Run context"
+let g:WhichKeyDesc_choose = "<leader>rx Choose run config"
+let g:WhichKeyDesc_rerun = "<leader>rr Rerun"
+let g:WhichKeyDesc_tests = "<leader>rt Run tests"
+let g:WhichKeyDesc_stop = "<leader>rs Stop"
+let g:WhichKeyDesc_debug_context = "<leader>rg Debug context"
+let g:WhichKeyDesc_debug = "<leader>rd Debug"
+let g:WhichKeyDesc_reload_vimrc = "<leader>rv Reload ideavimrc"
+
 let g:WhichKeyDesc_refactoring = "<leader>rf  Refactoring menu"
 let g:WhichKeyDesc_refactoring_rename = "<leader>rfn Rename element"
 let g:WhichKeyDesc_refactoring_method = "<leader>rfm Extract method"
@@ -137,6 +150,8 @@ let g:WhichKeyDesc_Menu = "<leader>m Menu"
 
 let g:WhichKeyDesc_run = "<Space>r Run + Refactor"
 
+let g:WhichKeyDesc_breakpoints = "<leader>b Breakpoint"
+
 "" Key mappings
 "" ========================================================
 " Better HJKL
@@ -150,13 +165,15 @@ nnoremap <A-n> :tabnext<CR>
 nnoremap <A-p> :tabprev<CR>
 
 " Pane navigation - Ctrl hjkl
+" Can still use normal ctrl-w hjkl
 nmap <C-k> <C-w>k
 nmap <C-j> <C-w>j
 nmap <C-h> <C-w>h
 nmap <C-l> <C-w>l
 
 " Jump between methods
-nnoremap [[ <Action>(MethodUp)
+" TODO: Fix
+nnoremap [[ <Action>(MethodUp) " n = normal mode , nore=non-recursive, won't trigger other mappings
 nnoremap ]] <Action>(MethodDown)
 
 " Easy visual indentation
@@ -170,8 +187,9 @@ inoremap <C-k> <Action>(PopupMenu-selectPrev)
 "" Leader commands
 "" ========================================================
 
-" Comment lines
-map <leader>c <action>(CommentByLineComment)
+" Code commands
+nmap <leader>cd <Action>(SafeDelete)
+nmap <leader>co <Action>(OptimizeImports)
 
 " Jump around with easymotion
 map <leader>j <Plug>(easymotion-s)
@@ -187,15 +205,21 @@ map <leader>ze :action ExpandRegionRecursively<CR>
 map <leader>zz :action ExpandCollapseToggleAction<CR>
 
 " Window splits
+map <leader>ww <Action>(HideAllWindows)
 map <leader>wv <Action>(SplitVertically)
 map <leader>ws <Action>(SplitHorizontally)
 map <leader>wu <Action>(Unsplit)
 map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
+" Note: With the TabSplitter plugin, shift+alt [ or ] will stretch the splitter
+
 
 " Display options
 map <leader>dd <action>(ToggleDistractionFreeMode)
 map <leader>dz <action>(ToggleZenMode)
 map <leader>df <action>(ToggleFullScreen)
+
+noremap <silent> <C-S-Left> :vertical resize +5<CR>
+noremap <silent> <C-S-Right> :vertical resize -5<CR>
 
 " Actions
 map <leader>am <action>(ShowIntentionActions)
@@ -211,20 +235,10 @@ map <leader>fs <action>(NewScratchFile)
 
 " Close active tab
 map <leader>q <action>(CloseContent)
-
 " Closing Content
 nmap <leader>xx <Action>(CloseContent)
 nmap <leader>xa <Action>(CloseAllEditors)
 nmap <leader>xo <Action>(CloseAllEditorsButActive)
-
-
-" Refactoring
-map <leader>rfn <Action>(RenameElement)
-map <leader>rfm <Action>(ExtractMethod)
-map <leader>rfv <Action>(IntroduceVariable)
-map <leader>rff <Action>(IntroduceField)
-map <leader>rfs <Action>(ChangeSignature)
-map <leader>rfr <Action>(Refactorings.QuickListPopupAction)
 
 " Go to code
 nmap <leader>gd <Action>(GotoDeclaration)
@@ -245,9 +259,11 @@ map <leader>en <Action>(ReSharperGotoNextErrorInSolution)
 map <leader>ep <Action>(ReSharperGotoPrevErrorInSolution)
 
 " Menu - TODO: Decide if i actually need these
+let g:WhichKeyDesc_Menu = "<leader>m Menu"
+
 nmap <leader>mm <Action>(MainMenu)
 nmap <leader>ma <Action>(AnalyzeMenu)
-nmap <leader>mb <Action>(BuildMenu)
+" nmap <leader>mb <Action>(BuildMenu)
 nmap <leader>mc <Action>(CodeMenu)
 nmap <leader>mf <Action>(FindMenuGroup)
 nmap <leader>mg <Action>(GoToMenu)
@@ -261,9 +277,19 @@ nmap <leader>rx <Action>(chooseRunConfiguration)
 nmap <leader>rr <Action>(Rerun)
 nmap <leader>rt <Action>(RunTests)
 nmap <leader>rs <Action>(Stop)
-nmap <leader>rf <Action>(ContextDebug)
+nmap <leader>rg <Action>(ContextDebug)
 nmap <leader>rd <Action>(Debug)
+nmap <leader>rv <Action>(IdeaVim.ReloadVimRc.reload)
 
+" Refactoring
+map <leader>rfn <Action>(RenameElement)
+map <leader>rfm <Action>(ExtractMethod)
+map <leader>rfv <Action>(IntroduceVariable)
+map <leader>rff <Action>(IntroduceField)
+map <leader>rfs <Action>(ChangeSignature)
+map <leader>rfr <Action>(Refactorings.QuickListPopupAction)
+
+" Breakpoint
 nmap <leader>bb <Action>(ToggleLineBreakpoint)
 nmap <leader>be <Action>(EditBreakpoint)
 nmap <leader>bv <Action>(ViewBreakpoints)
