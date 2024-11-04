@@ -26,7 +26,7 @@ install_custom() { # Function to install custom formulas and casks
 }
 
 install_custom_formulae() {
-    # Get the list of custom formulae from FORMULAe_DIR
+    # Get the list of custom formulae from FORMULAE_DIR ending in *.rb
     custom_formulae=()
     if [ -d "$FORMULAE_DIR" ]; then
         for file in "$FORMULAE_DIR"/*.rb; do
@@ -41,7 +41,7 @@ install_custom_formulae() {
 }
 
 install_custom_casks() {
-    # Get the list of custom casks from CASKS_DIR
+    # Get the list of custom casks from CASKS_DIR ending in *.rb
     custom_casks=()
     if [ -d "$CASKS_DIR" ]; then
         for file in "$CASKS_DIR"/*.rb; do

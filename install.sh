@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# TODO: This doesn't run the vscode-extensions.sh 
+
+# Equivelant as the 'source' command
 . scripts/utils.sh
 . scripts/prerequisites.sh
 . scripts/brew-install-custom.sh
@@ -24,8 +27,6 @@ if [[ "$install_apps" == "y" ]]; then
     info "Apps"
     info "===================="
 
-    install_custom_formulae
-    install_custom_casks
     run_brew_bundle
 fi
 
@@ -34,7 +35,7 @@ info "===================="
 info "OSX System Defaults"
 info "===================="
 
-register_keyboard_shortcuts
+register_keyboard_shortcuts 
 apply_osx_system_defaults
 
 printf "\n"
