@@ -6,6 +6,7 @@
 
 " List of available idea actions: https://gist.github.com/zchee/9c78f91cc5ad771c1f5d
 
+source ~/.vimrc
 "" Base Settings
 "" ========================================================
 

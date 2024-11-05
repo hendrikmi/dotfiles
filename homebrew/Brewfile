@@ -3,11 +3,11 @@ tap "felixkratz/formulae"
 tap "homebrew/bundle"
 tap "homebrew/cask-versions"
 tap "homebrew/services"
-tap "homebrew/core"
-tap "mas-cli/tap"
 # CLI
+# Note: Lots of tools are added with .zsh_plugins.txt through antidote
 brew "bat"
 brew "coreutils"
+brew "eza" # Modern, maintained replacement for ls
 brew "fzf"
 brew "git"
 brew "gnu-tar" # Provides the ability to tar files
@@ -17,6 +17,7 @@ brew "mvnvm"
 brew "node"
 brew "poetry"
 brew "pre-commit"
+brew "ranger"
 brew "ripgrep"
 brew "speedtest-cli"
 brew "starship" # Zsh theme
@@ -28,13 +29,14 @@ brew "vim"
 brew "virtualenvwrapper"
 brew "wakeonlan" # Only if still using LG C1
 brew "ykman" # Yubikey CLI
+brew "zoxide" # Better cd
 brew "zsh-autosuggestions"
-brew "zsh-syntax-highlighting"
-brew "mas-cli/tap/mas"
+brew "mas"
 # Applications
 cask "aerospace"
 cask "alfred"
 cask "betterdisplay"
+cask "bitwarden"
 cask "caffeine"
 cask "docker"
 cask "firefox"
@@ -57,11 +59,7 @@ cask "wezterm"
 cask "whatsapp"
 cask "zoom"
 # Mac app store
-mas "Bitwarden", id: 1352778147
-mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
 mas "Trello", id: 1278508951
 # VS Code Extensions
 vscode "csantiago132.intellij-ish-darcula-theme"
