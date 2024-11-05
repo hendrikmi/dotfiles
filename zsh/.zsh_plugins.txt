@@ -23,7 +23,7 @@ shihyuho/zsh-jenv-lazy
 #  --- CLI Tools
 # kind:path will put the plugin folder to $PATH, make sure that's how it should be installed
 romkatv/zsh-bench kind:path # `zsh-bench` will benchmark shell script
-ajeetdsouza/zoxide kind:path # A better `cd`
+ajeetdsouza/zoxide # A better `cd`
 junegunn/fzf kind:path # Fuzzy finding utility
 # Manually added tldr through brew, alternative to man
 
