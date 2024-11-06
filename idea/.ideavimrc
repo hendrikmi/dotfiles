@@ -7,6 +7,7 @@
 " Aim is to have this file as a single source of truth for all keybindings
 
 " List of available idea actions: https://gist.github.com/zchee/9c78f91cc5ad771c1f5d
+" Can also turn on actions in the global searh menu with: track action IDs
 
 "" Base Settings
 "" ========================================================
@@ -32,8 +33,9 @@ set ideamarks " Use idea bookmarks instead of vim marks
 
 set clipboard=ideaput  " Avoid using clipboard when deleting
 
+" Unbind space for leader
+map <space> <nop> 
 let mapleader = " "
-
 
 "" Plugin Settings
 "" ========================================================
@@ -42,6 +44,7 @@ set surround " Use cs and ys to add quotes to surrounding text
 set highlightedyank " Highlight yanked text
 
 " Plugins to install separately
+" Sneak is redundant with easymotion
 Plug 'justinmk/vim-sneak'
 set sneak " Use s to jump to two characters search
 Plug 'preservim/nerdtree'
@@ -62,6 +65,13 @@ let g:WhichKey_CommandColor = "#41ead4"
 let g:WhichKey_PrefixColor = "#f335b2"
 let g:WhichKey_SortOrder = "by_key_prefix_first"
 
+" No leader key
+let g:WhichKeyDesc_bookmarks = "m Bookmarks"
+let g:WhichKeyDesc_bookmarks_toggle = "mm Toggle bookmark"
+let g:WhichKeyDesc_bookmarks_show = "ms Show bookmarks"
+let g:WhichKeyDesc_bookmarks_edit = "me Edit bookmark"
+
+" Leader key
 let g:WhichKeyDesc_leader = "<leader> Leader key"
 
 let g:WhichKeyDesc_leader_t = "<leader>t NERDTree Explorer"
@@ -71,7 +81,7 @@ let g:WhichKeyDesc_easymotion_prefix = "<leader><leader>"
 
 let g:WhichKeyDesc_comment = "<leader>c Code menu"
 let g:WhichKeyDesc_comment_delete = "<leader>cd Safe delete"
-let g:WhichKeyDesc_comment_optimize = "<leader>co Optimize imports" 
+let g:WhichKeyDesc_comment_optimize = "<leader>co Optimize imports"
 
 let g:WhichKeyDesc_fold = "<leader>z Folding"
 let g:WhichKeyDesc_fold_region = "<leader>zc Collapse region"
@@ -87,7 +97,6 @@ let g:WhichKeyDesc_window_split_horizontally = "<leader>ws Split horizontally"
 let g:WhichKeyDesc_window_split_unsplit = "<leader>wu Unsplit"
 let g:WhichKeyDesc_window_split_move_editor = "<leader>wm Move editor to opposite tab group"
 
-
 let g:WhichKeyDesc_display = "<leader>d Display options"
 let g:WhichKeyDesc_zen_mode = "<leader>dz Toggle Zen mode"
 let g:WhichKeyDesc_df_mode = "<leader>dd Toggle Distraction-Free mode"
@@ -101,9 +110,10 @@ let g:WhichKeyDesc_file_quickLook = "<leader><leader> Recent files"
 
 let g:WhichKeyDesc_file_nav = "<leader>f File navigation"
 let g:WhichKeyDesc_file_nav_goto_file = "<leader>ff Go to file"
-let g:WhichKeyDesc_file_nav_goto_content = "<leader>fc Search for file content"
+let g:WhichKeyDesc_file_nav_goto_content = "<leader>fa Search all files"
 let g:WhichKeyDesc_file_nav_show_recent_files = "<leader>fr Show recent files"
-let g:WhichKeyDesc_file_nav_show_recent_locations = "<leader>fl Show recent locations"
+let g:WhichKeyDesc_file_nav_show_recent_locations = "<leader>fl Show recent locations in file"
+let g:WhichKeyDesc_file_structure_popup = "<leader>fs Show file structure"
 
 let g:WhichKeyDesc_close_tab = "<leader>q Close active tab"
 
@@ -141,7 +151,7 @@ let g:WhichKeyDesc_goto_forward = "<leader>gf Go Forward"
 
 let g:WhichKeyDesc_git_commit = "<leader>gc Open Git commit sidebar"
 let g:WhichKeyDesc_git_status = "<leader>gs Open Git status dialog"
-let g:WhichKeyDesc_git_branches = "<leader>gb Open Git branches list"
+let g:WhichKeyDesc_git_branches = "<leader>gr Open Git branches list"
 
 let g:WhichKeyDesc_errors = "<leader>e Error navigation"
 let g:WhichKeyDesc_errors_next = "<leader>en Go to next error in solution"
@@ -186,12 +196,10 @@ vnoremap > >gv
 inoremap <C-j> <Action>(PopupMenu-selectNext)
 inoremap <C-k> <Action>(PopupMenu-selectPrev)
 
-" bookmark
-let g:WhichKeyDesc_bookmark = "m Bookmark"
-" Note: no leader key before m
+" Bookmark
 nmap mm <Action>(ToggleBookmark)
 nmap ms <Action>(ShowBookmarks)
-" TODO: Add a command for editing the current bookmark name
+nmap me <Action>(EditBookmark)
 
 "" Leader commands
 "" ========================================================
@@ -233,7 +241,6 @@ map <leader>wu <Action>(Unsplit)
 map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
 " Note: With the TabSplitter plugin, shift+alt [ or ] will stretch the splitter
 
-
 " Display options
 map <leader>dd <action>(ToggleDistractionFreeMode)
 map <leader>dz <action>(ToggleZenMode)
@@ -244,12 +251,12 @@ map <leader>am <action>(ShowIntentionActions)
 map <leader>as <action>(SearchEverywhere)
 
 " File navigation
+map <leader><leader> <Action>(RecentFiles)
 map <leader>ff <action>(GotoFile)
 map <leader>fr <action>(RecentFiles)
-map <leader>fc <action>(FindInPath)
-map <leader><leader> <Action>(RecentFiles)
+map <leader>fa <action>(FindInPath)
 map <leader>fl <action>(RecentLocations)
-map <leader>fs <action>(NewScratchFile)
+map <leader>fs <action>(FileStructurePopup)
 
 " Close active tab
 map <leader>q <action>(CloseContent)
@@ -270,7 +277,7 @@ nmap <leader>gb <Action>(Forward)
 " Git windows
 map <leader>gc <Action>(CheckinProject)
 map <leader>gs <Action>(ActivateVersionControlToolWindow)
-map <leader>gb <Action>(Git.Branches)
+map <leader>gr <Action>(Git.Branches)
 
 " Errors
 map <leader>en <Action>(ReSharperGotoNextErrorInSolution)
