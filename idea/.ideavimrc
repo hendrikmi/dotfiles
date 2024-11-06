@@ -1,12 +1,13 @@
 "" TODO:
 " - Keep copying useful imports form ~/.ideavimrc.bck
 " - Fix whichkey description for leacerx
-" - leaderG is overloaded
+" - leader G is overloaded
 " - Add command for safe delete
+
+" Aim is to have this file as a single source of truth for all keybindings
 
 " List of available idea actions: https://gist.github.com/zchee/9c78f91cc5ad771c1f5d
 
-source ~/.vimrc
 "" Base Settings
 "" ========================================================
 
@@ -76,7 +77,7 @@ let g:WhichKeyDesc_fold = "<leader>z Folding"
 let g:WhichKeyDesc_fold_region = "<leader>zc Collapse region"
 let g:WhichKeyDesc_fold_all_region = "<leader>zC Collapse all regions"
 let g:WhichKeyDesc_unfold_all = "<leader>zE Expand all regions"
-let g:WhichKeyDesc_unfold_all = "<leader>zE Expand all regions"
+let g:WhichKeyDesc_unfold_region = "<leader>ze Expand region"
 let g:WhichKeyDesc_fold_toggle = "<leader>zz Toggle expand/collapse"
 
 let g:WhichKeyDesc_window = "<leader>w Window splits"
@@ -173,9 +174,9 @@ nmap <C-h> <C-w>h
 nmap <C-l> <C-w>l
 
 " Jump between methods
-" TODO: Fix
-nnoremap [[ <Action>(MethodUp) " n = normal mode , nore=non-recursive, won't trigger other mappings
-nnoremap ]] <Action>(MethodDown)
+" n = normal mode , nore=non-recursive, won't trigger other mappings
+nmap [[ <Action>(MethodUp)
+nmap ]] <Action>(MethodDown)
 
 " Easy visual indentation
 vnoremap < <gv
@@ -184,6 +185,13 @@ vnoremap > >gv
 " Popup navigation
 inoremap <C-j> <Action>(PopupMenu-selectNext)
 inoremap <C-k> <Action>(PopupMenu-selectPrev)
+
+" bookmark
+let g:WhichKeyDesc_bookmark = "m Bookmark"
+" Note: no leader key before m
+nmap mm <Action>(ToggleBookmark)
+nmap ms <Action>(ShowBookmarks)
+" TODO: Add a command for editing the current bookmark name
 
 "" Leader commands
 "" ========================================================
@@ -195,8 +203,20 @@ nmap <leader>co <Action>(OptimizeImports)
 " Jump around with easymotion
 map <leader>j <Plug>(easymotion-s)
 
-" Open NERDTree (use q to exit)
+" Open NERDTree (use q or esc to exit)
 map <leader>t :NERDTreeToggle<CR>
+" s - Open file in vertical split
+" o - Open directory
+" O - Recursively open directories
+" x - Close parent directory
+" X - Recursively close all children
+" p - Go to parent directory
+" P - Go to root directory
+" K - Go to first file in directory
+" J - Go to last file in directory
+" m - Show menu
+" n - Create a new file
+" N - Create a new directory
 
 " Folding
 map <leader>zC :action CollapseAllRegions<CR>
@@ -218,9 +238,6 @@ map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
 map <leader>dd <action>(ToggleDistractionFreeMode)
 map <leader>dz <action>(ToggleZenMode)
 map <leader>df <action>(ToggleFullScreen)
-
-noremap <silent> <C-S-Left> :vertical resize +5<CR>
-noremap <silent> <C-S-Right> :vertical resize -5<CR>
 
 " Actions
 map <leader>am <action>(ShowIntentionActions)
