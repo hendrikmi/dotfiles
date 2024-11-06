@@ -237,5 +237,6 @@
   "redhat.telemetry.enabled": false,
   "security.workspace.trust.untrustedFiles": "open",
   "telemetry.telemetryLevel": "off",
-  "aws.telemetry": false
+  "aws.telemetry": false,
+  "git.confirmSync": false
 }
