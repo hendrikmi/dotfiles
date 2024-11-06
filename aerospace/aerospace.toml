@@ -147,7 +147,6 @@ ctrl-alt-semicolon = 'mode service'
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
 f = ['layout floating tiling'] # Toggle between floating and tiling layoutbackspace = ['close-all-windows-but-current', 'mode main']
-period = ['exec-and-forget brew services restart borders &&.exec-and-forget brew services restart borders && active_color=0xffda680f inactive_color=0xff494d64 width=10.0', 'mode main']
 
 # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 #s = ['layout sticky tiling', 'mode main']

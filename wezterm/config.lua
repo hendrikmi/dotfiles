@@ -9,23 +9,21 @@ config = {
   default_cursor_style = "SteadyBar",
   automatically_reload_config = true,
   window_close_confirmation = "NeverPrompt",
-  
+  hide_tab_bar_if_only_one_tab=true,
   -- Exit code behaviour
   exit_behavior = "Hold",
   exit_behavior_messaging = "Brief",
-
   adjust_window_size_when_changing_font_size = false,
   enable_tab_bar = true,
+  use_fancy_tab_bar = true,
   window_decorations = "TITLE | RESIZE",
   check_for_updates = false,
-  use_fancy_tab_bar = true,
   tab_bar_at_bottom = false,
   font_size = 12.5,
   font = wezterm.font("JetBrains Mono", { weight = "Bold" }),
-  enable_tab_bar = false,
   window_padding = {
-    left = 3,
-    right = 3,
+    left = 10,
+    right = 10,
     top = 0,
     bottom = 0,
   },
