@@ -1,7 +1,6 @@
 # Sources
 tap "felixkratz/formulae"
 tap "homebrew/bundle"
-tap "homebrew/cask-versions"
 tap "homebrew/services"
 # CLI
 # Note: Lots of tools are added with .zsh_plugins.txt through antidote
