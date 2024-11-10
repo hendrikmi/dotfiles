@@ -25,14 +25,12 @@ brew "thefuck"
 brew "tldr"
 brew "tree" # Adds the 'tree' cli command
 brew "vim"
-brew "virtualenvwrapper"
-brew "wakeonlan" # Only if still using LG C1
-brew "ykman" # Yubikey CLI
+# brew "wakeonlan" # Only if still using LG C1
+# brew "ykman" # Yubikey CLI
 brew "zoxide" # Better cd
-brew "zsh-autosuggestions"
-brew "mas"
+brew "mas" # Mac application store
 # Applications
-cask "aerospace"
+cask "nikitabobko/tap/aerospace"
 cask "alfred"
 cask "betterdisplay"
 cask "bitwarden"
@@ -45,8 +43,8 @@ cask "font-symbols-only-nerd-font"
 cask "grammarly"
 cask "insomnia"
 cask "iterm2"
-cask "jordanbaird-ice"
-cask "logi-options+"
+cask "jordanbaird-ice" # Cleanup top task bar
+cask "logi-options+" # Assume you're using the logi mouse
 cask "maccy"
 cask "notion"
 cask "plex"
@@ -58,7 +56,6 @@ cask "wezterm"
 cask "whatsapp"
 cask "zoom"
 # Mac app store
-mas "Keynote", id: 409183694
 mas "Trello", id: 1278508951
 # VS Code Extensions
 vscode "csantiago132.intellij-ish-darcula-theme"
