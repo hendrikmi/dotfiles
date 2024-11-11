@@ -94,3 +94,7 @@ function vi-yank-xclip {
 
 zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
+
+# Add word movement bindings so that opt + left/right work in wezterm
+bindkey "^[f" forward-word
+bindkey "^[b" backward-word
