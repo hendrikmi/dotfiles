@@ -9,7 +9,7 @@ config = {
   default_cursor_style = "SteadyBar",
   automatically_reload_config = true,
   window_close_confirmation = "NeverPrompt",
-  hide_tab_bar_if_only_one_tab=true,
+  hide_tab_bar_if_only_one_tab = true,
   -- Exit code behaviour
   exit_behavior = "Hold",
   exit_behavior_messaging = "Brief",
@@ -29,16 +29,23 @@ config = {
   },
   keys = {
     -- Make Option-Left equivalent to Alt-b which many line editors interpret as backward-word
-    {
-      key="LeftArrow",
-      mods="OPT",
-      action=wezterm.action{SendString="\x1bb"}
-    },
+    { key = "LeftArrow",  mods = "OPT", action = wezterm.action { SendString = "\x1bb" } },
+
     -- Make Option-Right equivalent to Alt-f; forward-word
+    { key = "RightArrow", mods = "OPT", action = wezterm.action { SendString = "\x1bf" } },
+
+    -- Add Command + Backspace to delete the whole line
     {
-      key="RightArrow",
-      mods="OPT",
-      action=wezterm.action{SendString="\x1bf"}
+      key = "Backspace",
+      mods = "CMD",
+      action = wezterm.action { SendKey = { mods = "CTRL", key = "u" } }
+    },
+
+    -- Add Option + Backspace to delete a word
+    {
+      key = "Backspace",
+      mods = "OPT",
+      action = wezterm.action { SendKey = { mods = "CTRL", key = "w" } }
     },
     -- Select next tab with cmd-opt-left/right arrow
     {
@@ -55,18 +62,18 @@ config = {
     {
       key = 'LeftArrow',
       mods = 'CMD',
-      action = wezterm.action{ActivatePaneDirection='Prev'},
+      action = wezterm.action { ActivatePaneDirection = 'Prev' },
     },
     {
       key = 'RightArrow',
       mods = 'CMD',
-      action = wezterm.action{ActivatePaneDirection='Next'},
+      action = wezterm.action { ActivatePaneDirection = 'Next' },
     },
     -- on cmd-s, send esc, then ':w<enter>'. This makes cmd-s trigger a save action in neovim
     {
-      key="s",
-      mods="CMD",
-      action = wezterm.action{SendString="\x1b:w\n"}
+      key = "s",
+      mods = "CMD",
+      action = wezterm.action { SendString = "\x1b:w\n" }
     },
   },
   mouse_bindings = {
@@ -74,7 +81,7 @@ config = {
       event = { Down = { streak = 1, button = 'Left' } },
       mods = 'CMD|ALT',
       action = wezterm.action.SelectTextAtMouseCursor 'Block',
-      alt_screen='Any'
+      alt_screen = 'Any'
     },
     {
       event = { Down = { streak = 4, button = 'Left' } },
