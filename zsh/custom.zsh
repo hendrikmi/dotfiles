@@ -5,14 +5,8 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 # Pipenv
 export PIPENV_VENV_IN_PROJECT=1
 
-# Pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)" # Initialize pyenv when a new shell spawns
-
 # Poetry
 export PATH="$HOME/.local/bin:$PATH"
-# alias poetry_shell='. "$(dirname $(poetry run which python))/activate"'
 
 # Starship
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
