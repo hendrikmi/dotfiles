@@ -56,9 +56,6 @@ alias cd=z
 # Use bat instead of cat
 alias cat=bat
 
-# -------------------------------------------------------------------
-# Alias Commands
-# -------------------------------------------------------------------
 alias del='echo Moving to ~/.Trash/ ...; mv -i $* ~/.Trash/'
 # alias cdf='eval `osascript /Applications/Utilities/OpenTerminal.app/Contents/Resources/Scripts/OpenTerminal.scpt`'
 #alias ls='ls -FG'

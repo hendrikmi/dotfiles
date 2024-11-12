@@ -280,8 +280,8 @@ map <leader>gs <Action>(ActivateVersionControlToolWindow)
 map <leader>gr <Action>(Git.Branches)
 
 " Errors
-map <leader>en <Action>(ReSharperGotoNextErrorInSolution)
-map <leader>ep <Action>(ReSharperGotoPrevErrorInSolution)
+map <leader>en <Action>(GotoNextError)
+map <leader>ep <Action>(GotoPreviousError)
 
 " Menu - TODO: Decide if i actually need these
 let g:WhichKeyDesc_Menu = "<leader>m Menu"
@@ -299,7 +299,7 @@ nmap <leader>mw <Action>(ToolWindowsGroup)
 " run
 nmap <leader>rc <Action>(ContextRun)
 nmap <leader>rx <Action>(chooseRunConfiguration)
-nmap <leader>rr <Action>(Rerun)
+nmap <leader>rr <Action>(Run)
 nmap <leader>rt <Action>(RunTests)
 nmap <leader>rs <Action>(Stop)
 nmap <leader>rg <Action>(ContextDebug)

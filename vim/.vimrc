@@ -36,9 +36,10 @@ set backspace=indent,eol,start
 set matchpairs+=<:> " use % to jump between pairs
 runtime! macros/matchit.vim
 
-" Move up/down editor lines, rather than logical lines
-nnoremap j gj
-nnoremap k gk
+map H ^
+map L $
+map J }
+map K {
 
 " Set hybrid line number in normal move
 " Set absolue line number in insert mode
