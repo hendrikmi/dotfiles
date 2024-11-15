@@ -31,7 +31,14 @@ set ideajoin " Join lines in the editor
 set ideamarks " Use idea bookmarks instead of vim marks
 " set idearefactormode=normal " Use normal mode for refactoring
 
-set clipboard=ideaput  " Avoid using clipboard when deleting
+" Use clipboard for yanking+pasting, avoid using clipboard when deleting.
+set clipboard=ideaput,unnamed
+" Deleting goes to null register
+nnoremap d ""d
+nnoremap dd ""dd
+vnoremap d ""d
+nnoremap x ""x
+vnoremap x ""x
 
 " Unbind space for leader
 map <space> <nop> 
@@ -79,9 +86,10 @@ let g:WhichKeyDesc_leader_t = "<leader>t NERDTree Explorer"
 let g:WhichKeyDesc_easymotion = "<leader>j Jump with Easymotion"
 let g:WhichKeyDesc_easymotion_prefix = "<leader><leader>"
 
-let g:WhichKeyDesc_comment = "<leader>c Code menu"
-let g:WhichKeyDesc_comment_delete = "<leader>cd Safe delete"
-let g:WhichKeyDesc_comment_optimize = "<leader>co Optimize imports"
+let g:WhichKeyDesc_code = "<leader>c Code menu"
+let g:WhichKeyDesc_code_delete = "<leader>cd Safe delete"
+let g:WhichKeyDesc_code_optimize = "<leader>co Optimize imports"
+let g:WhichKeyDesc_code_implementation = "<leader>ci Show Implementation (alt+space)"
 
 let g:WhichKeyDesc_fold = "<leader>z Folding"
 let g:WhichKeyDesc_fold_region = "<leader>zc Collapse region"
@@ -99,9 +107,9 @@ let g:WhichKeyDesc_window_split_move_editor = "<leader>wm Move editor to opposit
 
 let g:WhichKeyDesc_display = "<leader>d Display options"
 let g:WhichKeyDesc_zen_mode = "<leader>dz Toggle Zen mode"
-let g:WhichKeyDesc_df_mode = "<leader>dd Toggle Distraction-Free mode"
+let g:WhichKeyDesc_hide_all_windows = "<leader>dd Hide all windows"
 let g:WhichKeyDesc_fullscreen = "<leader>df Toggle full screen"
-
+let g:WhichKeyDesc_distraction_free = "<leader>di Toggle distraction free mode"
 let g:WhichKeyDesc_action= "<leader>a Actions"
 let g:WhichKeyDesc_action_context_menu = "<leader>am Open context menu"
 let g:WhichKeyDesc_action_search = "<leader>as Open command modal"
@@ -207,6 +215,7 @@ nmap me <Action>(EditBookmark)
 " Code commands
 nmap <leader>cd <Action>(SafeDelete)
 nmap <leader>co <Action>(OptimizeImports)
+nmap <leader>ci <Action>(QuickImplementations)
 
 " Jump around with easymotion
 map <leader>j <Plug>(easymotion-s)
@@ -242,9 +251,10 @@ map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
 " Note: With the TabSplitter plugin, shift+alt [ or ] will stretch the splitter
 
 " Display options
-map <leader>dd <action>(ToggleDistractionFreeMode)
+map <leader>dd <action>(HideAllWindows)
 map <leader>dz <action>(ToggleZenMode)
 map <leader>df <action>(ToggleFullScreen)
+map <leader>di <action>(ToggleDistractionFreeMode)
 
 " Actions
 map <leader>am <action>(ShowIntentionActions)
