@@ -3,6 +3,10 @@ setopt HIST_IGNORE_ALL_DUPS
 
 #zmodload zsh/zprof # > Start of code to profile
 
+
+# Custom functions 
+[ -f "$HOME/.config/zsh/functions.zsh" ] && source "$HOME/.config/zsh/functions.zsh"
+
 # Custom zsh
 [ -f "$HOME/.config/zsh/custom.zsh" ] && source "$HOME/.config/zsh/custom.zsh"
 
