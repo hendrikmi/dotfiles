@@ -90,6 +90,7 @@ let g:WhichKeyDesc_code = "<leader>c Code menu"
 let g:WhichKeyDesc_code_delete = "<leader>cd Safe delete"
 let g:WhichKeyDesc_code_optimize = "<leader>co Optimize imports"
 let g:WhichKeyDesc_code_implementation = "<leader>ci Show Implementation (alt+space)"
+let g:WhichKeyDesc_code_documentation = "<leader>cq Show method documentation"
 
 let g:WhichKeyDesc_fold = "<leader>z Folding"
 let g:WhichKeyDesc_fold_region = "<leader>zc Collapse region"
@@ -123,7 +124,7 @@ let g:WhichKeyDesc_file_nav_show_recent_files = "<leader>fr Show recent files"
 let g:WhichKeyDesc_file_nav_show_recent_locations = "<leader>fl Show recent locations in file"
 let g:WhichKeyDesc_file_structure_popup = "<leader>fs Show file structure"
 
-let g:WhichKeyDesc_close_tab = "<leader>q Close active tab"
+let g:WhichKeyDesc_show_quick_signature = "<leader>q Show quick method doc"
 
 let g:WhichKeyDesc_close = "<leader>x Close Tabs"
 let g:WhichKeyDesc_close_content = "<leader>xx Close Current Tab"
@@ -216,7 +217,7 @@ nmap me <Action>(EditBookmark)
 nmap <leader>cd <Action>(SafeDelete)
 nmap <leader>co <Action>(OptimizeImports)
 nmap <leader>ci <Action>(QuickImplementations)
-
+nmap <leader>cq <Action>(QuickJavaDoc)
 " Jump around with easymotion
 map <leader>j <Plug>(easymotion-s)
 
@@ -268,8 +269,9 @@ map <leader>fa <action>(FindInPath)
 map <leader>fl <action>(RecentLocations)
 map <leader>fs <action>(FileStructurePopup)
 
-" Close active tab
-map <leader>q <action>(CloseContent)
+" Show the method signature
+map <leader>q <action>(QuickJavaDoc)
+
 " Closing Content
 nmap <leader>xx <Action>(CloseContent)
 nmap <leader>xa <Action>(CloseAllEditors)

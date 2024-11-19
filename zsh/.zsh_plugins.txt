@@ -12,7 +12,6 @@ zsh-users/zsh-completions path:src kind:fpath
 zdharma-continuum/fast-syntax-highlighting kind:defer
 zsh-users/zsh-autosuggestions kind:defer
 zsh-users/zsh-history-substring-search kind:defer
-
 # agkozak/zsh-z # Replacement for zoxide
 
 # --- Lazy loading slow tools 

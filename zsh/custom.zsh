@@ -21,13 +21,6 @@ compinit -C
 export FZF_CTRL_T_OPTS="
   --preview 'bat -n --color=always {}'
   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
-export FZF_DEFAULT_COMMAND='rg --hidden -l ""' # Include hidden files
-bindkey "ç" fzf-cd-widget # Fix for ALT+C on Mac
-
-# fh - search in your command history and execute selected command
-fh() {
-  eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
-}
 
 # If using git-auto-fetch plugin, sets interval to fetch changes
 export GIT_AUTO_FETCH_INTERVAL=1200 # in seconds
@@ -45,6 +38,13 @@ export ZSH_DOTENV_PROMPT=false
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 antidote load
 
+# Fix history search key bindings for partial search
+bindkey '^[[A' history-substring-search-up 
+bindkey '^[[B' history-substring-search-down 
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
+
 
 # -- Vi mode
 # ANSI cursor escape codes:
@@ -59,6 +59,7 @@ bindkey -v
 export KEYTIMEOUT=1 # Makes switching modes quicker
 export VI_MODE_SET_CURSOR=true 
 
+# Change the cursor to block or beam depending on insert mode
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]]; then
     echo -ne '\e[2 q' # block
