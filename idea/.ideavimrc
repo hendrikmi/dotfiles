@@ -51,9 +51,6 @@ set surround " Use cs and ys to add quotes to surrounding text
 set highlightedyank " Highlight yanked text
 
 " Plugins to install separately
-" Sneak is redundant with easymotion
-Plug 'justinmk/vim-sneak'
-set sneak " Use s to jump to two characters search
 Plug 'preservim/nerdtree'
 set nerdtree
 Plug 'dbakker/vim-paragraph-motion' " { and } also select lines with white space only
@@ -65,7 +62,8 @@ Plug 'easymotion/vim-easymotion'
 set easymotion
 set notimeout
 
-" Which-key settings
+"" Which Key Settings
+"" ========================================================
 set which-key
 let g:WhichKey_FontSize = 16
 let g:WhichKey_CommandColor = "#41ead4"
@@ -165,11 +163,10 @@ let g:WhichKeyDesc_git_status = "<leader>is Open Git status dialog"
 let g:WhichKeyDesc_git_branches = "<leader>ir Open Git branches list"
 
 let g:WhichKeyDesc_errors = "<leader>e Error navigation"
-let g:WhichKeyDesc_errors_next = "<leader>en Go to next error in solution"
-let g:WhichKeyDesc_errors_prev = "<leader>ep Go to previous error in solution"
+let g:WhichKeyDesc_errors_next = "<leader>en Go to next error"
+let g:WhichKeyDesc_errors_prev = "<leader>ep Go to previous error"
 
 let g:WhichKeyDesc_Menu = "<leader>m Menu"
-" TODO: Menu items
 
 let g:WhichKeyDesc_run = "<Space>r Run + Refactor"
 
@@ -258,6 +255,8 @@ map <leader>dd <action>(HideAllWindows)
 map <leader>dz <action>(ToggleZenMode)
 map <leader>df <action>(ToggleFullScreen)
 map <leader>di <action>(ToggleDistractionFreeMode)
+map <leader>dh <action>(ResizeToolWindowLeft)
+map <leader>dl <action>(ResizeToolWindowRight)
 
 " Actions
 map <leader>am <action>(ShowIntentionActions)
@@ -297,9 +296,6 @@ map <leader>ir <Action>(Git.Branches)
 " Errors
 map <leader>en <Action>(GotoNextError)
 map <leader>ep <Action>(GotoPreviousError)
-
-" Menu - TODO: Decide if i actually need these
-let g:WhichKeyDesc_Menu = "<leader>m Menu"
 
 nmap <leader>mm <Action>(MainMenu)
 nmap <leader>ma <Action>(AnalyzeMenu)
