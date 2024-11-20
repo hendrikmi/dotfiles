@@ -149,7 +149,7 @@ let g:WhichKeyDesc_refactoring_field = "<leader>rff Introduce field"
 let g:WhichKeyDesc_refactoring_signature = "<leader>rfs Change signature"
 let g:WhichKeyDesc_refactoring_all = "<leader>rfr Open refactorings list"
 
-let g:WhichKeyDesc_goto = "<leader>g GOTO + Git"
+let g:WhichKeyDesc_goto = "<leader>g GOTO"
 let g:WhichKeyDesc_goto_declaration = "<leader>gd Go to Definition"
 let g:WhichKeyDesc_goto_type_declaration = "<leader>gy Go to Type Declaration"
 let g:WhichKeyDesc_goto_implementation = "<leader>gi Go to Implementation"
@@ -158,9 +158,10 @@ let g:WhichKeyDesc_goto_test = "<leader>gt Go to Test"
 let g:WhichKeyDesc_goto_back = "<leader>gb Go Back"
 let g:WhichKeyDesc_goto_forward = "<leader>gf Go Forward"
 
-let g:WhichKeyDesc_git_commit = "<leader>gc Open Git commit sidebar"
-let g:WhichKeyDesc_git_status = "<leader>gs Open Git status dialog"
-let g:WhichKeyDesc_git_branches = "<leader>gr Open Git branches list"
+let g:WhichKeyDesc_git = "<leader>i Git"
+let g:WhichKeyDesc_git_commit = "<leader>ic Open Git commit sidebar"
+let g:WhichKeyDesc_git_status = "<leader>is Open Git status dialog"
+let g:WhichKeyDesc_git_branches = "<leader>ir Open Git branches list"
 
 let g:WhichKeyDesc_errors = "<leader>e Error navigation"
 let g:WhichKeyDesc_errors_next = "<leader>en Go to next error in solution"
@@ -287,9 +288,9 @@ nmap <leader>gf <Action>(Back)
 nmap <leader>gb <Action>(Forward)
 
 " Git windows
-map <leader>gc <Action>(CheckinProject)
-map <leader>gs <Action>(ActivateVersionControlToolWindow)
-map <leader>gr <Action>(Git.Branches)
+map <leader>ic <Action>(CheckinProject)
+map <leader>is <Action>(ActivateVersionControlToolWindow)
+map <leader>ir <Action>(Git.Branches)
 
 " Errors
 map <leader>en <Action>(GotoNextError)
