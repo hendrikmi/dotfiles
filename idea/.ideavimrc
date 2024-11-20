@@ -157,6 +157,7 @@ let g:WhichKeyDesc_goto_usages = "<leader>gu Go to Usages"
 let g:WhichKeyDesc_goto_test = "<leader>gt Go to Test"
 let g:WhichKeyDesc_goto_back = "<leader>gb Go Back"
 let g:WhichKeyDesc_goto_forward = "<leader>gf Go Forward"
+let g:WhichKeyDesc_goto_super = "<leader>gs Go to Super Method"
 
 let g:WhichKeyDesc_git = "<leader>i Git"
 let g:WhichKeyDesc_git_commit = "<leader>ic Open Git commit sidebar"
@@ -286,6 +287,7 @@ nmap <leader>gu <Action>(ShowUsages)
 nmap <leader>gt <Action>(GotoTest)
 nmap <leader>gf <Action>(Back)
 nmap <leader>gb <Action>(Forward)
+nmap <leader>gs <Action>(GotoSuperMethod)
 
 " Git windows
 map <leader>ic <Action>(CheckinProject)
