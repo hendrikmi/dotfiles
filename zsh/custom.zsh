@@ -18,9 +18,6 @@ for dump in ~/.zcompdump(N.mh+24); do
 done
 compinit -C
 
-export FZF_CTRL_T_OPTS="
-  --preview 'bat -n --color=always {}'
-  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
 # If using git-auto-fetch plugin, sets interval to fetch changes
 export GIT_AUTO_FETCH_INTERVAL=1200 # in seconds
@@ -37,6 +34,9 @@ export ZSH_DOTENV_PROMPT=false
 # Create an amazing Zsh config using antidote plugins.
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 antidote load
+
+# Plugin settings set in `plugin_settings.zsh`
+
 
 # Fix history search key bindings for partial search
 bindkey '^[[A' history-substring-search-up 
