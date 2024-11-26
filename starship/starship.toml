@@ -1,25 +1,132 @@
-format = """
+# Reference: https://starship.rs/config/
+
+
+# $fill is used to create space between the left and right side
+# format = """
+# $directory\
+# $git_branch\
+# $git_status\
+
+# $localip\
+
+# $fill\
+
+# $python\
+# $lua\
+# $nodejs\
+# $golang\
+# $kotlin\
+# $java\
+# $gradle\
+# $rust\
+# $aws\
+# $docker_context\
+# $jobs\
+# $cmd_duration\
+# $line_break\
+# $character"""
+
+# Testing only to see what works
+ format = """
+$hostname\
+$localip\
+$shlvl\
+$kubernetes\
 $directory\
 $git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
 $git_status\
 $fill\
-$python\
-$lua\
-$nodejs\
-$golang\
-$haskell\
-$rust\
-$ruby\
-$aws\
+$pijul_channel\
 $docker_context\
-$jobs\
+$cmake\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$gleam\
+$golang\
+$guix_shell\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$gradle\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$quarto\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$typst\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$nats\
+$direnv\
+$env_var\
+$crystal\
+$custom\
+$sudo\
 $cmd_duration\
 $line_break\
+$jobs\
+$battery\
+$time\
+$status\
+$os\
+$container\
+$shell\
 $character"""
 
+
+
+# === Settings
+
 add_newline = true
-command_timeout = 1000
+command_timeout = 2000
 palette = "nord"
+
+# === Colour
+
+# === Prompt Formats
+
+[hostname]
+ssh_symbol = " "
+ssh_only = true
+disabled = false
 
 [directory]
 style = 'bold fg:dark_blue'
@@ -64,6 +171,10 @@ format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 pyenv_version_name = true
 pyenv_prefix = ''
 
+[java]
+symbol = " "
+format = '[${symbol}(${version} )]($style)'
+
 [lua]
 format = '[$symbol($version )]($style)'
 symbol = ' '
@@ -71,6 +182,8 @@ symbol = ' '
 [nodejs]
 style = 'blue'
 symbol = ' '
+format = '[$symbol($version )]($style)'
+
 
 [golang]
 style = 'blue'
@@ -95,6 +208,7 @@ symbol = '󰏗 '
 symbol = ' '
 style = 'yellow'
 format = '[$symbol($profile )(\[$duration\] )]($style)'
+disabled = true                                         # Turn it off for the time being
 
 [docker_context]
 symbol = ' '
@@ -125,17 +239,156 @@ yellow = '#EBCB8B'
 purple = '#B48EAD'
 gray = '#434C5E'
 black = '#2E3440'
-white='#D8DEE9'
+white = '#D8DEE9'
 
 [palettes.onedark]
-dark_blue='#61afef'
-blue='#56b6c2'
-red='#e06c75'
-green='#98c379'
-purple='#c678dd'
-cyan='#56b6c2'
-orange='#be5046'
-yellow='#e5c07b'
-gray='#828997'
-white ='#abb2bf'
-black='#2c323c'
+dark_blue = '#61afef'
+blue = '#56b6c2'
+red = '#e06c75'
+green = '#98c379'
+purple = '#c678dd'
+cyan = '#56b6c2'
+orange = '#be5046'
+yellow = '#e5c07b'
+gray = '#828997'
+white = '#abb2bf'
+black = '#2c323c'
+
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[crystal]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[fennel]
+symbol = " "
+
+[fossil_branch]
+symbol = " "
+
+[git_commit]
+tag_symbol = '  '
+
+
+[guix_shell]
+symbol = " "
+
+
+[haxe]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+
+
+[julia]
+symbol = " "
+
+[kotlin]
+symbol = " "
+
+
+[memory_usage]
+symbol = "󰍛 "
+
+[meson]
+symbol = "󰔷 "
+
+[nim]
+symbol = "󰆥 "
+
+[nix_shell]
+symbol = " "
+
+
+[ocaml]
+symbol = " "
+
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+AlmaLinux = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Kali = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+RockyLinux = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Void = " "
+Windows = "󰍲 "
+
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[pijul_channel]
+symbol = " "
+
+
+[rlang]
+symbol = "󰟔 "
+
+
+[scala]
+symbol = " "
+
+[swift]
+symbol = " "
+
+[zig]
+symbol = " "
+
+[gradle]
+symbol = " "
