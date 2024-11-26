@@ -79,8 +79,6 @@ let g:WhichKeyDesc_bookmarks_edit = "me Edit bookmark"
 " Leader key
 let g:WhichKeyDesc_leader = "<leader> Leader key"
 
-let g:WhichKeyDesc_leader_t = "<leader>t NERDTree Explorer"
-
 let g:WhichKeyDesc_easymotion = "<leader>j Jump with Easymotion"
 let g:WhichKeyDesc_easymotion_prefix = "<leader><leader>"
 
@@ -109,6 +107,14 @@ let g:WhichKeyDesc_zen_mode = "<leader>dz Toggle Zen mode"
 let g:WhichKeyDesc_hide_all_windows = "<leader>dd Hide all windows"
 let g:WhichKeyDesc_fullscreen = "<leader>df Toggle full screen"
 let g:WhichKeyDesc_distraction_free = "<leader>di Toggle distraction free mode"
+
+let g:WhichKeyDesc_tool_window = "<leader>t Tool window"
+let g:WhichKeyDesc_nerdtree = "<leader>tt NERDTree Explorer"
+let g:WhichKeyDesc_nerdtree_close = "<leader>tc Close NERDTree"
+let g:WhichKeyDesc_resize_tool_window_left = "<leader>th Resize tool window left (ctrl+alt+left)"
+let g:WhichKeyDesc_resize_tool_window_right = "<leader>tl Resize tool window right (ctrl+alt+right)"
+let g:WhichKeyDesc_jump_to_last_too_window = "<leader>ti Jump to last tool window (F12)"
+
 let g:WhichKeyDesc_action= "<leader>a Actions"
 let g:WhichKeyDesc_action_context_menu = "<leader>am Open context menu"
 let g:WhichKeyDesc_action_search = "<leader>as Open command modal"
@@ -195,6 +201,8 @@ nmap <C-l> <C-w>l
 " n = normal mode , nore=non-recursive, won't trigger other mappings
 nmap [[ <Action>(MethodUp)
 nmap ]] <Action>(MethodDown)
+nmap <C-j> <Action>(MethodDown)
+nmap <C-k> <Action>(MethodUp)
 
 " Easy visual indentation
 vnoremap < <gv
@@ -220,21 +228,6 @@ nmap <leader>cq <Action>(QuickJavaDoc)
 " Jump around with easymotion
 map <leader>j <Plug>(easymotion-s)
 
-" Open NERDTree (use q or esc to exit)
-map <leader>t :NERDTreeToggle<CR>
-" s - Open file in vertical split
-" o - Open directory
-" O - Recursively open directories
-" x - Close parent directory
-" X - Recursively close all children
-" p - Go to parent directory
-" P - Go to root directory
-" K - Go to first file in directory
-" J - Go to last file in directory
-" m - Show menu
-" n - Create a new file
-" N - Create a new directory
-
 " Folding
 map <leader>zC :action CollapseAllRegions<CR>
 map <leader>zE :action ExpandAllRegions<CR>
@@ -255,8 +248,27 @@ map <leader>dd <action>(HideAllWindows)
 map <leader>dz <action>(ToggleZenMode)
 map <leader>df <action>(ToggleFullScreen)
 map <leader>di <action>(ToggleDistractionFreeMode)
-map <leader>dh <action>(ResizeToolWindowLeft)
-map <leader>dl <action>(ResizeToolWindowRight)
+
+" Tool windows
+map <leader>th <action>(ResizeToolWindowLeft)
+map <leader>tl <action>(ResizeToolWindowRight)
+map <leader>ti <action>(JumpToLastWindow)
+" Open NERDTree (use q or esc to exit)
+map <leader>tt :NERDTreeFocus<CR>
+map <leader>tc :NERDTreeClose<CR>
+" s - Open file in vertical split
+" o - Open directory
+" O - Recursively open directories
+" x - Close parent directory
+" X - Recursively close all children
+" Navigation
+" p - Go to parent directory
+" P - Go to root directory
+" K - Go to first file in directory
+" J - Go to last file in directory
+" m - Show menu
+" n - Create a new file
+" N - Create a new directory
 
 " Actions
 map <leader>am <action>(ShowIntentionActions)
@@ -297,15 +309,26 @@ map <leader>ir <Action>(Git.Branches)
 map <leader>en <Action>(GotoNextError)
 map <leader>ep <Action>(GotoPreviousError)
 
-nmap <leader>mm <Action>(MainMenu)
+nmap <leader>mt <Action>(MainMenu)
 nmap <leader>ma <Action>(AnalyzeMenu)
-" nmap <leader>mb <Action>(BuildMenu)
+nmap <leader>mb <Action>(BuildMenu)
 nmap <leader>mc <Action>(CodeMenu)
 nmap <leader>mf <Action>(FindMenuGroup)
 nmap <leader>mg <Action>(GoToMenu)
 nmap <leader>ms <Action>(ScopeViewPopupMenu)
-nmap <leader>mt <Action>(EditorTabPopupMenu)
-nmap <leader>mw <Action>(ToolWindowsGroup)
+nmap <leader>me <Action>(EditorTabPopupMenu)
+nmap <leader>mm <Action>(ToolWindowsGroup)
+
+let g:WhichKeyDesc_menu = "<leader>m Menu"
+let g:WhichKeyDesc_menu = "<leader>mt Top Bar Menu"
+let g:WhichKeyDesc_menu_analyze = "<leader>ma Analyze"
+let g:WhichKeyDesc_menu_build = "<leader>mb Build"
+let g:WhichKeyDesc_menu_code = "<leader>mc Code"
+let g:WhichKeyDesc_menu_find = "<leader>mf Find"
+let g:WhichKeyDesc_menu_goto = "<leader>mg Go to"
+let g:WhichKeyDesc_menu_scope = "<leader>ms Scope"
+let g:WhichKeyDesc_menu_editor = "<leader>me Editor"
+let g:WhichKeyDesc_menu_tool = "<leader>mm Tool"
 
 " run
 nmap <leader>rc <Action>(ContextRun)
