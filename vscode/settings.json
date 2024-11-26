@@ -384,5 +384,6 @@
   "git.enableSmartCommit": true,
   "[lua]": {
     "editor.defaultFormatter": "sumneko.lua"
-  }
+  },
+  "diffEditor.ignoreTrimWhitespace": false
 }
