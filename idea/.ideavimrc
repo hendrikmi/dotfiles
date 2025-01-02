@@ -39,9 +39,13 @@ nnoremap dd ""dd
 vnoremap d ""d
 nnoremap x ""x
 vnoremap x ""x
+nnoremap C ""C
+vnoremap C ""C
+nnoremap c ""c
+vnoremap c ""c
 
 " Unbind space for leader
-map <space> <nop> 
+" map <space> <nop> - TODO: This was breaking 
 let mapleader = " "
 
 "" Plugin Settings
@@ -62,129 +66,15 @@ Plug 'easymotion/vim-easymotion'
 set easymotion
 set notimeout
 
-"" Which Key Settings
-"" ========================================================
-set which-key
-let g:WhichKey_FontSize = 16
-let g:WhichKey_CommandColor = "#41ead4"
-let g:WhichKey_PrefixColor = "#f335b2"
-let g:WhichKey_SortOrder = "by_key_prefix_first"
 
-" No leader key
-let g:WhichKeyDesc_bookmarks = "m Bookmarks"
-let g:WhichKeyDesc_bookmarks_toggle = "mm Toggle bookmark"
-let g:WhichKeyDesc_bookmarks_show = "ms Show bookmarks"
-let g:WhichKeyDesc_bookmarks_edit = "me Edit bookmark"
-
-" Leader key
-let g:WhichKeyDesc_leader = "<leader> Leader key"
-
-let g:WhichKeyDesc_easymotion = "<leader>j Jump with Easymotion"
-let g:WhichKeyDesc_easymotion_prefix = "<leader><leader>"
-
-let g:WhichKeyDesc_code = "<leader>c Code menu"
-let g:WhichKeyDesc_code_delete = "<leader>cd Safe delete"
-let g:WhichKeyDesc_code_optimize = "<leader>co Optimize imports"
-let g:WhichKeyDesc_code_implementation = "<leader>ci Show Implementation (alt+space)"
-let g:WhichKeyDesc_code_documentation = "<leader>cq Show method documentation"
-
-let g:WhichKeyDesc_fold = "<leader>z Folding"
-let g:WhichKeyDesc_fold_region = "<leader>zc Collapse region"
-let g:WhichKeyDesc_fold_all_region = "<leader>zC Collapse all regions"
-let g:WhichKeyDesc_unfold_all = "<leader>zE Expand all regions"
-let g:WhichKeyDesc_unfold_region = "<leader>ze Expand region"
-let g:WhichKeyDesc_fold_toggle = "<leader>zz Toggle expand/collapse"
-
-let g:WhichKeyDesc_window = "<leader>w Window splits"
-let g:WhichKeyDesc_window_hide = "<leader>ww Toggle all tool windows"
-let g:WhichKeyDesc_window_split_vertically = "<leader>wv Split vertically"
-let g:WhichKeyDesc_window_split_horizontally = "<leader>ws Split horizontally"
-let g:WhichKeyDesc_window_split_unsplit = "<leader>wu Unsplit"
-let g:WhichKeyDesc_window_split_move_editor = "<leader>wm Move editor to opposite tab group"
-
-let g:WhichKeyDesc_display = "<leader>d Display options"
-let g:WhichKeyDesc_zen_mode = "<leader>dz Toggle Zen mode"
-let g:WhichKeyDesc_hide_all_windows = "<leader>dd Hide all windows"
-let g:WhichKeyDesc_fullscreen = "<leader>df Toggle full screen"
-let g:WhichKeyDesc_distraction_free = "<leader>di Toggle distraction free mode"
-
-let g:WhichKeyDesc_tool_window = "<leader>t Tool window"
-let g:WhichKeyDesc_nerdtree = "<leader>tt NERDTree Explorer"
-let g:WhichKeyDesc_nerdtree_close = "<leader>tc Close NERDTree"
-let g:WhichKeyDesc_resize_tool_window_left = "<leader>th Resize tool window left (ctrl+alt+left)"
-let g:WhichKeyDesc_resize_tool_window_right = "<leader>tl Resize tool window right (ctrl+alt+right)"
-let g:WhichKeyDesc_jump_to_last_too_window = "<leader>ti Jump to last tool window (F12)"
-
-let g:WhichKeyDesc_action= "<leader>a Actions"
-let g:WhichKeyDesc_action_context_menu = "<leader>am Open context menu"
-let g:WhichKeyDesc_action_search = "<leader>as Open command modal"
-
-let g:WhichKeyDesc_file_quickLook = "<leader><leader> Recent files"
-
-let g:WhichKeyDesc_file_nav = "<leader>f File navigation"
-let g:WhichKeyDesc_file_nav_goto_file = "<leader>ff Go to file"
-let g:WhichKeyDesc_file_nav_goto_content = "<leader>fa Search all files"
-let g:WhichKeyDesc_file_nav_show_recent_files = "<leader>fr Show recent files"
-let g:WhichKeyDesc_file_nav_show_recent_locations = "<leader>fl Show recent locations in file"
-let g:WhichKeyDesc_file_structure_popup = "<leader>fs Show file structure"
-
-let g:WhichKeyDesc_show_quick_signature = "<leader>q Show quick method doc"
-
-let g:WhichKeyDesc_close = "<leader>x Close Tabs"
-let g:WhichKeyDesc_close_content = "<leader>xx Close Current Tab"
-let g:WhichKeyDesc_close_all = "<leader>xa Close All Tabs"
-let g:WhichKeyDesc_close_all_but_active = "<leader>xo Close All Tabs But Active"
-
-let g:WhichKeyDesc_run_prefix = "<leader>r Run + Refactor"
-let g:WhichKeyDesc_run_context = "<leader>rc Run context"
-let g:WhichKeyDesc_choose = "<leader>rx Choose run config"
-let g:WhichKeyDesc_rerun = "<leader>rr Rerun"
-let g:WhichKeyDesc_tests = "<leader>rt Run tests"
-let g:WhichKeyDesc_stop = "<leader>rs Stop"
-let g:WhichKeyDesc_debug_context = "<leader>rg Debug context"
-let g:WhichKeyDesc_debug = "<leader>rd Debug"
-let g:WhichKeyDesc_reload_vimrc = "<leader>rv Reload ideavimrc"
-
-let g:WhichKeyDesc_refactoring = "<leader>rf  Refactoring menu"
-let g:WhichKeyDesc_refactoring_rename = "<leader>rfn Rename element"
-let g:WhichKeyDesc_refactoring_method = "<leader>rfm Extract method"
-let g:WhichKeyDesc_refactoring_variable = "<leader>rfv Introduce variable"
-let g:WhichKeyDesc_refactoring_field = "<leader>rff Introduce field"
-let g:WhichKeyDesc_refactoring_signature = "<leader>rfs Change signature"
-let g:WhichKeyDesc_refactoring_all = "<leader>rfr Open refactorings list"
-
-let g:WhichKeyDesc_goto = "<leader>g GOTO"
-let g:WhichKeyDesc_goto_declaration = "<leader>gd Go to Definition"
-let g:WhichKeyDesc_goto_type_declaration = "<leader>gy Go to Type Declaration"
-let g:WhichKeyDesc_goto_implementation = "<leader>gi Go to Implementation"
-let g:WhichKeyDesc_goto_usages = "<leader>gu Go to Usages"
-let g:WhichKeyDesc_goto_test = "<leader>gt Go to Test"
-let g:WhichKeyDesc_goto_back = "<leader>gb Go Back"
-let g:WhichKeyDesc_goto_forward = "<leader>gf Go Forward"
-let g:WhichKeyDesc_goto_super = "<leader>gs Go to Super Method"
-
-let g:WhichKeyDesc_git = "<leader>i Git"
-let g:WhichKeyDesc_git_commit = "<leader>ic Open Git commit sidebar"
-let g:WhichKeyDesc_git_status = "<leader>is Open Git status dialog"
-let g:WhichKeyDesc_git_branches = "<leader>ir Open Git branches list"
-
-let g:WhichKeyDesc_errors = "<leader>e Error navigation"
-let g:WhichKeyDesc_errors_next = "<leader>en Go to next error"
-let g:WhichKeyDesc_errors_prev = "<leader>ep Go to previous error"
-
-let g:WhichKeyDesc_Menu = "<leader>m Menu"
-
-let g:WhichKeyDesc_run = "<Space>r Run + Refactor"
-
-let g:WhichKeyDesc_breakpoints = "<leader>b Breakpoint"
 
 "" Key mappings
 "" ========================================================
 " Better HJKL
 map H ^
 map L $
-map J }
-map K {
+map J 5j
+map K 5k
 
 " Tab navigation - Alt n/p
 nnoremap <A-n> :tabnext<CR>
@@ -219,7 +109,6 @@ nmap me <Action>(EditBookmark)
 
 "" Leader commands
 "" ========================================================
-
 " Code commands
 nmap <leader>cd <Action>(SafeDelete)
 nmap <leader>co <Action>(OptimizeImports)
@@ -241,7 +130,9 @@ map <leader>wv <Action>(SplitVertically)
 map <leader>ws <Action>(SplitHorizontally)
 map <leader>wu <Action>(Unsplit)
 map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
-" Note: With the TabSplitter plugin, shift+alt [ or ] will stretch the splitter
+map <leader>wh <Action>(TabShiftActions.StretchLeft)
+map <leader>wl <Action>(TabShiftActions.StretchRight)
+" Note: With the TabShifter plugin, shift+alt [ or ] will stretch the splitter window left or right
 
 " Display options
 map <leader>dd <action>(HideAllWindows)
@@ -352,3 +243,121 @@ map <leader>rfr <Action>(Refactorings.QuickListPopupAction)
 nmap <leader>bb <Action>(ToggleLineBreakpoint)
 nmap <leader>be <Action>(EditBreakpoint)
 nmap <leader>bv <Action>(ViewBreakpoints)
+
+"" Which Key Settings
+"" ========================================================
+set which-key
+let g:WhichKey_FontSize = 16
+let g:WhichKey_CommandColor = "#41ead4"
+let g:WhichKey_PrefixColor = "#f335b2"
+let g:WhichKey_SortOrder = "by_key_prefix_first"
+
+" No leader key
+let g:WhichKeyDesc_bookmarks = "m Bookmarks"
+let g:WhichKeyDesc_bookmarks_toggle = "mm Toggle bookmark"
+let g:WhichKeyDesc_bookmarks_show = "ms Show bookmarks"
+let g:WhichKeyDesc_bookmarks_edit = "me Edit bookmark"
+
+" Leader key
+let g:WhichKeyDesc_leader = "<leader> Leader key"
+
+let g:WhichKeyDesc_easymotion = "<leader>j Jump with Easymotion"
+let g:WhichKeyDesc_easymotion_prefix = "<leader><leader>"
+
+let g:WhichKeyDesc_code = "<leader>c Code menu"
+let g:WhichKeyDesc_code_delete = "<leader>cd Safe delete"
+let g:WhichKeyDesc_code_optimize = "<leader>co Optimize imports"
+let g:WhichKeyDesc_code_implementation = "<leader>ci Show Implementation (alt+space)"
+let g:WhichKeyDesc_code_documentation = "<leader>cq Show method documentation"
+
+let g:WhichKeyDesc_fold = "<leader>z Folding"
+let g:WhichKeyDesc_fold_region = "<leader>zc Collapse region"
+let g:WhichKeyDesc_fold_all_region = "<leader>zC Collapse all regions"
+let g:WhichKeyDesc_unfold_all = "<leader>zE Expand all regions"
+let g:WhichKeyDesc_unfold_region = "<leader>ze Expand region"
+let g:WhichKeyDesc_fold_toggle = "<leader>zz Toggle expand/collapse"
+
+let g:WhichKeyDesc_window = "<leader>w Window splits"
+let g:WhichKeyDesc_window_hide = "<leader>ww Toggle all tool windows"
+let g:WhichKeyDesc_window_split_vertically = "<leader>wv Split vertically"
+let g:WhichKeyDesc_window_split_horizontally = "<leader>ws Split horizontally"
+let g:WhichKeyDesc_window_split_unsplit = "<leader>wu Unsplit"
+let g:WhichKeyDesc_window_split_move_editor = "<leader>wm Move editor to opposite tab group"
+let g:WhichKeyDesc_window_adjust_left = "<leader>wh Adjust width left (shift+alt+[)"
+let g:WhichKeyDesc_window_adjust_right = "<leader>wl Adjust width right (shift+alt+])"
+
+let g:WhichKeyDesc_display = "<leader>d Display options"
+let g:WhichKeyDesc_zen_mode = "<leader>dz Toggle Zen mode"
+let g:WhichKeyDesc_hide_all_windows = "<leader>dd Hide all windows"
+let g:WhichKeyDesc_fullscreen = "<leader>df Toggle full screen"
+let g:WhichKeyDesc_distraction_free = "<leader>di Toggle distraction free mode"
+
+let g:WhichKeyDesc_tool_window = "<leader>t Tool window"
+let g:WhichKeyDesc_nerdtree = "<leader>tt NERDTree Explorer"
+let g:WhichKeyDesc_nerdtree_close = "<leader>tc Close NERDTree"
+let g:WhichKeyDesc_resize_tool_window_left = "<leader>th Resize tool window left (ctrl+alt+left)"
+let g:WhichKeyDesc_resize_tool_window_right = "<leader>tl Resize tool window right (ctrl+alt+right)"
+let g:WhichKeyDesc_jump_to_last_too_window = "<leader>ti Jump to last tool window (F12)"
+
+let g:WhichKeyDesc_action= "<leader>a Actions"
+let g:WhichKeyDesc_action_context_menu = "<leader>am Open context menu"
+let g:WhichKeyDesc_action_search = "<leader>as Open command modal"
+
+let g:WhichKeyDesc_file_quickLook = "<leader><leader> Recent files"
+
+let g:WhichKeyDesc_file_nav = "<leader>f File navigation"
+let g:WhichKeyDesc_file_nav_goto_file = "<leader>ff Go to file"
+let g:WhichKeyDesc_file_nav_goto_content = "<leader>fa Search all files"
+let g:WhichKeyDesc_file_nav_show_recent_files = "<leader>fr Show recent files"
+let g:WhichKeyDesc_file_nav_show_recent_locations = "<leader>fl Show recent locations in file"
+let g:WhichKeyDesc_file_structure_popup = "<leader>fs Show file structure"
+
+let g:WhichKeyDesc_show_quick_signature = "<leader>q Show quick method doc"
+
+let g:WhichKeyDesc_close = "<leader>x Close Tabs"
+let g:WhichKeyDesc_close_content = "<leader>xx Close Current Tab"
+let g:WhichKeyDesc_close_all = "<leader>xa Close All Tabs"
+let g:WhichKeyDesc_close_all_but_active = "<leader>xo Close All Tabs But Active"
+
+let g:WhichKeyDesc_run_prefix = "<leader>r Run + Refactor"
+let g:WhichKeyDesc_run_context = "<leader>rc Run context"
+let g:WhichKeyDesc_choose = "<leader>rx Choose run config"
+let g:WhichKeyDesc_rerun = "<leader>rr Rerun"
+let g:WhichKeyDesc_tests = "<leader>rt Run tests"
+let g:WhichKeyDesc_stop = "<leader>rs Stop"
+let g:WhichKeyDesc_debug_context = "<leader>rg Debug context"
+let g:WhichKeyDesc_debug = "<leader>rd Debug"
+let g:WhichKeyDesc_reload_vimrc = "<leader>rv Reload ideavimrc"
+
+let g:WhichKeyDesc_refactoring = "<leader>rf  Refactoring menu"
+let g:WhichKeyDesc_refactoring_rename = "<leader>rfn Rename element"
+let g:WhichKeyDesc_refactoring_method = "<leader>rfm Extract method"
+let g:WhichKeyDesc_refactoring_variable = "<leader>rfv Introduce variable"
+let g:WhichKeyDesc_refactoring_field = "<leader>rff Introduce field"
+let g:WhichKeyDesc_refactoring_signature = "<leader>rfs Change signature"
+let g:WhichKeyDesc_refactoring_all = "<leader>rfr Open refactorings list"
+
+let g:WhichKeyDesc_goto = "<leader>g GOTO"
+let g:WhichKeyDesc_goto_declaration = "<leader>gd Go to Definition"
+let g:WhichKeyDesc_goto_type_declaration = "<leader>gy Go to Type Declaration"
+let g:WhichKeyDesc_goto_implementation = "<leader>gi Go to Implementation"
+let g:WhichKeyDesc_goto_usages = "<leader>gu Go to Usages"
+let g:WhichKeyDesc_goto_test = "<leader>gt Go to Test"
+let g:WhichKeyDesc_goto_back = "<leader>gb Go Back"
+let g:WhichKeyDesc_goto_forward = "<leader>gf Go Forward"
+let g:WhichKeyDesc_goto_super = "<leader>gs Go to Super Method"
+
+let g:WhichKeyDesc_git = "<leader>i Git"
+let g:WhichKeyDesc_git_commit = "<leader>ic Open Git commit sidebar"
+let g:WhichKeyDesc_git_status = "<leader>is Open Git status dialog"
+let g:WhichKeyDesc_git_branches = "<leader>ir Open Git branches list"
+
+let g:WhichKeyDesc_errors = "<leader>e Error navigation"
+let g:WhichKeyDesc_errors_next = "<leader>en Go to next error"
+let g:WhichKeyDesc_errors_prev = "<leader>ep Go to previous error"
+
+let g:WhichKeyDesc_Menu = "<leader>m Menu"
+
+let g:WhichKeyDesc_run = "<Space>r Run + Refactor"
+
+let g:WhichKeyDesc_breakpoints = "<leader>b Breakpoint"
