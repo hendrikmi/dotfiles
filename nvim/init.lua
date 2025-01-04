@@ -46,8 +46,8 @@ require('lazy').setup({
   require 'plugins.database',
   require 'plugins.misc',
   require 'plugins.harpoon',
-  require 'plugins.avante',
-  require 'plugins.chatgpt',
+  -- require 'plugins.avante',
+  -- require 'plugins.chatgpt',
   require 'plugins.aerial',
   require 'plugins.vim-tmux-navigator',
 }, {
