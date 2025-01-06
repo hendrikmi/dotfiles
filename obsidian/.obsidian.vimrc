@@ -20,38 +20,38 @@ nmap H ^
 nmap L $
 
 " <Esc> clears highlights
-nnoremap <Esc> :nohl
+nnoremap <Esc> :nohl<CR>
 
 " Yank to system clipboard
 set clipboard=unnamed
 
 " Tabs
 exmap tabNext obcommand workspace:next-tab
-nmap <Tab> :tabNext
+nmap <Tab> :tabNext<CR>
 
 exmap tabPrev obcommand workspace:previous-tab
-nmap <S-Tab> :tabPrev
+nmap <S-Tab> :tabPrev<CR>
 
 exmap wsClose obcommand workspace:close
-map <Space>x :wsClose
+map <Space>x :wsClose<CR>
 
 " Explorer / Sidebar
 exmap exToggle obcommand app:toggle-left-sidebar
-map <Space>e :exToggle
+map <Space>e :exToggle<CR>
 
 exmap exReveal obcommand file-explorer:reveal-active-file
-map <Space>r :exReveal
+map <Space>r :exReveal<CR>
 
 " Pane navigation
 exmap focusLeft obcommand editor:focus-left
-map <C-h> :focusLeft
+map <C-h> :focusLeft<CR>
 
 exmap focusRight obcommand editor:focus-right
-map <C-l> :focusRight
+map <C-l> :focusRight<CR>
 
 " Splits
 exmap splitVertical obcommand workspace:split-vertical
-nnoremap <Space>v :splitVertical
+nnoremap <Space>v :splitVertical<CR>
 
 " [g]oto [o]pen file (= Quick Switcher)
 exmap quickSwitcher obcommand obsidian-another-quick-switcher:search-command_recent-search
