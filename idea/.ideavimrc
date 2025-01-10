@@ -31,10 +31,21 @@ set ideajoin " Join lines in the editor
 set ideamarks " Use idea bookmarks instead of vim marks
 " set idearefactormode=normal " Use normal mode for refactoring
 
-set clipboard=ideaput  " Avoid using clipboard when deleting
+" Use clipboard for yanking+pasting, avoid using clipboard when deleting.
+set clipboard=ideaput,unnamed
+" Deleting goes to null register
+nnoremap d ""d
+nnoremap dd ""dd
+vnoremap d ""d
+nnoremap x ""x
+vnoremap x ""x
+nnoremap C ""C
+vnoremap C ""C
+nnoremap c ""c
+vnoremap c ""c
 
 " Unbind space for leader
-map <space> <nop> 
+" map <space> <nop> - TODO: This was breaking 
 let mapleader = " "
 
 "" Plugin Settings
@@ -44,9 +55,6 @@ set surround " Use cs and ys to add quotes to surrounding text
 set highlightedyank " Highlight yanked text
 
 " Plugins to install separately
-" Sneak is redundant with easymotion
-Plug 'justinmk/vim-sneak'
-set sneak " Use s to jump to two characters search
 Plug 'preservim/nerdtree'
 set nerdtree
 Plug 'dbakker/vim-paragraph-motion' " { and } also select lines with white space only
@@ -58,7 +66,186 @@ Plug 'easymotion/vim-easymotion'
 set easymotion
 set notimeout
 
-" Which-key settings
+
+
+"" Key mappings
+"" ========================================================
+" Better HJKL
+map H ^
+map L $
+map J 5j
+map K 5k
+
+" Tab navigation - Alt n/p
+nnoremap <A-n> :tabnext<CR>
+nnoremap <A-p> :tabprev<CR>
+
+" Pane navigation - Ctrl hjkl
+" Can still use normal ctrl-w hjkl
+nmap <C-k> <C-w>k
+nmap <C-j> <C-w>j
+nmap <C-h> <C-w>h
+nmap <C-l> <C-w>l
+
+" Jump between methods
+" n = normal mode , nore=non-recursive, won't trigger other mappings
+nmap [[ <Action>(MethodUp)
+nmap ]] <Action>(MethodDown)
+nmap <C-j> <Action>(MethodDown)
+nmap <C-k> <Action>(MethodUp)
+
+" Easy visual indentation
+vnoremap < <gv
+vnoremap > >gv
+
+" Popup navigation
+inoremap <C-j> <Action>(PopupMenu-selectNext)
+inoremap <C-k> <Action>(PopupMenu-selectPrev)
+
+" Bookmark
+nmap mm <Action>(ToggleBookmark)
+nmap ms <Action>(ShowBookmarks)
+nmap me <Action>(EditBookmark)
+
+"" Leader commands
+"" ========================================================
+" Code commands
+nmap <leader>cd <Action>(SafeDelete)
+nmap <leader>co <Action>(OptimizeImports)
+nmap <leader>ci <Action>(QuickImplementations)
+nmap <leader>cq <Action>(QuickJavaDoc)
+" Jump around with easymotion
+map <leader>j <Plug>(easymotion-s)
+
+" Folding
+map <leader>zC :action CollapseAllRegions<CR>
+map <leader>zE :action ExpandAllRegions<CR>
+map <leader>zc :action CollapseRegionRecursively<CR>
+map <leader>ze :action ExpandRegionRecursively<CR>
+map <leader>zz :action ExpandCollapseToggleAction<CR>
+
+" Window splits
+map <leader>ww <Action>(HideAllWindows)
+map <leader>wv <Action>(SplitVertically)
+map <leader>ws <Action>(SplitHorizontally)
+map <leader>wu <Action>(Unsplit)
+map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
+map <leader>wh <Action>(TabShiftActions.StretchLeft)
+map <leader>wl <Action>(TabShiftActions.StretchRight)
+" Note: With the TabShifter plugin, shift+alt [ or ] will stretch the splitter window left or right
+
+" Display options
+map <leader>dd <action>(HideAllWindows)
+map <leader>dz <action>(ToggleZenMode)
+map <leader>df <action>(ToggleFullScreen)
+map <leader>di <action>(ToggleDistractionFreeMode)
+
+" Tool windows
+map <leader>th <action>(ResizeToolWindowLeft)
+map <leader>tl <action>(ResizeToolWindowRight)
+map <leader>ti <action>(JumpToLastWindow)
+" Open NERDTree (use q or esc to exit)
+map <leader>tt :NERDTreeFocus<CR>
+map <leader>tc :NERDTreeClose<CR>
+" s - Open file in vertical split
+" o - Open directory
+" O - Recursively open directories
+" x - Close parent directory
+" X - Recursively close all children
+" Navigation
+" p - Go to parent directory
+" P - Go to root directory
+" K - Go to first file in directory
+" J - Go to last file in directory
+" m - Show menu
+" n - Create a new file
+" N - Create a new directory
+
+" Actions
+map <leader>am <action>(ShowIntentionActions)
+map <leader>as <action>(SearchEverywhere)
+
+" File navigation
+map <leader><leader> <Action>(RecentFiles)
+map <leader>ff <action>(GotoFile)
+map <leader>fr <action>(RecentFiles)
+map <leader>fa <action>(FindInPath)
+map <leader>fl <action>(RecentLocations)
+map <leader>fs <action>(FileStructurePopup)
+
+" Show the method signature
+map <leader>q <action>(QuickJavaDoc)
+
+" Closing Content
+nmap <leader>xx <Action>(CloseContent)
+nmap <leader>xa <Action>(CloseAllEditors)
+nmap <leader>xo <Action>(CloseAllEditorsButActive)
+
+" Go to code
+nmap <leader>gd <Action>(GotoDeclaration)
+nmap <leader>gy <Action>(GotoTypeDeclaration)
+nmap <leader>gi <Action>(GotoImplementation)
+nmap <leader>gu <Action>(ShowUsages)
+nmap <leader>gt <Action>(GotoTest)
+nmap <leader>gf <Action>(Back)
+nmap <leader>gb <Action>(Forward)
+nmap <leader>gs <Action>(GotoSuperMethod)
+
+" Git windows
+map <leader>ic <Action>(CheckinProject)
+map <leader>is <Action>(ActivateVersionControlToolWindow)
+map <leader>ir <Action>(Git.Branches)
+
+" Errors
+map <leader>en <Action>(GotoNextError)
+map <leader>ep <Action>(GotoPreviousError)
+
+nmap <leader>mt <Action>(MainMenu)
+nmap <leader>ma <Action>(AnalyzeMenu)
+nmap <leader>mb <Action>(BuildMenu)
+nmap <leader>mc <Action>(CodeMenu)
+nmap <leader>mf <Action>(FindMenuGroup)
+nmap <leader>mg <Action>(GoToMenu)
+nmap <leader>ms <Action>(ScopeViewPopupMenu)
+nmap <leader>me <Action>(EditorTabPopupMenu)
+nmap <leader>mm <Action>(ToolWindowsGroup)
+
+let g:WhichKeyDesc_menu = "<leader>m Menu"
+let g:WhichKeyDesc_menu = "<leader>mt Top Bar Menu"
+let g:WhichKeyDesc_menu_analyze = "<leader>ma Analyze"
+let g:WhichKeyDesc_menu_build = "<leader>mb Build"
+let g:WhichKeyDesc_menu_code = "<leader>mc Code"
+let g:WhichKeyDesc_menu_find = "<leader>mf Find"
+let g:WhichKeyDesc_menu_goto = "<leader>mg Go to"
+let g:WhichKeyDesc_menu_scope = "<leader>ms Scope"
+let g:WhichKeyDesc_menu_editor = "<leader>me Editor"
+let g:WhichKeyDesc_menu_tool = "<leader>mm Tool"
+
+" run
+nmap <leader>rc <Action>(ContextRun)
+nmap <leader>rx <Action>(chooseRunConfiguration)
+nmap <leader>rr <Action>(Run)
+nmap <leader>rt <Action>(RunTests)
+nmap <leader>rs <Action>(Stop)
+nmap <leader>rg <Action>(ContextDebug)
+nmap <leader>rd <Action>(Debug)
+nmap <leader>rv <Action>(IdeaVim.ReloadVimRc.reload)
+
+" Refactoring
+map <leader>rfn <Action>(RenameElement)
+map <leader>rfm <Action>(ExtractMethod)
+map <leader>rfv <Action>(IntroduceVariable)
+map <leader>rff <Action>(IntroduceField)
+map <leader>rfs <Action>(ChangeSignature)
+map <leader>rfr <Action>(Refactorings.QuickListPopupAction)
+
+" Breakpoint
+nmap <leader>bb <Action>(ToggleLineBreakpoint)
+nmap <leader>be <Action>(EditBreakpoint)
+nmap <leader>bv <Action>(ViewBreakpoints)
+
+"" Which Key Settings
+"" ========================================================
 set which-key
 let g:WhichKey_FontSize = 16
 let g:WhichKey_CommandColor = "#41ead4"
@@ -74,14 +261,14 @@ let g:WhichKeyDesc_bookmarks_edit = "me Edit bookmark"
 " Leader key
 let g:WhichKeyDesc_leader = "<leader> Leader key"
 
-let g:WhichKeyDesc_leader_t = "<leader>t NERDTree Explorer"
-
 let g:WhichKeyDesc_easymotion = "<leader>j Jump with Easymotion"
 let g:WhichKeyDesc_easymotion_prefix = "<leader><leader>"
 
-let g:WhichKeyDesc_comment = "<leader>c Code menu"
-let g:WhichKeyDesc_comment_delete = "<leader>cd Safe delete"
-let g:WhichKeyDesc_comment_optimize = "<leader>co Optimize imports"
+let g:WhichKeyDesc_code = "<leader>c Code menu"
+let g:WhichKeyDesc_code_delete = "<leader>cd Safe delete"
+let g:WhichKeyDesc_code_optimize = "<leader>co Optimize imports"
+let g:WhichKeyDesc_code_implementation = "<leader>ci Show Implementation (alt+space)"
+let g:WhichKeyDesc_code_documentation = "<leader>cq Show method documentation"
 
 let g:WhichKeyDesc_fold = "<leader>z Folding"
 let g:WhichKeyDesc_fold_region = "<leader>zc Collapse region"
@@ -96,11 +283,21 @@ let g:WhichKeyDesc_window_split_vertically = "<leader>wv Split vertically"
 let g:WhichKeyDesc_window_split_horizontally = "<leader>ws Split horizontally"
 let g:WhichKeyDesc_window_split_unsplit = "<leader>wu Unsplit"
 let g:WhichKeyDesc_window_split_move_editor = "<leader>wm Move editor to opposite tab group"
+let g:WhichKeyDesc_window_adjust_left = "<leader>wh Adjust width left (shift+alt+[)"
+let g:WhichKeyDesc_window_adjust_right = "<leader>wl Adjust width right (shift+alt+])"
 
 let g:WhichKeyDesc_display = "<leader>d Display options"
 let g:WhichKeyDesc_zen_mode = "<leader>dz Toggle Zen mode"
-let g:WhichKeyDesc_df_mode = "<leader>dd Toggle Distraction-Free mode"
+let g:WhichKeyDesc_hide_all_windows = "<leader>dd Hide all windows"
 let g:WhichKeyDesc_fullscreen = "<leader>df Toggle full screen"
+let g:WhichKeyDesc_distraction_free = "<leader>di Toggle distraction free mode"
+
+let g:WhichKeyDesc_tool_window = "<leader>t Tool window"
+let g:WhichKeyDesc_nerdtree = "<leader>tt NERDTree Explorer"
+let g:WhichKeyDesc_nerdtree_close = "<leader>tc Close NERDTree"
+let g:WhichKeyDesc_resize_tool_window_left = "<leader>th Resize tool window left (ctrl+alt+left)"
+let g:WhichKeyDesc_resize_tool_window_right = "<leader>tl Resize tool window right (ctrl+alt+right)"
+let g:WhichKeyDesc_jump_to_last_too_window = "<leader>ti Jump to last tool window (F12)"
 
 let g:WhichKeyDesc_action= "<leader>a Actions"
 let g:WhichKeyDesc_action_context_menu = "<leader>am Open context menu"
@@ -115,7 +312,7 @@ let g:WhichKeyDesc_file_nav_show_recent_files = "<leader>fr Show recent files"
 let g:WhichKeyDesc_file_nav_show_recent_locations = "<leader>fl Show recent locations in file"
 let g:WhichKeyDesc_file_structure_popup = "<leader>fs Show file structure"
 
-let g:WhichKeyDesc_close_tab = "<leader>q Close active tab"
+let g:WhichKeyDesc_show_quick_signature = "<leader>q Show quick method doc"
 
 let g:WhichKeyDesc_close = "<leader>x Close Tabs"
 let g:WhichKeyDesc_close_content = "<leader>xx Close Current Tab"
@@ -140,7 +337,7 @@ let g:WhichKeyDesc_refactoring_field = "<leader>rff Introduce field"
 let g:WhichKeyDesc_refactoring_signature = "<leader>rfs Change signature"
 let g:WhichKeyDesc_refactoring_all = "<leader>rfr Open refactorings list"
 
-let g:WhichKeyDesc_goto = "<leader>g GOTO + Git"
+let g:WhichKeyDesc_goto = "<leader>g GOTO"
 let g:WhichKeyDesc_goto_declaration = "<leader>gd Go to Definition"
 let g:WhichKeyDesc_goto_type_declaration = "<leader>gy Go to Type Declaration"
 let g:WhichKeyDesc_goto_implementation = "<leader>gi Go to Implementation"
@@ -148,173 +345,19 @@ let g:WhichKeyDesc_goto_usages = "<leader>gu Go to Usages"
 let g:WhichKeyDesc_goto_test = "<leader>gt Go to Test"
 let g:WhichKeyDesc_goto_back = "<leader>gb Go Back"
 let g:WhichKeyDesc_goto_forward = "<leader>gf Go Forward"
+let g:WhichKeyDesc_goto_super = "<leader>gs Go to Super Method"
 
-let g:WhichKeyDesc_git_commit = "<leader>gc Open Git commit sidebar"
-let g:WhichKeyDesc_git_status = "<leader>gs Open Git status dialog"
-let g:WhichKeyDesc_git_branches = "<leader>gr Open Git branches list"
+let g:WhichKeyDesc_git = "<leader>i Git"
+let g:WhichKeyDesc_git_commit = "<leader>ic Open Git commit sidebar"
+let g:WhichKeyDesc_git_status = "<leader>is Open Git status dialog"
+let g:WhichKeyDesc_git_branches = "<leader>ir Open Git branches list"
 
 let g:WhichKeyDesc_errors = "<leader>e Error navigation"
-let g:WhichKeyDesc_errors_next = "<leader>en Go to next error in solution"
-let g:WhichKeyDesc_errors_prev = "<leader>ep Go to previous error in solution"
+let g:WhichKeyDesc_errors_next = "<leader>en Go to next error"
+let g:WhichKeyDesc_errors_prev = "<leader>ep Go to previous error"
 
 let g:WhichKeyDesc_Menu = "<leader>m Menu"
-" TODO: Menu items
 
 let g:WhichKeyDesc_run = "<Space>r Run + Refactor"
 
 let g:WhichKeyDesc_breakpoints = "<leader>b Breakpoint"
-
-"" Key mappings
-"" ========================================================
-" Better HJKL
-map H ^
-map L $
-map J }
-map K {
-
-" Tab navigation - Alt n/p
-nnoremap <A-n> :tabnext<CR>
-nnoremap <A-p> :tabprev<CR>
-
-" Pane navigation - Ctrl hjkl
-" Can still use normal ctrl-w hjkl
-nmap <C-k> <C-w>k
-nmap <C-j> <C-w>j
-nmap <C-h> <C-w>h
-nmap <C-l> <C-w>l
-
-" Jump between methods
-" n = normal mode , nore=non-recursive, won't trigger other mappings
-nmap [[ <Action>(MethodUp)
-nmap ]] <Action>(MethodDown)
-
-" Easy visual indentation
-vnoremap < <gv
-vnoremap > >gv
-
-" Popup navigation
-inoremap <C-j> <Action>(PopupMenu-selectNext)
-inoremap <C-k> <Action>(PopupMenu-selectPrev)
-
-" Bookmark
-nmap mm <Action>(ToggleBookmark)
-nmap ms <Action>(ShowBookmarks)
-nmap me <Action>(EditBookmark)
-
-"" Leader commands
-"" ========================================================
-
-" Code commands
-nmap <leader>cd <Action>(SafeDelete)
-nmap <leader>co <Action>(OptimizeImports)
-
-" Jump around with easymotion
-map <leader>j <Plug>(easymotion-s)
-
-" Open NERDTree (use q or esc to exit)
-map <leader>t :NERDTreeToggle<CR>
-" s - Open file in vertical split
-" o - Open directory
-" O - Recursively open directories
-" x - Close parent directory
-" X - Recursively close all children
-" p - Go to parent directory
-" P - Go to root directory
-" K - Go to first file in directory
-" J - Go to last file in directory
-" m - Show menu
-" n - Create a new file
-" N - Create a new directory
-
-" Folding
-map <leader>zC :action CollapseAllRegions<CR>
-map <leader>zE :action ExpandAllRegions<CR>
-map <leader>zc :action CollapseRegionRecursively<CR>
-map <leader>ze :action ExpandRegionRecursively<CR>
-map <leader>zz :action ExpandCollapseToggleAction<CR>
-
-" Window splits
-map <leader>ww <Action>(HideAllWindows)
-map <leader>wv <Action>(SplitVertically)
-map <leader>ws <Action>(SplitHorizontally)
-map <leader>wu <Action>(Unsplit)
-map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
-" Note: With the TabSplitter plugin, shift+alt [ or ] will stretch the splitter
-
-" Display options
-map <leader>dd <action>(ToggleDistractionFreeMode)
-map <leader>dz <action>(ToggleZenMode)
-map <leader>df <action>(ToggleFullScreen)
-
-" Actions
-map <leader>am <action>(ShowIntentionActions)
-map <leader>as <action>(SearchEverywhere)
-
-" File navigation
-map <leader><leader> <Action>(RecentFiles)
-map <leader>ff <action>(GotoFile)
-map <leader>fr <action>(RecentFiles)
-map <leader>fa <action>(FindInPath)
-map <leader>fl <action>(RecentLocations)
-map <leader>fs <action>(FileStructurePopup)
-
-" Close active tab
-map <leader>q <action>(CloseContent)
-" Closing Content
-nmap <leader>xx <Action>(CloseContent)
-nmap <leader>xa <Action>(CloseAllEditors)
-nmap <leader>xo <Action>(CloseAllEditorsButActive)
-
-" Go to code
-nmap <leader>gd <Action>(GotoDeclaration)
-nmap <leader>gy <Action>(GotoTypeDeclaration)
-nmap <leader>gi <Action>(GotoImplementation)
-nmap <leader>gu <Action>(ShowUsages)
-nmap <leader>gt <Action>(GotoTest)
-nmap <leader>gf <Action>(Back)
-nmap <leader>gb <Action>(Forward)
-
-" Git windows
-map <leader>gc <Action>(CheckinProject)
-map <leader>gs <Action>(ActivateVersionControlToolWindow)
-map <leader>gr <Action>(Git.Branches)
-
-" Errors
-map <leader>en <Action>(GotoNextError)
-map <leader>ep <Action>(GotoPreviousError)
-
-" Menu - TODO: Decide if i actually need these
-let g:WhichKeyDesc_Menu = "<leader>m Menu"
-
-nmap <leader>mm <Action>(MainMenu)
-nmap <leader>ma <Action>(AnalyzeMenu)
-" nmap <leader>mb <Action>(BuildMenu)
-nmap <leader>mc <Action>(CodeMenu)
-nmap <leader>mf <Action>(FindMenuGroup)
-nmap <leader>mg <Action>(GoToMenu)
-nmap <leader>ms <Action>(ScopeViewPopupMenu)
-nmap <leader>mt <Action>(EditorTabPopupMenu)
-nmap <leader>mw <Action>(ToolWindowsGroup)
-
-" run
-nmap <leader>rc <Action>(ContextRun)
-nmap <leader>rx <Action>(chooseRunConfiguration)
-nmap <leader>rr <Action>(Run)
-nmap <leader>rt <Action>(RunTests)
-nmap <leader>rs <Action>(Stop)
-nmap <leader>rg <Action>(ContextDebug)
-nmap <leader>rd <Action>(Debug)
-nmap <leader>rv <Action>(IdeaVim.ReloadVimRc.reload)
-
-" Refactoring
-map <leader>rfn <Action>(RenameElement)
-map <leader>rfm <Action>(ExtractMethod)
-map <leader>rfv <Action>(IntroduceVariable)
-map <leader>rff <Action>(IntroduceField)
-map <leader>rfs <Action>(ChangeSignature)
-map <leader>rfr <Action>(Refactorings.QuickListPopupAction)
-
-" Breakpoint
-nmap <leader>bb <Action>(ToggleLineBreakpoint)
-nmap <leader>be <Action>(EditBreakpoint)
-nmap <leader>bv <Action>(ViewBreakpoints)

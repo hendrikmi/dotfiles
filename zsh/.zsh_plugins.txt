@@ -2,17 +2,17 @@
 #
 # .zsh_plugins.txt - antidote plugins file
 # Documentation: https://getantidote.github.io/
+# kind:zsh (default) = DeAult that looks for *.plugin.zsh or *.zsh and sources them
 # kind:path = put the plugin in $PATH
-# kind:defer = don't need to load before working with the shell
-
+# kind:defer = don't need to load before working with the shell. Only use for syntax highlighting + autosuggestions (https://github.com/romkatv/zsh-bench#deferred-initialization)
 
 # zsh-users/zsh-completions is a popular plugin for adding supplemental completions.
 # We combine the `path:` and `kind:fpath` annotations here:
 zsh-users/zsh-completions path:src kind:fpath
 zdharma-continuum/fast-syntax-highlighting kind:defer
 zsh-users/zsh-autosuggestions kind:defer
-zsh-users/zsh-history-substring-search kind:defer
-
+zsh-users/zsh-history-substring-search kind:defer 
+Aloxaf/fzf-tab
 # agkozak/zsh-z # Replacement for zoxide
 
 # --- Lazy loading slow tools 
@@ -25,6 +25,7 @@ shihyuho/zsh-jenv-lazy
 romkatv/zsh-bench kind:path # `zsh-bench` will benchmark shell script
 ajeetdsouza/zoxide # A better `cd`
 junegunn/fzf kind:path # Fuzzy finding utility
+
 # Manually added tldr through brew, alternative to man
 
 # Load the core plugins from the oh-my-zsh lib directory 

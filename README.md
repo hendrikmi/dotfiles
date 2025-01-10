@@ -1,9 +1,7 @@
 # TODO:
 - Expoer current vs code settings and then update sysmlinks_config.confg to install it
-- Update README to get explain how to sync IDEA plugins
 - Setup NeoVim as my default editor
 - Copy relevant info from .vimrc_original_repo to my own .vimrc
-- Learn how to use ranger https://github.com/johngodlee/ranger_rifle_conf_tut
 
 # Dotfiles
 

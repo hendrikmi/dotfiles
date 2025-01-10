@@ -1,5 +1,6 @@
 .DS_Store
 .env
+.idea
 wezterm/*.jpg
 wezterm/*.png
 work.zsh
