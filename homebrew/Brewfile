@@ -11,6 +11,7 @@ brew "fzf"
 brew "git"
 brew "gnu-tar" # Provides the ability to tar files
 brew "openjdk"
+brew "orbstack" # Better docker desktop
 brew "jenv"
 brew "mvnvm"
 brew "node"
@@ -55,6 +56,7 @@ cask "visual-studio-code"
 cask "wezterm"
 cask "whatsapp"
 cask "zoom"
+cask "jetbrains-toolbox"
 # Mac app store
 mas "Trello", id: 1278508951
 # VS Code Extensions
