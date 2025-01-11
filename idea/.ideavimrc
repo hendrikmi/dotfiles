@@ -183,6 +183,7 @@ nmap <leader>xo <Action>(CloseAllEditorsButActive)
 
 " Go to code
 nmap <leader>gd <Action>(GotoDeclaration)
+nmap <leader>gg <Action>(GotoImplementation)
 nmap <leader>gy <Action>(GotoTypeDeclaration)
 nmap <leader>gi <Action>(GotoImplementation)
 nmap <leader>gu <Action>(ShowUsages)
@@ -341,6 +342,7 @@ let g:WhichKeyDesc_goto = "<leader>g GOTO"
 let g:WhichKeyDesc_goto_declaration = "<leader>gd Go to Definition"
 let g:WhichKeyDesc_goto_type_declaration = "<leader>gy Go to Type Declaration"
 let g:WhichKeyDesc_goto_implementation = "<leader>gi Go to Implementation"
+let g:WhichKeyDesc_goto_impl = "<leader>gg Go to Implementation"
 let g:WhichKeyDesc_goto_usages = "<leader>gu Go to Usages"
 let g:WhichKeyDesc_goto_test = "<leader>gt Go to Test"
 let g:WhichKeyDesc_goto_back = "<leader>gb Go Back"

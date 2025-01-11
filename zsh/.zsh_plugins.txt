@@ -16,7 +16,6 @@ Aloxaf/fzf-tab
 # agkozak/zsh-z # Replacement for zoxide
 
 # --- Lazy loading slow tools 
-undg/zsh-nvm-lazy-load
 shihyuho/zsh-jenv-lazy
 
 
