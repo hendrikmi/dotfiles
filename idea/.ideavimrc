@@ -114,8 +114,8 @@ nmap <leader>cd <Action>(SafeDelete)
 nmap <leader>co <Action>(OptimizeImports)
 nmap <leader>ci <Action>(QuickImplementations)
 nmap <leader>cq <Action>(QuickJavaDoc)
-" Jump around with easymotion
-map <leader>j <Plug>(easymotion-s)
+" Seek around with easymotion
+nmap s <Plug>(easymotion-s)
 
 " Folding
 map <leader>zC :action CollapseAllRegions<CR>
@@ -130,8 +130,8 @@ map <leader>wv <Action>(SplitVertically)
 map <leader>ws <Action>(SplitHorizontally)
 map <leader>wu <Action>(Unsplit)
 map <leader>wm <Action>(MoveEditorToOppositeTabGroup)
-map <leader>wh <Action>(TabShiftActions.StretchLeft)
-map <leader>wl <Action>(TabShiftActions.StretchRight)
+map <C-Left> <Action>(TabShiftActions.StretchLeft)
+map <C-Right> <Action>(TabShiftActions.StretchRight)
 " Note: With the TabShifter plugin, shift+alt [ or ] will stretch the splitter window left or right
 
 " Display options
@@ -182,20 +182,20 @@ nmap <leader>xa <Action>(CloseAllEditors)
 nmap <leader>xo <Action>(CloseAllEditorsButActive)
 
 " Go to code
-nmap <leader>gd <Action>(GotoDeclaration)
-nmap <leader>gg <Action>(GotoImplementation)
-nmap <leader>gy <Action>(GotoTypeDeclaration)
-nmap <leader>gi <Action>(GotoImplementation)
-nmap <leader>gu <Action>(ShowUsages)
-nmap <leader>gt <Action>(GotoTest)
-nmap <leader>gf <Action>(Back)
-nmap <leader>gb <Action>(Forward)
-nmap <leader>gs <Action>(GotoSuperMethod)
+nmap gd <Action>(GotoDeclaration)
+nmap gg <Action>(GotoImplementation)
+nmap gy <Action>(GotoTypeDeclaration)
+nmap gi <Action>(GotoImplementation)
+nmap gu <Action>(ShowUsages)
+nmap gt <Action>(GotoTest)
+nmap gf <Action>(Back)
+nmap gb <Action>(Forward)
+nmap gs <Action>(GotoSuperMethod)
 
 " Git windows
-map <leader>ic <Action>(CheckinProject)
-map <leader>is <Action>(ActivateVersionControlToolWindow)
-map <leader>ir <Action>(Git.Branches)
+map <leader>gc <Action>(CheckinProject)
+map <leader>gs <Action>(ActivateVersionControlToolWindow)
+map <leader>gr <Action>(Git.Branches)
 
 " Errors
 map <leader>en <Action>(GotoNextError)
@@ -262,7 +262,7 @@ let g:WhichKeyDesc_bookmarks_edit = "me Edit bookmark"
 " Leader key
 let g:WhichKeyDesc_leader = "<leader> Leader key"
 
-let g:WhichKeyDesc_easymotion = "<leader>j Jump with Easymotion"
+let g:WhichKeyDesc_easymotion = "s Jump with Easymotion"
 let g:WhichKeyDesc_easymotion_prefix = "<leader><leader>"
 
 let g:WhichKeyDesc_code = "<leader>c Code menu"
@@ -284,8 +284,8 @@ let g:WhichKeyDesc_window_split_vertically = "<leader>wv Split vertically"
 let g:WhichKeyDesc_window_split_horizontally = "<leader>ws Split horizontally"
 let g:WhichKeyDesc_window_split_unsplit = "<leader>wu Unsplit"
 let g:WhichKeyDesc_window_split_move_editor = "<leader>wm Move editor to opposite tab group"
-let g:WhichKeyDesc_window_adjust_left = "<leader>wh Adjust width left (shift+alt+[)"
-let g:WhichKeyDesc_window_adjust_right = "<leader>wl Adjust width right (shift+alt+])"
+let g:WhichKeyDesc_window_adjust_left = "<C-Left> Adjust width left (shift+alt+[)"
+let g:WhichKeyDesc_window_adjust_right = "<C-Right> Adjust width right (shift+alt+])"
 
 let g:WhichKeyDesc_display = "<leader>d Display options"
 let g:WhichKeyDesc_zen_mode = "<leader>dz Toggle Zen mode"
@@ -338,21 +338,21 @@ let g:WhichKeyDesc_refactoring_field = "<leader>rff Introduce field"
 let g:WhichKeyDesc_refactoring_signature = "<leader>rfs Change signature"
 let g:WhichKeyDesc_refactoring_all = "<leader>rfr Open refactorings list"
 
-let g:WhichKeyDesc_goto = "<leader>g GOTO"
-let g:WhichKeyDesc_goto_declaration = "<leader>gd Go to Definition"
-let g:WhichKeyDesc_goto_type_declaration = "<leader>gy Go to Type Declaration"
-let g:WhichKeyDesc_goto_implementation = "<leader>gi Go to Implementation"
-let g:WhichKeyDesc_goto_impl = "<leader>gg Go to Implementation"
-let g:WhichKeyDesc_goto_usages = "<leader>gu Go to Usages"
-let g:WhichKeyDesc_goto_test = "<leader>gt Go to Test"
-let g:WhichKeyDesc_goto_back = "<leader>gb Go Back"
-let g:WhichKeyDesc_goto_forward = "<leader>gf Go Forward"
-let g:WhichKeyDesc_goto_super = "<leader>gs Go to Super Method"
+let g:WhichKeyDesc_goto = "g GOTO"
+let g:WhichKeyDesc_goto_declaration = "gd Go to Definition"
+let g:WhichKeyDesc_goto_type_declaration = "gy Go to Type Declaration"
+let g:WhichKeyDesc_goto_implementation = "gi Go to Implementation"
+let g:WhichKeyDesc_goto_impl = "gg Go to Implementation"
+let g:WhichKeyDesc_goto_usages = "gu Go to Usages"
+let g:WhichKeyDesc_goto_test = "gt Go to Test"
+let g:WhichKeyDesc_goto_back = "gb Go Back"
+let g:WhichKeyDesc_goto_forward = "gf Go Forward"
+let g:WhichKeyDesc_goto_super = "gs Go to Super Method"
 
-let g:WhichKeyDesc_git = "<leader>i Git"
-let g:WhichKeyDesc_git_commit = "<leader>ic Open Git commit sidebar"
-let g:WhichKeyDesc_git_status = "<leader>is Open Git status dialog"
-let g:WhichKeyDesc_git_branches = "<leader>ir Open Git branches list"
+let g:WhichKeyDesc_git = "<leader>g Git"
+let g:WhichKeyDesc_git_commit = "<leader>gc Open Git commit sidebar"
+let g:WhichKeyDesc_git_status = "<leader>gs Open Git status dialog"
+let g:WhichKeyDesc_git_branches = "<leader>gr Open Git branches list"
 
 let g:WhichKeyDesc_errors = "<leader>e Error navigation"
 let g:WhichKeyDesc_errors_next = "<leader>en Go to next error"
