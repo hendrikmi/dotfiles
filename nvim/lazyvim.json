@@ -26,6 +26,7 @@
     "lazyvim.plugins.extras.lang.yaml",
     "lazyvim.plugins.extras.lsp.neoconf",
     "lazyvim.plugins.extras.test.core",
+    "lazyvim.plugins.extras.ui.mini-indentscope",
     "lazyvim.plugins.extras.util.dot",
     "lazyvim.plugins.extras.util.mini-hipatterns"
   ],
