@@ -1,1 +1,2 @@
-For more great suggestions, checkout https://github.com/rockerBOO/awesome-neovim
+
+For more great suggestions, checkout [this](https://github.com/rockerBOO/awesome-neovim)

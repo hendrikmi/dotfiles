@@ -1,3 +1,4 @@
+-- Description: Extend the tokyonight theme to be transparent
 return {
   "folke/tokyonight.nvim",
   opts = {
