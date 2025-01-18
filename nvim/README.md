@@ -1,4 +1,5 @@
-# 💤 LazyVim
+# 💤 Morgan's LazyVim Config
 
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+## TODO
+
+- Look into grapple as a replacement for harpoon (<https://github.com/cbochs/grapple.nvim>)
