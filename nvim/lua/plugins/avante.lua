@@ -10,7 +10,6 @@ return {
       timeout = 30000, -- Timeout in milliseconds
       temperature = 0,
       max_tokens = 4096,
-      ['local'] = false,
     },
     openai = {
       endpoint = os.getenv 'AVANTE_OPENAI_ENDPOINT' or 'https://api.openai.com/v1',
@@ -18,7 +17,6 @@ return {
       timeout = 30000, -- Timeout in milliseconds
       temperature = 0,
       max_tokens = 4096,
-      ['local'] = false,
     },
   },
   dependencies = {
