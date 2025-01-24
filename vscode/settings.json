@@ -2,7 +2,7 @@
   //
   // === Appearance ===
   //
-	"workbench.colorTheme": "Default Dark Modern",
+  "workbench.colorTheme": "Default Dark Modern",
   "workbench.iconTheme": "vscode-icons",
   "vsicons.presets.foldersAllDefaultIcon": true,
   "vsicons.presets.hideExplorerArrows": true,
@@ -54,7 +54,7 @@
     "editor.defaultFormatter": "ms-python.black-formatter",
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-      "source.organizeImports": true
+      "source.organizeImports": "explicit"
     },
     "editor.formatOnType": true
   },
@@ -235,5 +235,6 @@
   "redhat.telemetry.enabled": false,
   "security.workspace.trust.untrustedFiles": "open",
   "telemetry.telemetryLevel": "off",
-  "aws.telemetry": false
+  "aws.telemetry": false,
+  "makefile.configureOnOpen": false
 }
