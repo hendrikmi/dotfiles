@@ -66,7 +66,7 @@ if which tmux >/dev/null 2>&1; then
         -z "$VIM" && \
         -z "$INTELLIJ_ENVIRONMENT_READER" ]]; then
     # Try to attach to the default tmux session, or create a new one if it doesn't exist
-    tmux attach -t default || tmux new -s default
+    tmux attach -t default >/dev/null 2>&1 || tmux new -s default
     exit
   fi
 fi
