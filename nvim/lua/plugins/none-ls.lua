@@ -15,10 +15,10 @@ return {
       ensure_installed = {
         'checkmake',
         'prettier', -- ts/js formatter
-        'stylua',   -- lua formatter
         'eslint_d', -- ts/js linter
         'shfmt',
-        'ruff',
+        -- 'stylua', -- lua formatter; Already installed via Mason
+        -- 'ruff', -- Python linter and formatter; Already installed via Mason
       },
       -- auto-install configured formatters & linters (with null-ls)
       automatic_installation = true,
