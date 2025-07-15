@@ -17,7 +17,15 @@ vim.diagnostic.config {
   underline = false,
   update_in_insert = true,
   float = {
-    source = 'always', -- Or "if_many"
+    source = true, -- Or "if_many"
+  },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = ' ',
+      [vim.diagnostic.severity.WARN] = ' ',
+      [vim.diagnostic.severity.INFO] = ' ',
+      [vim.diagnostic.severity.HINT] = '󰌵 ',
+    },
   },
   -- Make diagnostic background transparent
   on_ready = function()
