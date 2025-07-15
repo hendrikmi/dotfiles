@@ -1,5 +1,5 @@
-require 'core.options'  -- Load general options
-require 'core.keymaps'  -- Load general keymaps
+require 'core.options' -- Load general options
+require 'core.keymaps' -- Load general keymaps
 require 'core.snippets' -- Custom code snippets
 
 -- Install package manager
@@ -46,8 +46,7 @@ require('lazy').setup({
   require 'plugins.database',
   require 'plugins.misc',
   require 'plugins.harpoon',
-  -- require 'plugins.avante',
-  -- require 'plugins.chatgpt',
+  require 'plugins.avante',
   require 'plugins.aerial',
   require 'plugins.vim-tmux-navigator',
 }, {
