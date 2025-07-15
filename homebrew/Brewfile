@@ -23,6 +23,8 @@ brew "ranger"
 brew "ripgrep"
 # Powerful, clean, object-oriented scripting language
 brew "ruby"
+# Safe, concurrent, practical language
+brew "rust"
 # Terminal multiplexer
 brew "tmux"
 # Plugin manager for tmux
