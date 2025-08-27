@@ -21,17 +21,21 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   config = function()
-    local telescope = require 'telescope'
     local actions = require 'telescope.actions'
     local builtin = require 'telescope.builtin'
 
     require('telescope').setup {
       defaults = {
+        layout_strategy = 'horizontal',
+        layout_config = {
+          prompt_position = 'bottom',
+          preview_width = 0.6,
+        },
         mappings = {
           i = {
             ['<C-k>'] = actions.move_selection_previous, -- move to prev result
-            ['<C-j>'] = actions.move_selection_next,     -- move to next result
-            ['<C-l>'] = actions.select_default,          -- open file
+            ['<C-j>'] = actions.move_selection_next, -- move to next result
+            ['<C-l>'] = actions.select_default, -- open file
           },
           n = {
             ['q'] = actions.close,
