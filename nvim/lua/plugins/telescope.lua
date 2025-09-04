@@ -26,8 +26,10 @@ return {
       defaults = {
         layout_strategy = 'horizontal',
         layout_config = {
-          prompt_position = 'bottom',
-          preview_width = 0.6,
+          horizontal = {
+            prompt_position = 'bottom',
+            preview_width = 0.6,
+          },
         },
         mappings = {
           i = {
