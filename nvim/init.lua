@@ -37,6 +37,7 @@ require('lazy').setup({
   require 'plugins.lualine',
   require 'plugins.bufferline',
   require 'plugins.neo-tree',
+  require 'plugins.oil',
   require 'plugins.alpha',
   require 'plugins.indent-blankline',
   require 'plugins.lazygit',
