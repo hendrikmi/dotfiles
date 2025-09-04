@@ -19,6 +19,9 @@ return {
           temperature = 0.75,
           max_tokens = 20480,
         },
+        extra_headers = {
+          ['User-Agent'] = 'Avante',
+        },
       },
       openai = {
         endpoint = os.getenv 'AVANTE_OPENAI_ENDPOINT' or 'https://api.openai.com/v1',
@@ -27,6 +30,9 @@ return {
         extra_request_body = {
           temperature = 0.75,
           max_tokens = 20480,
+        },
+        extra_headers = {
+          ['User-Agent'] = 'Avante',
         },
       },
     },
