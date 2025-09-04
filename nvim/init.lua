@@ -1,7 +1,7 @@
 require 'core.options' -- Load general options
 require 'core.keymaps' -- Load general keymaps
 require 'core.snippets' -- Custom code snippets
-require 'sql-runner'
+require 'tools.sql-runner'
 
 -- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
