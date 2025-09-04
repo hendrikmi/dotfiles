@@ -1,6 +1,7 @@
 require 'core.options' -- Load general options
 require 'core.keymaps' -- Load general keymaps
 require 'core.snippets' -- Custom code snippets
+require 'sql-runner'
 
 -- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -47,7 +48,7 @@ require('lazy').setup({
   require 'plugins.database',
   require 'plugins.misc',
   require 'plugins.harpoon',
-  require 'plugins.avante',
+  -- require 'plugins.avante',
   require 'plugins.aerial',
   require 'plugins.vim-tmux-navigator',
 }, {
