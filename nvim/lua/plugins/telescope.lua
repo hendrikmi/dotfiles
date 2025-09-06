@@ -16,8 +16,6 @@ return {
       end,
     },
     'nvim-telescope/telescope-ui-select.nvim',
-
-    -- Useful for getting pretty icons, but requires a Nerd Font.
     'nvim-tree/nvim-web-devicons',
   },
   config = function()
@@ -28,8 +26,10 @@ return {
       defaults = {
         layout_strategy = 'horizontal',
         layout_config = {
-          prompt_position = 'bottom',
-          preview_width = 0.6,
+          horizontal = {
+            prompt_position = 'bottom',
+            preview_width = 0.6,
+          },
         },
         mappings = {
           i = {
@@ -58,6 +58,12 @@ return {
             },
           },
         },
+        marks = {
+          initial_mode = 'normal',
+        },
+        oldfiles = {
+          initial_mode = 'normal',
+        },
       },
       live_grep = {
         file_ignore_patterns = { 'node_modules', '.git', '.venv' },
@@ -84,8 +90,9 @@ return {
     pcall(require('telescope').load_extension, 'fzf')
     pcall(require('telescope').load_extension, 'ui-select')
 
-    vim.keymap.set('n', '<leader>?', builtin.oldfiles, { desc = '[?] Find recently opened files' })
     vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[S]earch existing [B]uffers' })
+    vim.keymap.set('n', '<leader><tab>', builtin.buffers, { desc = '[S]earch existing [B]uffers' })
+    vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
     vim.keymap.set('n', '<leader>sm', builtin.marks, { desc = '[S]earch [M]arks' })
     vim.keymap.set('n', '<leader>gf', builtin.git_files, { desc = 'Search [G]it [F]iles' })
     vim.keymap.set('n', '<leader>gc', builtin.git_commits, { desc = 'Search [G]it [C]ommits' })
@@ -98,13 +105,12 @@ return {
     vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
     vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
     vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]resume' })
-    vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+    vim.keymap.set('n', '<leader>so', builtin.oldfiles, { desc = '[S]earch Recent Files' })
     vim.keymap.set('n', '<leader>sds', function()
       builtin.lsp_document_symbols {
         symbols = { 'Class', 'Function', 'Method', 'Constructor', 'Interface', 'Module', 'Property' },
       }
     end, { desc = '[S]each LSP document [S]ymbols' })
-    vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
     vim.keymap.set('n', '<leader>s/', function()
       builtin.live_grep {
         grep_open_files = true,

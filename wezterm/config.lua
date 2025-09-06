@@ -46,6 +46,10 @@ config = {
       opacity = 0.55,
     },
   },
+  keys = {
+    {key="Enter", mods="CTRL", action=wezterm.action{SendString="\x1b[13;5u"}},
+    {key="Enter", mods="SHIFT", action=wezterm.action{SendString="\x1b[13;2u"}},
+  },
   -- from: https://akos.ma/blog/adopting-wezterm/
   hyperlink_rules = {
     -- Matches: a URL in parens: (URL)
