@@ -45,23 +45,26 @@ return {
       nord = 'nord',
     }
 
+    local hide_in_width = function()
+      return vim.fn.winwidth(0) > 100
+    end
+
     local mode = {
       'mode',
       fmt = function(str)
-        -- return ' ' .. str:sub(1, 1) -- displays only the first character of the mode
-        return ' ' .. str
+        if hide_in_width() then
+          return ' ' .. str
+        else
+          return ' ' .. str:sub(1, 1) -- displays only the first character of the mode
+        end
       end,
     }
 
     local filename = {
       'filename',
       file_status = true, -- displays file status (readonly status, modified status)
-      path = 0,           -- 0 = just filename, 1 = relative path, 2 = absolute path
+      path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
     }
-
-    local hide_in_width = function()
-      return vim.fn.winwidth(0) > 100
-    end
 
     local diagnostics = {
       'diagnostics',
