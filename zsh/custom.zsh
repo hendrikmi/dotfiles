@@ -30,6 +30,9 @@ export ODBCSYSINI="/opt/amazon/redshift/Setup"
 export AMAZONREDSHIFTODBCINI="/opt/amazon/redshift/lib/amazon.redshiftodbc.ini"
 export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:/usr/local/lib"
 
+# Neovim as MANPAGER
+export MANPAGER='nvim +Man!'
+
 # fzf
 [ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 
