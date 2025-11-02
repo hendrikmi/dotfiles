@@ -10,7 +10,6 @@ export XDG_DATA_HOME="$HOME/.local/share"      # Application data
 export XDG_STATE_HOME="$HOME/.local/state"     # Logs and state files
 
 # Themes (onedark or nord)
-export TMUX_THEME="nord"
 export NVIM_THEME="nord"
 export STARSHIP_THEME="nord"
 export WEZTERM_THEME="nord"
