@@ -43,8 +43,8 @@ config.background = {
 		width = "100%",
 		height = "100%",
 		-- opacity = 0.55,
-		opacity = 0.75,
-		-- opacity = 1,
+		-- opacity = 0.75,
+		opacity = 1,
 	},
 }
 -- config.window_background_opacity = 0.3
