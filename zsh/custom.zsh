@@ -33,8 +33,8 @@ export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:/usr/local/lib"
 # Neovim as MANPAGER
 export MANPAGER='nvim +Man!'
 
-# fzf
-[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
 export FZF_CTRL_T_OPTS="
   --preview 'bat -n --color=always {}'
