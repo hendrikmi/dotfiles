@@ -2,6 +2,7 @@ require 'core.options' -- Load general options
 require 'core.keymaps' -- Load general keymaps
 require 'core.snippets' -- Custom code snippets
 require 'tools.sql-runner'
+require 'tools.wezterm-img-preview'
 
 -- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
