@@ -149,7 +149,7 @@
                     "value": 1
                   }
                 ],
-                "description": "Open WezTerm",
+                "description": "Open Ghostty",
                 "from": {
                   "key_code": "k",
                   "modifiers": {
@@ -158,7 +158,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open -a 'WezTerm.app'"
+                    "shell_command": "open -a 'Ghostty.app'"
                   }
                 ],
                 "type": "basic"

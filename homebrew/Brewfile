@@ -75,6 +75,8 @@ cask "iterm2"
 cask "kitty"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
 # Music streaming service

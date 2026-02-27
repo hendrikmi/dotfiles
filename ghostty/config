@@ -1,0 +1,33 @@
+# Theme
+theme = nord
+background = #282c35
+
+# Font
+font-size = 12.5
+font-thicken = true
+font-thicken-strength = 0
+
+# Cursor
+cursor-style = bar
+cursor-style-blink = true
+cursor-color = #A3BE8C
+mouse-hide-while-typing = true
+
+# Shell / tmux
+# Auto-attach to an existing tmux session on launch, or create a new one if none exists.
+command = zsh --login -c "if command -v tmux >/dev/null 2>&1; then tmux attach || tmux; else zsh; fi"
+
+# Window
+macos-titlebar-style = hidden
+window-save-state = always
+maximize = true
+confirm-close-surface = false
+quick-terminal-position = center
+
+# Padding (left, right, top, bottom → x/y in Ghostty)
+window-padding-x = 4,0
+window-padding-y = 2,0
+
+# Keybinds (Ctrl+Enter / Shift+Enter CSI u sequences)
+keybind = ctrl+enter=text:\x1b[13;5u
+keybind = shift+enter=text:\x1b[13;2u
