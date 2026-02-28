@@ -19,6 +19,8 @@ brew "node"
 brew "pyenv"
 # File browser
 brew "ranger"
+# Blazing fast terminal file manager written in Rust, based on async I/O
+brew "yazi"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Powerful, clean, object-oriented scripting language
