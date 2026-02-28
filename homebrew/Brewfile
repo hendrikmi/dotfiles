@@ -18,7 +18,7 @@ brew "node"
 # Python version management
 brew "pyenv"
 # File browser
-brew "ranger"
+# brew "ranger"
 # Blazing fast terminal file manager written in Rust, based on async I/O
 brew "yazi"
 # Search tool like grep and The Silver Searcher
@@ -69,14 +69,12 @@ cask "font-hack-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
 # Developer targeted fonts with a high number of glyphs
 cask "font-symbols-only-nerd-font"
-# Grammarly for desktop
-cask "grammarly-desktop"
 # Terminal emulator as alternative to Apple's Terminal app
-cask "iterm2"
+# cask "iterm2"
 # GPU-based terminal emulator
-cask "kitty"
+# cask "kitty"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
-cask "wezterm"
+# cask "wezterm"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Knowledge base that works on top of a local folder of plain text Markdown files
