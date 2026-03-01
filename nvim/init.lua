@@ -37,10 +37,10 @@ require('lazy').setup({
   require 'plugins.autocompletion',
   require 'plugins.none-ls',
   require 'plugins.lualine',
-  require 'plugins.bufferline',
+  -- require 'plugins.bufferline',
   require 'plugins.neo-tree',
   require 'plugins.oil',
-  require 'plugins.alpha',
+  -- require 'plugins.alpha',
   require 'plugins.indent-blankline',
   require 'plugins.lazygit',
   require 'plugins.comment',
@@ -48,10 +48,11 @@ require('lazy').setup({
   require 'plugins.gitsigns',
   require 'plugins.database',
   require 'plugins.misc',
-  require 'plugins.harpoon',
+  -- require 'plugins.harpoon',
   -- require 'plugins.avante',
-  require 'plugins.aerial',
+  -- require 'plugins.aerial',
   require 'plugins.vim-tmux-navigator',
+  require 'plugins.render-markdown',
 }, {
   ui = {
     -- If you have a Nerd Font, set icons to an empty table which will use the

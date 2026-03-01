@@ -5,15 +5,10 @@ return { -- Autocompletion
     -- Snippet Engine & its associated nvim-cmp source
     {
       'L3MON4D3/LuaSnip',
-      build = (function()
-        -- Build Step is needed for regex support in snippets
-        -- This step is not supported in many windows environments
-        -- Remove the below condition to re-enable on windows
-        if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
-          return
-        end
-        return 'make install_jsregexp'
-      end)(),
+      -- follow latest release.
+      version = 'v2.*', -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+      -- install jsregexp (optional!).
+      build = 'make install_jsregexp',
     },
     'saadparwaiz1/cmp_luasnip',
 
@@ -73,10 +68,10 @@ return { -- Autocompletion
       --     documentation = cmp.config.window.bordered(),
       -- },
       mapping = cmp.mapping.preset.insert {
-        ['<C-j>'] = cmp.mapping.select_next_item(),       -- Select the [n]ext item
-        ['<C-k>'] = cmp.mapping.select_prev_item(),       -- Select the [p]revious item
+        ['<C-j>'] = cmp.mapping.select_next_item(), -- Select the [n]ext item
+        ['<C-k>'] = cmp.mapping.select_prev_item(), -- Select the [p]revious item
         ['<CR>'] = cmp.mapping.confirm { select = true }, -- Accept the completion with Enter.
-        ['<C-c>'] = cmp.mapping.complete {},              -- Manually trigger a completion from nvim-cmp.
+        ['<C-c>'] = cmp.mapping.complete {}, -- Manually trigger a completion from nvim-cmp.
 
         -- Think of <c-l> as moving to the right of your snippet expansion.
         --  So if you have a snippet that's like:
