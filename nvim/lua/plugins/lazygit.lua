@@ -14,8 +14,7 @@ return {
   -- setting the keybinding for LazyGit with 'keys' is recommended in
   -- order to load the plugin when the command is run for the first time
   keys = {
-    -- Run LazyGit command and set background to transparent
-    { '<leader>lg', '<cmd>LazyGit<cr><cmd>hi LazyGitFloat guibg=NONE guifg=NONE<cr><cmd>setlocal winhl=NormalFloat:LazyGitFloat<cr>', desc = 'LazyGit' },
+    { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
   },
   config = function()
     vim.g.lazygit_floating_window_winblend = 0 -- transparency of floating window (0-100)
@@ -25,5 +24,17 @@ return {
     vim.g.lazygit_use_neovim_remote = 1 -- fallback to 0 if neovim-remote is not installed
     vim.g.lazygit_use_custom_config_file_path = 0 -- config file path is evaluated if this value is 1
     vim.g.lazygit_config_file_path = {} -- table of custom config file paths
+
+    -- Transparent background for lazygit float and border
+    vim.api.nvim_set_hl(0, 'LazyGitFloat', { bg = 'NONE' })
+    vim.api.nvim_set_hl(0, 'LazyGitBorder', { bg = 'NONE' })
+    vim.api.nvim_create_autocmd('TermOpen', {
+      pattern = '*lazygit*',
+      callback = function()
+        vim.schedule(function()
+          vim.wo.winhighlight = 'NormalFloat:LazyGitFloat,FloatBorder:LazyGitBorder'
+        end)
+      end,
+    })
   end,
 }
