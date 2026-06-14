@@ -21,7 +21,7 @@
   "window.commandCenter": false,
   "workbench.layoutControl.enabled": false,
   "update.showReleaseNotes": false,
-  "window.zoomLevel": 1.0,
+  "window.zoomLevel": 0,
   "editor.folding": false,
   "zenMode.hideLineNumbers": false,
   "editor.rulers": [79],
