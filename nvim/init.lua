@@ -51,7 +51,7 @@ require('lazy').setup({
   -- require 'plugins.harpoon',
   -- require 'plugins.avante',
   -- require 'plugins.aerial',
-  require 'plugins.vim-tmux-navigator',
+  require 'plugins.navigator',
   require 'plugins.render-markdown',
   require 'plugins.dirdiff',
 }, {
