@@ -31,6 +31,10 @@ brew "rust"
 brew "tmux"
 # Plugin manager for tmux
 brew "tpm"
+# Agent multiplexer that lives in your terminal (tmux replacement)
+brew "herdr"
+# Lightweight command-line JSON processor (used by herdr/nav.sh)
+brew "jq"
 # Access X11 clipboards from the command-line
 brew "xclip"
 # General-purpose lossless data-compression library

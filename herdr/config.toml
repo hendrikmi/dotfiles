@@ -1,0 +1,52 @@
+onboarding = false
+
+[theme]
+name = "nord"
+
+[terminal]
+default_shell = "zsh"
+
+[keys]
+prefix = "ctrl+space"
+split_vertical = "prefix+\\"
+split_horizontal = "prefix+minus"
+
+# Zoom also on prefix+m (tmux muscle memory), in addition to default prefix+z
+[[keys.command]]
+key = "prefix+m"
+type = "shell"
+command = "herdr pane zoom --current --toggle"
+description = "toggle zoom (tmux-style m)"
+
+# Seamless nvim <-> herdr pane navigation on ctrl+h/j/k/l
+# (herdr side is herdr/nav.sh in this repo, editor side is
+# nvim/lua/plugins/navigator.lua — works in herdr and tmux)
+[[keys.command]]
+key = "ctrl+h"
+type = "shell"
+command = "~/git/dotfiles/herdr/nav.sh left"
+description = "navigate left (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "shell"
+command = "~/git/dotfiles/herdr/nav.sh down"
+description = "navigate down (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "shell"
+command = "~/git/dotfiles/herdr/nav.sh up"
+description = "navigate up (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "shell"
+command = "~/git/dotfiles/herdr/nav.sh right"
+description = "navigate right (vim/herdr)"
+
+[advanced]
+scrollback_limit_bytes = 100000000
+
+[experimental]
+pane_history = true
