@@ -22,6 +22,7 @@ workspace_picker = ["prefix+s", "prefix+w"]
 settings = "prefix+shift+s"
 previous_workspace = "prefix+("
 next_workspace = "prefix+)"
+switch_workspace = "prefix+shift+1..9"
 last_pane = "prefix+;"
 help = "prefix+/"
 
