@@ -3,6 +3,10 @@ onboarding = false
 [theme]
 name = "nord"
 
+# let the terminal background show through, like bg=default in tmux
+[theme.custom]
+panel_bg = "reset"
+
 [terminal]
 default_shell = "zsh"
 
@@ -14,7 +18,7 @@ split_horizontal = "prefix+minus"
 # tmux muscle memory
 rename_tab = "prefix+comma"
 detach = "prefix+d"
-workspace_picker = "prefix+s"
+workspace_picker = ["prefix+s", "prefix+w"]
 settings = "prefix+shift+s"
 previous_workspace = "prefix+("
 next_workspace = "prefix+)"
