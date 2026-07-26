@@ -11,6 +11,31 @@ prefix = "ctrl+space"
 split_vertical = "prefix+\\"
 split_horizontal = "prefix+minus"
 
+# tmux muscle memory
+rename_tab = "prefix+comma"        # tmux: prefix+, rename window
+detach = "prefix+d"                # tmux: prefix+d
+workspace_picker = "prefix+s"      # tmux: prefix+s choose-tree (settings moved to shift+s)
+settings = "prefix+shift+s"
+previous_workspace = "prefix+("    # tmux: prefix+( previous session
+next_workspace = "prefix+)"        # tmux: prefix+) next session
+last_pane = "prefix+;"             # tmux: prefix+; last pane
+help = "prefix+/"                  # easier to reach than the default prefix+?
+
+# Navigate mode (open with prefix+w): j/k move through the session list,
+# ctrl+h/j/k/l keep moving pane focus like in terminal mode
+navigate_workspace_down = "j"
+navigate_workspace_up = "k"
+navigate_pane_left = "ctrl+h"
+navigate_pane_down = "ctrl+j"
+navigate_pane_up = "ctrl+k"
+navigate_pane_right = "ctrl+l"
+
+# Agents: prefix+a / prefix+shift+a cycle through agent panes,
+# prefix+o (default) jumps to the agent that needs attention.
+# (the agents panel itself is not keyboard-focusable in herdr yet)
+next_agent = "prefix+a"
+previous_agent = "prefix+shift+a"
+
 # Zoom also on prefix+m (tmux muscle memory), in addition to default prefix+z
 [[keys.command]]
 key = "prefix+m"
@@ -50,3 +75,12 @@ scrollback_limit_bytes = 100000000
 
 [experimental]
 pane_history = true
+
+[ui]
+# Active pane border / highlights in Nord green, like the tmux active border
+accent = "#A3BE8C"
+agent_panel_sort = "priority"
+
+show_agent_labels_on_pane_borders = false
+[ui.toast]
+delivery = "herdr"
