@@ -123,10 +123,8 @@ return {
 
     -- LSP servers and clients are able to communicate to each other what features they support.
     -- By default, Neovim doesn't support everything that is in the LSP specification.
-    -- blink.cmp adds *more* capabilities, so we broadcast those to the servers.
-    -- The second argument is `include_nvim_defaults` and has no default value:
-    -- without it blink returns *only* its own completion block and every
-    -- Neovim standard capability is dropped.
+    -- Second argument is `include_nvim_defaults` and has no default: without it
+    -- blink returns only its own completion block.
     local capabilities = require('blink.cmp').get_lsp_capabilities({}, true)
 
     -- Enable the following language servers

@@ -1,9 +1,6 @@
--- Per-kind colors for the completion menu.
--- blink.cmp links every BlinkCmpKind<Kind> to a single BlinkCmpKind group by
--- default, which makes the whole menu one colour. Colorschemes usually style
--- nvim-cmp's CmpItem* groups instead, so we map the kinds onto Treesitter
--- groups: those are defined by every decent theme, which keeps this working
--- for both nord and onedark without touching the theme files.
+-- blink links every BlinkCmpKind<Kind> to one group, so the menu renders in a
+-- single colour. Themes style nvim-cmp's CmpItem* groups instead, so map the
+-- kinds onto Treesitter groups, which every theme defines.
 local kind_hl = {
   Text = '@string',
   Method = '@function.method',
@@ -96,11 +93,8 @@ return { -- Autocompletion
       },
     },
     completion = {
-      -- Mirrors the old nvim-cmp behaviour exactly:
-      -- `completeopt = 'menu,menuone,noinsert'` plus `confirm { select = true }`
-      -- means: first entry is highlighted but nothing is inserted until you
-      -- accept, and <CR> takes the first entry without pressing <C-j> first.
-      -- preselect = false would break that: <CR> would insert a newline.
+      -- Equivalent of the old `completeopt=noinsert` + `confirm { select = true }`:
+      -- <CR> takes the first entry without selecting it first.
       list = { selection = { preselect = true, auto_insert = false } },
       menu = {
         draw = {

@@ -8,8 +8,6 @@ return {
   opts = {
     formatters_by_ft = {
       lua = { 'stylua' },
-      -- ruff_fix runs `ruff check --fix`, ruff_format runs `ruff format`.
-      -- This mirrors the previous none-ls setup, which used the same two steps.
       python = { 'ruff_fix', 'ruff_format' },
       html = { 'prettier' },
       json = { 'prettier' },
@@ -31,11 +29,9 @@ return {
       shfmt = {
         append_args = { '-i', '4' },
       },
-      -- `--extend-select I` adds import sorting on top of whatever the project
-      -- already selects, instead of replacing the selection. This is what the
-      -- old none-ls source did; conform's `ruff_organize_imports` uses
-      -- `--select=I001`, which would sort imports but stop fixing anything else
-      -- (unused imports would no longer be removed).
+      -- Extends the project's rule selection with import sorting. Using
+      -- `ruff_organize_imports` instead would replace the selection, so unused
+      -- imports would no longer be removed.
       ruff_fix = {
         append_args = { '--extend-select', 'I' },
       },
