@@ -1,26 +1,19 @@
+-- Code outline window
 return {
   'stevearc/aerial.nvim',
-  lazy_load = true,
-  opts = {},
-  -- Optional dependencies
-  dependencies = {
-    'nvim-treesitter/nvim-treesitter',
-    'nvim-tree/nvim-web-devicons',
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  cmd = { 'AerialToggle', 'AerialNavToggle', 'AerialPrev', 'AerialNext' },
+  keys = {
+    { '<leader>o', '<cmd>AerialToggle!<CR>', desc = 'Toggle code outline' },
+    { '<leader>on', '<cmd>AerialNavToggle<CR>', desc = 'Toggle outline nav' },
   },
-  config = function()
-    require('aerial').setup {
-      -- optionally use on_attach to set keymaps when aerial has attached to a buffer
-      on_attach = function(bufnr)
-        -- Jump forwards/backwards with '{' and '}'
-        vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buf = bufnr })
-        vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buf = bufnr })
-      end,
-      layout = {
-        min_width = 30,
-      },
-    }
-    -- You probably also want to set a keymap to toggle aerial
-    vim.keymap.set('n', '<leader>o', '<cmd>AerialToggle!<CR>')
-    vim.keymap.set('n', '<leader>on', '<cmd>AerialNavToggle<CR>')
-  end,
+  opts = {
+    on_attach = function(bufnr)
+      vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buf = bufnr })
+      vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buf = bufnr })
+    end,
+    layout = {
+      min_width = 30,
+    },
+  },
 }

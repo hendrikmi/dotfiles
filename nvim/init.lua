@@ -2,7 +2,6 @@ require 'core.options' -- Load general options
 require 'core.keymaps' -- Load general keymaps
 require 'core.snippets' -- Custom code snippets
 require 'tools.sql-runner'
-require 'tools.wezterm-img-preview'
 require 'tools.multiplexer-nav'
 
 -- Built-in plugins that Neovim 0.12 ships as opt-in packages.
@@ -43,19 +42,15 @@ require('lazy').setup({
   require 'plugins.formatting',
   require 'plugins.linting',
   require 'plugins.lualine',
-  -- require 'plugins.bufferline',
   require 'plugins.neo-tree',
   require 'plugins.oil',
-  -- require 'plugins.alpha',
   require 'plugins.indent-blankline',
   require 'plugins.lazygit',
   require 'plugins.debug',
   require 'plugins.gitsigns',
   require 'plugins.database',
   require 'plugins.misc',
-  -- require 'plugins.harpoon',
-  -- require 'plugins.avante',
-  -- require 'plugins.aerial',
+  require 'plugins.aerial',
   require 'plugins.render-markdown',
 }, {
   ui = {
