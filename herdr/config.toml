@@ -37,6 +37,7 @@ navigate_pane_right = "ctrl+l"
 # cycle agent panes (prefix+o jumps to the one needing attention)
 next_agent = "prefix+a"
 previous_agent = "prefix+shift+a"
+focus_agent = "prefix+alt+1..9"
 
 # zoom on m like tmux, prefix+z still works too
 [[keys.command]]
