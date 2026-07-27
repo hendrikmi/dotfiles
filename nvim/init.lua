@@ -5,6 +5,10 @@ require 'tools.sql-runner'
 require 'tools.wezterm-img-preview'
 require 'tools.multiplexer-nav'
 
+-- Built-in plugins that Neovim 0.12 ships as opt-in packages.
+-- :DiffTool compares directories and files, it replaces vim-dirdiff.
+vim.cmd 'packadd nvim.difftool'
+
 -- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.uv.fs_stat(lazypath) then
