@@ -73,9 +73,6 @@ alias v='poetry_run_nvim'
 alias doc="$HOME/Documents"
 alias dow="$HOME/Downloads"
 
-# Ranger
-alias r=". ranger"
-
 # Better ls
 alias ls="eza --all --icons=always"
 
