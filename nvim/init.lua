@@ -3,6 +3,7 @@ require 'core.keymaps' -- Load general keymaps
 require 'core.snippets' -- Custom code snippets
 require 'tools.sql-runner'
 require 'tools.wezterm-img-preview'
+require 'tools.multiplexer-nav'
 
 -- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -51,7 +52,6 @@ require('lazy').setup({
   -- require 'plugins.harpoon',
   -- require 'plugins.avante',
   -- require 'plugins.aerial',
-  require 'plugins.navigator',
   require 'plugins.render-markdown',
 }, {
   ui = {
