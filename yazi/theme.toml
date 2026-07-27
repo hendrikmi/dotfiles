@@ -1,2 +1,39 @@
 [flavor]
 dark = "nord"
+
+# Overrides on top of the nord flavor. Yazi merges theme.toml over
+# flavor.toml and the user's side wins, so the flavor stays pristine and
+# `ya pkg upgrade` keeps working.
+#
+# Nord's Snow Storm whites are blue-tinted; these are the neutral, slightly
+# brighter equivalents used across the rest of the setup.
+#   nord4 #D8DEE9 -> #E7E7E7
+#   nord6 #ECEFF4 -> #F7F7F7
+
+[status]
+progress_label = { fg = "#F7F7F7", bold = true }
+
+[pick]
+inactive = { fg = "#E7E7E7" }
+
+[input]
+title = { fg = "#E7E7E7" }
+value = { fg = "#F7F7F7" }
+
+[tasks]
+title = { fg = "#F7F7F7" }
+
+[help]
+footer = { fg = "#2E3440", bg = "#F7F7F7" }
+
+# A list replaces rather than merges, so the flavor's rules are repeated
+# here verbatim with only the fallback color changed.
+[filetype]
+rules = [
+  { mime = "image/*", fg = "#8FBCBB" },
+  { mime = "{audio,video}/*", fg = "#EBCB8B" },
+  { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#B48EAD" },
+  { mime = "application/{pdf,doc,rtf,odt,docx,xlsx,pptx}", fg = "#A3BE8C" },
+  { url = "*", fg = "#E7E7E7" },
+  { url = "*/", fg = "#81A1C1", bold = true },
+]

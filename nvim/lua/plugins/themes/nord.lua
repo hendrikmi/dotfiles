@@ -13,6 +13,15 @@ return {
     vim.g.nord_uniform_diff_background = true    -- enables/disables colorful backgrounds when used in diff mode
     vim.g.nord_bold = false                      -- enables/disables bold
 
+    -- Neutralize Nord's blue-tinted whites and raise them ~10%, since neutral
+    -- colors read dimmer than tinted ones at equal luminance. nord.nvim has no
+    -- color option, but nord.colors reads the palette from nord.named_colors
+    -- on load, so mutating it before the first require('nord') propagates.
+    local palette = require('nord.named_colors')
+    palette.darkest_white = '#E7E7E7' -- nord4, was #D8DEE9
+    palette.darker_white = '#F0F0F0'  -- nord5, was #E5E9F0
+    palette.white = '#F7F7F7'         -- nord6, was #ECEFF4
+
     -- Load the colorscheme
     require('nord').set()
 
