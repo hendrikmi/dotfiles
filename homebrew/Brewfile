@@ -75,8 +75,6 @@ cask "font-hack-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
 # Developer targeted fonts with a high number of glyphs
 cask "font-symbols-only-nerd-font"
-# Terminal emulator as alternative to Apple's Terminal app
-# cask "iterm2"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Knowledge base that works on top of a local folder of plain text Markdown files
