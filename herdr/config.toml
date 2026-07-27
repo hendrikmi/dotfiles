@@ -23,7 +23,7 @@ settings = "prefix+shift+s"
 previous_workspace = "prefix+("
 next_workspace = "prefix+)"
 switch_workspace = "prefix+shift+1..9"
-last_pane = "prefix+;"
+last_pane = ["prefix+;", "prefix+shift+l"]
 help = "prefix+/"
 
 # navigate mode: j/k through sessions, ctrl+h/j/k/l for panes
