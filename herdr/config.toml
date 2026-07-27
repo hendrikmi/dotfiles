@@ -4,6 +4,7 @@ onboarding = false
 name = "nord"
 
 # let the terminal background show through, like bg=default in tmux
+auto_switch = false
 [theme.custom]
 panel_bg = "reset"
 
