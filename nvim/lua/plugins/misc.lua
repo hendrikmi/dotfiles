@@ -42,10 +42,9 @@ return {
     opts = { signs = false },
   },
   {
-    -- high-performance color highlighter
-    'norcalli/nvim-colorizer.lua',
-    config = function()
-      require('colorizer').setup()
-    end,
+    -- high-performance color highlighter (maintained fork of norcalli's)
+    'catgoose/nvim-colorizer.lua',
+    event = 'BufReadPre',
+    opts = {},
   },
 }
