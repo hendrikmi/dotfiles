@@ -15,7 +15,7 @@ My config files for maintaining a consistent dev environment across machines.
 - **File Manager**: [Yazi](https://yazi-rs.github.io/) (Previously: [Ranger](https://github.com/ranger/ranger))
 
 > [!NOTE]
-> This repo also includes configs for tools I no longer actively use (VSCode, Ranger). I keep them around as reference and for easy reactivation — their symlinks and Brewfile entries are simply commented out.
+> This repo also includes the config for VSCode, which I no longer actively use. I keep it around as reference and for easy reactivation, its symlink and Brewfile entries are simply commented out.
 
 ## Custom Window Management
 
