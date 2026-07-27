@@ -56,4 +56,6 @@ This only removes the symlinks, not the actual config files, so you can easily r
 
 ### Software Installation
 
-Software is managed via Homebrew. To add a formula or cask, update `homebrew/Brewfile` and run `./scripts/brew_install_custom.sh`. For pinning a specific version, find its Ruby script in the commit history of the official Homebrew GitHub repo and place it in `homebrew/custom-casks/` or `homebrew/custom-formulae/`.
+Software is managed via Homebrew. To add a formula or cask, update `homebrew/Brewfile` and run `./scripts/brew-install.sh`.
+
+To pin a specific version, create a local tap with `brew tap-new <user>/local` and place the formula there. Homebrew rejects formulae and casks that live outside a tap, so a plain `.rb` file inside this repo cannot be installed.

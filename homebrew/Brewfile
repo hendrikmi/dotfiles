@@ -13,6 +13,8 @@ brew "fzf"
 brew "gcc"
 # Fast, highly customisable system info script
 brew "neofetch"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
 # Platform built on V8 to build network applications
 brew "node"
 # Python version management
@@ -87,6 +89,8 @@ cask "obsidian"
 cask "spotify"
 # Keyboard customizer
 cask "karabiner-elements"
+# Move and resize windows using keyboard shortcuts or snap areas
+cask "rectangle"
 # Open-source code editor
 cask "visual-studio-code"
 # Multimedia player
