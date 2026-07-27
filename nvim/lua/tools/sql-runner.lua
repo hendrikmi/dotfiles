@@ -25,7 +25,7 @@ function M.run_selection()
 
   -- Status: running
   vim.api.nvim_echo({ { '[sql-runner] Running query…', 'ModeMsg' } }, false, {})
-  local t0 = vim.loop.hrtime()
+  local t0 = vim.uv.hrtime()
 
   -- Run selection through psql, capture to outfile
   local cmd = 'psql "$DATABASE_URL" > ' .. vim.fn.shellescape(outfile)
@@ -41,7 +41,7 @@ function M.run_selection()
   end
 
   -- Done message with timing
-  local ms = math.floor((vim.loop.hrtime() - t0) / 1e6)
+  local ms = math.floor((vim.uv.hrtime() - t0) / 1e6)
   vim.api.nvim_echo({ { string.format('[sql-runner] Done in %d ms', ms), 'ModeMsg' } }, false, {})
 end
 

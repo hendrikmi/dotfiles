@@ -187,7 +187,7 @@ vim.api.nvim_create_autocmd({ 'CursorMoved' }, {
       timer:again()
       return
     end
-    timer = vim.loop.new_timer()
+    timer = vim.uv.new_timer()
     if not timer then
       return
     end
