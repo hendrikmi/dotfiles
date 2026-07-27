@@ -7,7 +7,7 @@ My config files for maintaining a consistent dev environment across machines.
 ## Essential Tools
 
 - **Editor**: [NeoVim](https://neovim.io/), with a lightweight [Vim](https://www.vim.org/) fallback config (no dependencies) for maximum portability.
-- **Multiplexer**: [Tmux](https://github.com/tmux/tmux/wiki)
+- **Multiplexer**: [Herdr](https://herdr.dev/), my daily driver since it is agent-first and a lot of my work these days runs through coding agents. [Tmux](https://github.com/tmux/tmux/wiki) stays as a fallback, it has served me well for years. Both are configured to share the same muscle memory, so switching between them is seamless.
 - **Main Terminal**: [Ghostty](https://ghostty.org/) (Previously: [WezTerm](https://wezfurlong.org/wezterm/index.html))
 - **Shell Prompt**: [Starship](https://starship.rs/)
 - **Color Theme**: [Nord](https://www.nordtheme.com/docs/colors-and-palettes) across all tools, switchable via environment variables in `.zshenv`.
