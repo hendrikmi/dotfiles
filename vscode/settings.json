@@ -28,7 +28,7 @@
   //
   // === Terminal ===
   //
-  "terminal.external.osxExec": "wezterm.app",
+  "terminal.external.osxExec": "ghostty.app",
   "terminal.integrated.shell.osx": "/bin/zsh",
   "terminal.integrated.fontFamily": "Hack Nerd Font",
   "terminal.integrated.cursorStyle": "line",
