@@ -77,8 +77,6 @@ cask "font-jetbrains-mono-nerd-font"
 cask "font-symbols-only-nerd-font"
 # Terminal emulator as alternative to Apple's Terminal app
 # cask "iterm2"
-# GPU-based terminal emulator
-# cask "kitty"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
 # cask "wezterm"
 # Terminal emulator that uses platform-native UI and GPU acceleration
