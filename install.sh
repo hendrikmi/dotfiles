@@ -2,7 +2,7 @@
 
 . scripts/utils.sh
 . scripts/prerequisites.sh
-. scripts/brew-install-custom.sh
+. scripts/brew-install.sh
 . scripts/osx-defaults.sh
 . scripts/symlinks.sh
 
@@ -24,8 +24,6 @@ if [[ "$install_apps" == "y" ]]; then
     info "Apps"
     info "===================="
 
-    install_custom_formulae
-    install_custom_casks
     run_brew_bundle
 fi
 
