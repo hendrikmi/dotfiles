@@ -44,7 +44,6 @@ require('lazy').setup({
   -- require 'plugins.alpha',
   require 'plugins.indent-blankline',
   require 'plugins.lazygit',
-  require 'plugins.comment',
   require 'plugins.debug',
   require 'plugins.gitsigns',
   require 'plugins.database',

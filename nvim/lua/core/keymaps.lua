@@ -125,3 +125,12 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- Save and load session
 vim.keymap.set('n', '<leader>ss', ':mksession! .session.vim<CR>', { noremap = true, silent = false })
 vim.keymap.set('n', '<leader>sl', ':source .session.vim<CR>', { noremap = true, silent = false })
+
+-- Toggle comments (built-in gc/gcc operator, since Neovim 0.10).
+-- remap = true is required here, noremap would not trigger the operator.
+vim.keymap.set('n', '<C-_>', 'gcc', { remap = true, silent = true })
+vim.keymap.set('n', '<C-c>', 'gcc', { remap = true, silent = true })
+vim.keymap.set('n', '<C-/>', 'gcc', { remap = true, silent = true })
+vim.keymap.set('v', '<C-_>', 'gc', { remap = true, silent = true })
+vim.keymap.set('v', '<C-c>', 'gc', { remap = true, silent = true })
+vim.keymap.set('v', '<C-/>', 'gc', { remap = true, silent = true })
