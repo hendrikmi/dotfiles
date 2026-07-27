@@ -45,6 +45,19 @@ type = "shell"
 command = "herdr pane zoom --current --toggle"
 description = "toggle zoom (tmux-style m)"
 
+# move the current tab, like tmux swap-window on prefix+S-Left/Right (see herdr/move-tab.sh)
+[[keys.command]]
+key = "prefix+shift+left"
+type = "shell"
+command = "~/git/dotfiles/herdr/move-tab.sh left"
+description = "move tab left"
+
+[[keys.command]]
+key = "prefix+shift+right"
+type = "shell"
+command = "~/git/dotfiles/herdr/move-tab.sh right"
+description = "move tab right"
+
 # seamless ctrl+h/j/k/l across panes and nvim splits (see herdr/nav.sh)
 [[keys.command]]
 key = "ctrl+h"
