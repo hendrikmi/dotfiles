@@ -9,14 +9,6 @@ return {
     'tpope/vim-sleuth',
   },
   {
-    -- Powerful Git integration for Vim
-    'tpope/vim-fugitive',
-  },
-  {
-    -- GitHub integration for vim-fugitive
-    'tpope/vim-rhubarb',
-  },
-  {
     -- Hints keybinds
     'folke/which-key.nvim',
     opts = {
@@ -50,10 +42,9 @@ return {
     opts = { signs = false },
   },
   {
-    -- high-performance color highlighter
-    'norcalli/nvim-colorizer.lua',
-    config = function()
-      require('colorizer').setup()
-    end,
+    -- high-performance color highlighter (maintained fork of norcalli's)
+    'catgoose/nvim-colorizer.lua',
+    event = 'BufReadPre',
+    opts = {},
   },
 }

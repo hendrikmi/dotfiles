@@ -1,138 +1,120 @@
+-- blink links every BlinkCmpKind<Kind> to one group, so the menu renders in a
+-- single colour. Themes style nvim-cmp's CmpItem* groups instead, so map the
+-- kinds onto Treesitter groups, which every theme defines.
+local kind_hl = {
+  Text = '@string',
+  Method = '@function.method',
+  Function = '@function',
+  Constructor = '@constructor',
+  Field = '@property',
+  Property = '@property',
+  Variable = '@variable',
+  Reference = '@variable',
+  Class = '@type',
+  Interface = '@type',
+  Struct = '@type',
+  TypeParameter = '@type.parameter',
+  Module = '@module',
+  Unit = '@number',
+  Value = '@number',
+  Enum = '@constant',
+  EnumMember = '@constant',
+  Constant = '@constant',
+  Keyword = '@keyword',
+  Operator = '@operator',
+  Event = '@constant.macro',
+  Snippet = '@character.special',
+  Color = '@constant',
+  File = 'Directory',
+  Folder = 'Directory',
+}
+
+local function apply_highlights()
+  for kind, group in pairs(kind_hl) do
+    vim.api.nvim_set_hl(0, 'BlinkCmpKind' .. kind, { link = group, default = false })
+  end
+  -- Matched characters stand out, source column stays subdued.
+  vim.api.nvim_set_hl(0, 'BlinkCmpLabelMatch', { link = '@function', default = false })
+  vim.api.nvim_set_hl(0, 'BlinkCmpSource', { link = 'Comment', default = false })
+end
+
 return { -- Autocompletion
-  'hrsh7th/nvim-cmp',
-  -- event = 'InsertEnter',
+  'saghen/blink.cmp',
   dependencies = {
-    -- Snippet Engine & its associated nvim-cmp source
-    {
-      'L3MON4D3/LuaSnip',
-      -- follow latest release.
-      version = 'v2.*', -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-      -- install jsregexp (optional!).
-      build = 'make install_jsregexp',
-    },
-    'saadparwaiz1/cmp_luasnip',
-
-    -- Adds other completion capabilities.
-    --  nvim-cmp does not ship with all sources by default. They are split
-    --  into multiple repos for maintenance purposes.
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-path',
-
-    -- Adds a number of user-friendly snippets
+    'saghen/blink.lib',
     'rafamadriz/friendly-snippets',
   },
-  config = function()
-    local cmp = require 'cmp'
-    require('luasnip.loaders.from_vscode').lazy_load()
-    local luasnip = require 'luasnip'
-    luasnip.config.setup {}
-
-    local kind_icons = {
-      Text = '󰉿',
-      Method = 'm',
-      Function = '󰊕',
-      Constructor = '',
-      Field = '',
-      Variable = '󰆧',
-      Class = '󰌗',
-      Interface = '',
-      Module = '',
-      Property = '',
-      Unit = '',
-      Value = '󰎠',
-      Enum = '',
-      Keyword = '󰌋',
-      Snippet = '',
-      Color = '󰏘',
-      File = '󰈙',
-      Reference = '',
-      Folder = '󰉋',
-      EnumMember = '',
-      Constant = '󰇽',
-      Struct = '',
-      Event = '',
-      Operator = '󰆕',
-      TypeParameter = '󰊄',
-    }
-
-    cmp.setup {
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
+  build = function()
+    require('blink.cmp').build():pwait()
+  end,
+  ---@module 'blink.cmp'
+  ---@type blink.cmp.Config
+  opts = {
+    keymap = {
+      preset = 'none',
+      ['<C-c>'] = { 'show', 'fallback' },
+      ['<CR>'] = { 'accept', 'fallback' },
+      ['<C-j>'] = { 'select_next', 'fallback' },
+      ['<C-k>'] = { 'select_prev', 'fallback' },
+      ['<C-l>'] = { 'snippet_forward', 'fallback' },
+      ['<C-h>'] = { 'snippet_backward', 'fallback' },
+      ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
+      ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
+    },
+    appearance = {
+      -- 'mono' for Nerd Font Mono, 'normal' for Nerd Font
+      nerd_font_variant = 'mono',
+      kind_icons = {
+        Text = '󰉿',
+        Method = '󰊕',
+        Function = '󰊕',
+        Constructor = '󰒓',
+        Field = '󰜢',
+        Variable = '󰆦',
+        Property = '󰖷',
+        Class = '󱡠',
+        Interface = '󱡠',
+        Struct = '󱡠',
+        Module = '󰅩',
+        Unit = '󰪚',
+        Value = '󰦨',
+        Enum = '󰦨',
+        EnumMember = '󰦨',
+        Keyword = '󰻾',
+        Constant = '󰏿',
+        Snippet = '󱄽',
+        Color = '󰏘',
+        File = '󰈔',
+        Reference = '󰬲',
+        Folder = '󰉋',
+        Event = '󱐋',
+        Operator = '󰪚',
+        TypeParameter = '󰬛',
       },
-      completion = { completeopt = 'menu,menuone,noinsert' },
-      -- window = {
-      --     completion = cmp.config.window.bordered(),
-      --     documentation = cmp.config.window.bordered(),
-      -- },
-      mapping = cmp.mapping.preset.insert {
-        ['<C-j>'] = cmp.mapping.select_next_item(), -- Select the [n]ext item
-        ['<C-k>'] = cmp.mapping.select_prev_item(), -- Select the [p]revious item
-        ['<CR>'] = cmp.mapping.confirm { select = true }, -- Accept the completion with Enter.
-        ['<C-c>'] = cmp.mapping.complete {}, -- Manually trigger a completion from nvim-cmp.
-
-        -- Think of <c-l> as moving to the right of your snippet expansion.
-        --  So if you have a snippet that's like:
-        --  function $name($args)
-        --    $body
-        --  end
-        --
-        -- <c-l> will move you to the right of each of the expansion locations.
-        -- <c-h> is similar, except moving you backwards.
-        ['<C-l>'] = cmp.mapping(function()
-          if luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
-          end
-        end, { 'i', 's' }),
-        ['<C-h>'] = cmp.mapping(function()
-          if luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
-          end
-        end, { 'i', 's' }),
-
-        -- Select next/previous item with Tab / Shift + Tab
-        ['<Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          elseif luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
-          else
-            fallback()
-          end
-        end, { 'i', 's' }),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, { 'i', 's' }),
+    },
+    completion = {
+      -- Equivalent of the old `completeopt=noinsert` + `confirm { select = true }`:
+      -- <CR> takes the first entry without selecting it first.
+      list = { selection = { preselect = true, auto_insert = false } },
+      menu = {
+        draw = {
+          columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 }, { 'source_name' } },
+        },
       },
-      sources = {
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-        { name = 'buffer' },
-        { name = 'path' },
-      },
-      formatting = {
-        fields = { 'kind', 'abbr', 'menu' },
-        format = function(entry, vim_item)
-          -- Kind icons
-          vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
-          -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-          vim_item.menu = ({
-            nvim_lsp = '[LSP]',
-            luasnip = '[Snippet]',
-            buffer = '[Buffer]',
-            path = '[Path]',
-          })[entry.source.name]
-          return vim_item
-        end,
-      },
-    }
+      documentation = { auto_show = false },
+    },
+    sources = {
+      default = { 'lsp', 'snippets', 'buffer', 'path' },
+    },
+    fuzzy = { implementation = 'rust' },
+  },
+  config = function(_, opts)
+    require('blink.cmp').setup(opts)
+    apply_highlights()
+    -- Themes reset highlights when they load, so re-apply after a switch.
+    vim.api.nvim_create_autocmd('ColorScheme', {
+      group = vim.api.nvim_create_augroup('blink-cmp-kind-colors', { clear = true }),
+      callback = apply_highlights,
+    })
   end,
 }

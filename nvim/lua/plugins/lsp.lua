@@ -25,9 +25,6 @@ return {
         },
       },
     },
-
-    -- Allows extra capabilities provided by nvim-cmp
-    'hrsh7th/cmp-nvim-lsp',
   },
   config = function()
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -36,7 +33,7 @@ return {
       -- It sets the mode, buffer and description for us each time.
       callback = function(event)
         local map = function(keys, func, desc)
-          vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+          vim.keymap.set('n', keys, func, { buf = event.buf, desc = 'LSP: ' .. desc })
         end
 
         -- Jump to the definition of the word under your cursor.
@@ -94,13 +91,13 @@ return {
         if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
           local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
           vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-            buffer = event.buf,
+            buf = event.buf,
             group = highlight_augroup,
             callback = vim.lsp.buf.document_highlight,
           })
 
           vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-            buffer = event.buf,
+            buf = event.buf,
             group = highlight_augroup,
             callback = vim.lsp.buf.clear_references,
           })
@@ -109,7 +106,7 @@ return {
             group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
             callback = function(event2)
               vim.lsp.buf.clear_references()
-              vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+              vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buf = event2.buf }
             end,
           })
         end
@@ -126,10 +123,9 @@ return {
 
     -- LSP servers and clients are able to communicate to each other what features they support.
     -- By default, Neovim doesn't support everything that is in the LSP specification.
-    -- When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-    -- So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+    -- Second argument is `include_nvim_defaults` and has no default: without it
+    -- blink returns only its own completion block.
+    local capabilities = require('blink.cmp').get_lsp_capabilities({}, true)
 
     -- Enable the following language servers
     --
@@ -212,7 +208,10 @@ return {
     -- Ensure the servers and tools above are installed
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
-      'stylua', -- Used to format Lua code
+      'stylua', -- Lua formatter
+      'prettier', -- html/json/yaml/markdown formatter
+      'shfmt', -- shell formatter
+      'checkmake', -- Makefile linter
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
