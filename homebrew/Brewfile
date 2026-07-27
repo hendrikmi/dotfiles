@@ -98,7 +98,7 @@ cask "vlc"
 # App that enables mouse-free UI interaction
 cask "shortcat"
 # Software for Logitech devices
-cask "logi-options-plus"
+cask "logi-options+"
 vscode "eamodio.gitlens"
 vscode "esbenp.prettier-vscode"
 vscode "mechatroner.rainbow-csv"
