@@ -7,6 +7,8 @@ name = "nord"
 auto_switch = false
 [theme.custom]
 panel_bg = "reset"
+# neutral white, matching the Ghostty/Neovim override
+text = "#E7E7E7"
 
 [terminal]
 default_shell = "zsh"

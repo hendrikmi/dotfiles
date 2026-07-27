@@ -113,7 +113,7 @@ yellow = '#EBCB8B'
 purple = '#B48EAD'
 gray = '#434C5E'
 black = '#2E3440'
-white='#D8DEE9'
+white='#E7E7E7'
 
 [palettes.onedark]
 dark_blue='#61afef'

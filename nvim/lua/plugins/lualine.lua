@@ -39,10 +39,21 @@ return {
     -- Import color theme based on environment variable NVIM_THEME
     local env_var_nvim_theme = os.getenv 'NVIM_THEME' or 'nord'
 
+    -- lualine ships its own Nord theme with the blue-tinted whites hardcoded,
+    -- so it does not follow the palette override in themes/nord.lua
+    local nord_theme = require 'lualine.themes.nord'
+    local swap = { ['#E5E9F0'] = '#F0F0F0', ['#ECEFF4'] = '#F7F7F7' }
+    for _, mode in pairs(nord_theme) do
+      for _, section in pairs(mode) do
+        section.fg = swap[section.fg] or section.fg
+        section.bg = swap[section.bg] or section.bg
+      end
+    end
+
     -- Define a table of themes
     local themes = {
       onedark = onedark_theme,
-      nord = 'nord',
+      nord = nord_theme,
     }
 
     local hide_in_width = function()
