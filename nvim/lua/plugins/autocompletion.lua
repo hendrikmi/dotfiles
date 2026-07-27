@@ -1,3 +1,46 @@
+-- Per-kind colors for the completion menu.
+-- blink.cmp links every BlinkCmpKind<Kind> to a single BlinkCmpKind group by
+-- default, which makes the whole menu one colour. Colorschemes usually style
+-- nvim-cmp's CmpItem* groups instead, so we map the kinds onto Treesitter
+-- groups: those are defined by every decent theme, which keeps this working
+-- for both nord and onedark without touching the theme files.
+local kind_hl = {
+  Text = '@string',
+  Method = '@function.method',
+  Function = '@function',
+  Constructor = '@constructor',
+  Field = '@property',
+  Property = '@property',
+  Variable = '@variable',
+  Reference = '@variable',
+  Class = '@type',
+  Interface = '@type',
+  Struct = '@type',
+  TypeParameter = '@type.parameter',
+  Module = '@module',
+  Unit = '@number',
+  Value = '@number',
+  Enum = '@constant',
+  EnumMember = '@constant',
+  Constant = '@constant',
+  Keyword = '@keyword',
+  Operator = '@operator',
+  Event = '@constant.macro',
+  Snippet = '@character.special',
+  Color = '@constant',
+  File = 'Directory',
+  Folder = 'Directory',
+}
+
+local function apply_highlights()
+  for kind, group in pairs(kind_hl) do
+    vim.api.nvim_set_hl(0, 'BlinkCmpKind' .. kind, { link = group, default = false })
+  end
+  -- Matched characters stand out, source column stays subdued.
+  vim.api.nvim_set_hl(0, 'BlinkCmpLabelMatch', { link = '@function', default = false })
+  vim.api.nvim_set_hl(0, 'BlinkCmpSource', { link = 'Comment', default = false })
+end
+
 return { -- Autocompletion
   'saghen/blink.cmp',
   dependencies = {
@@ -22,32 +65,34 @@ return { -- Autocompletion
       ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
     },
     appearance = {
+      -- 'mono' for Nerd Font Mono, 'normal' for Nerd Font
+      nerd_font_variant = 'mono',
       kind_icons = {
         Text = '󰉿',
-        Method = 'm',
+        Method = '󰊕',
         Function = '󰊕',
-        Constructor = '',
-        Field = '',
-        Variable = '󰆧',
-        Class = '󰌗',
-        Interface = '',
-        Module = '',
-        Property = '',
-        Unit = '',
-        Value = '󰎠',
-        Enum = '',
-        Keyword = '󰌋',
-        Snippet = '',
+        Constructor = '󰒓',
+        Field = '󰜢',
+        Variable = '󰆦',
+        Property = '󰖷',
+        Class = '󱡠',
+        Interface = '󱡠',
+        Struct = '󱡠',
+        Module = '󰅩',
+        Unit = '󰪚',
+        Value = '󰦨',
+        Enum = '󰦨',
+        EnumMember = '󰦨',
+        Keyword = '󰻾',
+        Constant = '󰏿',
+        Snippet = '󱄽',
         Color = '󰏘',
-        File = '󰈙',
-        Reference = '',
+        File = '󰈔',
+        Reference = '󰬲',
         Folder = '󰉋',
-        EnumMember = '',
-        Constant = '󰇽',
-        Struct = '',
-        Event = '',
-        Operator = '󰆕',
-        TypeParameter = '󰊄',
+        Event = '󱐋',
+        Operator = '󰪚',
+        TypeParameter = '󰬛',
       },
     },
     completion = {
@@ -69,4 +114,13 @@ return { -- Autocompletion
     },
     fuzzy = { implementation = 'rust' },
   },
+  config = function(_, opts)
+    require('blink.cmp').setup(opts)
+    apply_highlights()
+    -- Themes reset highlights when they load, so re-apply after a switch.
+    vim.api.nvim_create_autocmd('ColorScheme', {
+      group = vim.api.nvim_create_augroup('blink-cmp-kind-colors', { clear = true }),
+      callback = apply_highlights,
+    })
+  end,
 }
