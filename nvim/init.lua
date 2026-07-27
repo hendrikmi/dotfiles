@@ -53,7 +53,6 @@ require('lazy').setup({
   -- require 'plugins.aerial',
   require 'plugins.navigator',
   require 'plugins.render-markdown',
-  require 'plugins.dirdiff',
 }, {
   ui = {
     -- If you have a Nerd Font, set icons to an empty table which will use the
