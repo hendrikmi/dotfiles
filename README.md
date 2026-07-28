@@ -38,6 +38,8 @@ Anything tied to an employer, a client, or my private life stays out of this rep
 
 Installed plugins, skills, and agents are not versioned. Plugins are restored from the `enabledPlugins` entry in `settings.json`.
 
+The sound notification hooks in `settings.json` point at `~/.claude/hooks/peon-ping/`, which the Brewfile alone does not create. On a fresh machine, run `brew trust peonping/tap` before `brew bundle`, since Homebrew refuses third-party taps by default, and `peon-ping-setup` afterwards to lay down the hook scripts and sound packs.
+
 ## Setup
 
 To set up these dotfiles on your system, run:
