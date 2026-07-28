@@ -55,4 +55,13 @@ if [[ "$overwrite_dotfiles" == "y" ]]; then
 fi
 ./scripts/symlinks.sh --create
 
+# The private counterpart lives in its own repo and is cloned next to this one.
+# When it is absent, this step is simply skipped.
+private_dotfiles="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/dotfiles-private"
+if [ -d "$private_dotfiles" ]; then
+    "$private_dotfiles/symlinks.sh" --create
+else
+    info "No private dotfiles at $private_dotfiles, skipping."
+fi
+
 success "Dotfiles set up successfully."

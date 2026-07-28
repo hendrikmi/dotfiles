@@ -36,22 +36,37 @@ The `claude/` directory holds everything I author myself: global instructions (`
 
 Anything tied to an employer, a client, or my private life stays out of this repo:
 
-- **Global instructions**: `CLAUDE.md` ends with two imports, `@~/.claude/work.md` for employer-specific rules and `@~/.claude/private.md` for personal ones. Neither file is part of this repo, both are created directly on the machine that needs them, and an absent import silently resolves to nothing. Same idea as `work.zsh` for the shell. Nothing syncs these files, so a fresh machine needs them copied over by hand.
+- **Global instructions**: `CLAUDE.md` ends with two imports, `@~/.claude/work.md` for employer-specific rules and `@~/.claude/private.md` for personal ones. Neither file is part of this repo, and an absent import silently resolves to nothing. `private.md` comes from the private counterpart described below. `work.md` is created directly on the machine that needs it, same idea as `work.zsh` for the shell, and nothing syncs it, so a fresh work machine needs it copied over by hand.
 - **Project-specific hooks, permissions, and MCP servers**: these belong in the respective repository under `.claude/settings.json` or `.claude/settings.local.json`. Claude Code has no machine-local layer above the user settings, so global settings must stay generic.
 
-Installed plugins, skills, and agents are not versioned. Plugins are restored from the `enabledPlugins` entry in `settings.json`.
+Skills, subagents, commands, and hooks I do not want in a public repo live in the private counterpart described below. Plugins stay out of both repos, they are restored from the `enabledPlugins` entry in `settings.json`.
 
 The sound notification hooks in `settings.json` point at `~/.claude/hooks/peon-ping/`, which the Brewfile alone does not create. On a fresh machine, run `brew trust peonping/tap` before `brew bundle`, since Homebrew refuses third-party taps by default, and `peon-ping-setup` afterwards to lay down the hook scripts and sound packs.
 
+## Private Counterpart
+
+Anything personal or otherwise not publishable lives in `dotfiles-private`, cloned next to this repo at `../dotfiles-private`. Same structure as here, one directory per tool, driven by its own `symlinks.conf`. Today that is only Claude Code, but nothing about the setup is specific to it.
+
+Its `symlinks.sh` reads that config the way `scripts/symlinks.sh` reads the one here, with one addition: a source ending in `/*` links every entry inside a directory rather than the directory itself. That form is needed for targets like `~/.claude/skills`, which also hold Homebrew-managed and separately installed content that a directory-level symlink would hide.
+
+`install.sh` calls the script at the end when the repo is present and skips the step otherwise, so a machine without it still installs cleanly.
+
 ## Setup
 
-To set up these dotfiles on your system, run:
+Clone this repo, and the private counterpart next to it if you have access to it:
+
+```bash
+git clone https://github.com/hendrikmi/dotfiles.git
+git clone https://github.com/hendrikmi/dotfiles-private.git
+```
+
+Then run the installer from the repo root and follow the on-screen prompts:
 
 ```bash
 ./install.sh
 ```
 
-Then follow the on-screen prompts.
+The private repo has to be in place before this runs, otherwise the installer skips it and you need a separate `../dotfiles-private/symlinks.sh` afterwards.
 
 ## Uninstalling
 
@@ -61,7 +76,7 @@ To remove all symlinks created by the installation script:
 ./scripts/symlinks.sh --delete
 ```
 
-This only removes the symlinks, not the actual config files, so you can easily revert if needed.
+This only removes the symlinks, not the actual config files, so you can easily revert if needed. The private counterpart is removed separately with `../dotfiles-private/symlinks.sh --delete`.
 
 ## Adding New Dotfiles and Software
 
