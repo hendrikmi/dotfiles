@@ -47,7 +47,7 @@ The sound notification hooks in `settings.json` point at `~/.claude/hooks/peon-p
 
 Anything personal or otherwise not publishable lives in `dotfiles-private`, cloned next to this repo at `../dotfiles-private`. Same structure as here, one directory per tool, driven by its own `symlinks.conf`. Today that is only Claude Code, but nothing about the setup is specific to it.
 
-Its `link.sh` reads that config the way `scripts/symlinks.sh` reads the one here, with one addition: a source ending in `/*` links every entry inside a directory rather than the directory itself. That form is needed for targets like `~/.claude/skills`, which also hold Homebrew-managed and separately installed content that a directory-level symlink would hide.
+Its `symlinks.sh` reads that config the way `scripts/symlinks.sh` reads the one here, with one addition: a source ending in `/*` links every entry inside a directory rather than the directory itself. That form is needed for targets like `~/.claude/skills`, which also hold Homebrew-managed and separately installed content that a directory-level symlink would hide.
 
 `install.sh` calls the script at the end when the repo is present and skips the step otherwise, so a machine without it still installs cleanly.
 
@@ -66,7 +66,7 @@ Then run the installer from the repo root and follow the on-screen prompts:
 ./install.sh
 ```
 
-The private repo has to be in place before this runs, otherwise the installer skips it and you need a separate `../dotfiles-private/link.sh` afterwards.
+The private repo has to be in place before this runs, otherwise the installer skips it and you need a separate `../dotfiles-private/symlinks.sh` afterwards.
 
 ## Uninstalling
 
@@ -76,7 +76,7 @@ To remove all symlinks created by the installation script:
 ./scripts/symlinks.sh --delete
 ```
 
-This only removes the symlinks, not the actual config files, so you can easily revert if needed. The private counterpart is removed separately with `../dotfiles-private/link.sh --delete`.
+This only removes the symlinks, not the actual config files, so you can easily revert if needed. The private counterpart is removed separately with `../dotfiles-private/symlinks.sh --delete`.
 
 ## Adding New Dotfiles and Software
 
