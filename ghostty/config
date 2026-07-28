@@ -1,7 +1,6 @@
 # Theme
 theme = nord
-# Background lives in its own file so bg.sh can rewrite it
-config-file = background.conf
+background = #282c35
 # Neutral white instead of Nord's blue-tinted #d8dee9, 10% brighter
 foreground = #E7E7E7
 

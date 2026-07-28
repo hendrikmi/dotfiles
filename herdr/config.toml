@@ -55,19 +55,6 @@ type = "shell"
 command = "herdr pane zoom --current --toggle"
 description = "toggle zoom (tmux-style m)"
 
-# step the terminal background brightness (see ghostty/bg.sh)
-[[keys.command]]
-key = "prefix+b"
-type = "shell"
-command = "~/git/dotfiles/ghostty/bg.sh up"
-description = "background one step brighter"
-
-[[keys.command]]
-key = "prefix+shift+b"
-type = "shell"
-command = "~/git/dotfiles/ghostty/bg.sh down"
-description = "background one step darker"
-
 # move the current tab, like tmux swap-window on prefix+S-Left/Right (see herdr/move-tab.sh)
 [[keys.command]]
 key = "prefix+shift+left"
