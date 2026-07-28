@@ -21,7 +21,6 @@ export PATH="$HOME/.local/bin:$PATH"
 # Starship
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 eval "$(starship init zsh)"
-starship config palette $STARSHIP_THEME
 
 # Load Git completion
 zstyle ':completion:*:*:git:*' script $HOME/.config/zsh/git-completion.bash
