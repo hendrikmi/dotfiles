@@ -17,28 +17,41 @@ return {
     -- colors read dimmer than tinted ones at equal luminance. nord.nvim has no
     -- color option, but nord.colors reads the palette from nord.named_colors
     -- on load, so mutating it before the first require('nord') propagates.
-    -- In light mode nord.nvim maps these three onto the backgrounds instead,
-    -- so the same values de-tint both directions.
-    --
-    -- It also reuses the Frost and Aurora accents unchanged in light mode,
-    -- and those are tuned for a dark background: yellow lands at APCA 21 on
-    -- the light one, green and both teals below 40. Darken them to 60 there.
     local function apply_palette(background)
       local palette = require 'nord.named_colors'
-      palette.darkest_white = '#E7E7E7' -- nord4, was #D8DEE9
-      palette.darker_white = '#F0F0F0'  -- nord5, was #E5E9F0
-      palette.white = '#F7F7F7'         -- nord6, was #ECEFF4
 
-      if background == 'light' then
-        palette.teal = '#698B8A'     -- nord7
-        palette.off_blue = '#618A96' -- nord8
-        palette.glacier = '#6C87A3'  -- nord9
-        palette.orange = '#B47460'   -- nord12
-        palette.yellow = '#978257'   -- nord13
-        palette.green = '#768B65'    -- nord14
-        palette.purple = '#9C7A96'   -- nord15
-        -- nord10 blue and nord11 red already clear 60, left alone
+      if background == 'dark' then
+        -- Foregrounds here: de-tinted and lifted ~10%, since neutral colors
+        -- read dimmer than tinted ones at matching luminance.
+        palette.darkest_white = '#E7E7E7' -- nord4, was #D8DEE9
+        palette.darker_white = '#F0F0F0'  -- nord5, was #E5E9F0
+        palette.white = '#F7F7F7'         -- nord6, was #ECEFF4
+        return
       end
+
+      -- Light mode maps the same three onto the backgrounds, so lifting them
+      -- would eat the contrast the accents need. Sit them slightly below
+      -- Nord's own instead, which also takes the glare off.
+      palette.white = '#E8E8E8'         -- nord0, the canvas
+      palette.darker_white = '#DEDEDE'  -- nord1
+      palette.darkest_white = '#D3D3D3' -- nord2
+
+      -- nord.nvim reuses the Frost and Aurora accents unchanged in light
+      -- mode, and they are tuned for a dark background: yellow lands at APCA
+      -- 21 against this canvas, green and both teals below 40. Restage the
+      -- whole scale: body text 88, accents 68, comments 57. Accents have to
+      -- stay clear of the body text, or the hues stop being tellable apart.
+      palette.gray = '#222833'          -- body text, was #434C5E
+      palette.teal = '#4B6464'          -- nord7
+      palette.off_blue = '#45656D'      -- nord8
+      palette.glacier = '#4D6276'       -- nord9
+      palette.blue = '#466182'          -- nord10
+      palette.red = '#92484F'           -- nord11
+      palette.orange = '#835344'        -- nord12
+      palette.yellow = '#6D5E3E'        -- nord13
+      palette.green = '#556548'         -- nord14
+      palette.purple = '#70586C'        -- nord15
+      palette.light_gray_bright = '#6A7894' -- comments
     end
 
     -- nord/colors.lua reads vim.o.background once, at module load time, and
