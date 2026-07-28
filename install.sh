@@ -57,7 +57,7 @@ fi
 
 # The private counterpart lives in its own repo and is cloned next to this one.
 # When it is absent, this step is simply skipped.
-private_dotfiles="$(dirname "$PWD")/dotfiles-private"
+private_dotfiles="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/dotfiles-private"
 if [ -d "$private_dotfiles" ]; then
     "$private_dotfiles/link.sh" --create
 else

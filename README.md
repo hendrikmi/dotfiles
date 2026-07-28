@@ -49,13 +49,20 @@ The sound notification hooks in `settings.json` point at `~/.claude/hooks/peon-p
 
 ## Setup
 
-To set up these dotfiles on your system, run:
+Clone this repo, and the private counterpart next to it if you have access to it:
+
+```bash
+git clone https://github.com/hendrikmi/dotfiles.git
+git clone https://github.com/hendrikmi/dotfiles-private.git
+```
+
+Then run the installer from the repo root and follow the on-screen prompts:
 
 ```bash
 ./install.sh
 ```
 
-Then follow the on-screen prompts.
+The private repo has to be in place before this runs, otherwise the installer skips it and you need a separate `../dotfiles-private/link.sh` afterwards.
 
 ## Uninstalling
 
