@@ -50,10 +50,28 @@ return {
       end
     end
 
+    -- lualine has no Nord Light at all, so build one from the light palette.
+    local nord_light_theme = {
+      normal = {
+        a = { fg = '#E8E8E8', bg = '#537781', gui = 'bold' },
+        b = { fg = '#474747', bg = '#D7D7D7' },
+        c = { fg = '#6A6A6A', bg = '#DEDEDE' },
+      },
+      insert = { a = { fg = '#E8E8E8', bg = '#5C748C', gui = 'bold' } },
+      visual = { a = { fg = '#E8E8E8', bg = '#667756', gui = 'bold' } },
+      replace = { a = { fg = '#E8E8E8', bg = '#AC575F', gui = 'bold' } },
+      inactive = {
+        a = { fg = '#6A6A6A', bg = '#DEDEDE', gui = 'bold' },
+        b = { fg = '#6A6A6A', bg = '#DEDEDE' },
+        c = { fg = '#8A8A8A', bg = '#DEDEDE' },
+      },
+    }
+
     -- Define a table of themes
     local themes = {
       onedark = onedark_theme,
       nord = nord_theme,
+      ['nord-light'] = nord_light_theme,
     }
 
     local hide_in_width = function()
@@ -98,7 +116,10 @@ return {
     require('lualine').setup {
       options = {
         icons_enabled = true,
-        theme = themes[env_var_nvim_theme], -- Set theme based on environment variable
+        -- Nord follows vim.o.background so <leader>tt can flip it at runtime
+        theme = (env_var_nvim_theme == 'nord' and vim.o.background == 'light')
+            and themes['nord-light']
+          or themes[env_var_nvim_theme],
         -- Some useful glyphs:
         -- https://www.nerdfonts.com/cheat-sheet
         --        

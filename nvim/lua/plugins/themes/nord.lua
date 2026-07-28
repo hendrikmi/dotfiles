@@ -17,13 +17,43 @@ return {
     -- colors read dimmer than tinted ones at equal luminance. nord.nvim has no
     -- color option, but nord.colors reads the palette from nord.named_colors
     -- on load, so mutating it before the first require('nord') propagates.
-    local palette = require('nord.named_colors')
-    palette.darkest_white = '#E7E7E7' -- nord4, was #D8DEE9
-    palette.darker_white = '#F0F0F0'  -- nord5, was #E5E9F0
-    palette.white = '#F7F7F7'         -- nord6, was #ECEFF4
+    -- In light mode nord.nvim maps these three onto the backgrounds instead,
+    -- so the same values de-tint both directions.
+    local function apply_palette()
+      local palette = require 'nord.named_colors'
+      palette.darkest_white = '#E7E7E7' -- nord4, was #D8DEE9
+      palette.darker_white = '#F0F0F0'  -- nord5, was #E5E9F0
+      palette.white = '#F7F7F7'         -- nord6, was #ECEFF4
+    end
 
-    -- Load the colorscheme
-    require('nord').set()
+    -- nord/colors.lua reads vim.o.background once, at module load time, and
+    -- caches the result. Switching therefore means dropping the modules from
+    -- the Lua cache and loading them again.
+    local function load_nord(background)
+      vim.o.background = background
+      for _, m in ipairs { 'nord', 'nord.util', 'nord.theme', 'nord.colors', 'nord.named_colors' } do
+        package.loaded[m] = nil
+      end
+      apply_palette()
+      require('nord').set()
+
+      local ok, lualine = pcall(require, 'lualine')
+      if ok then
+        lualine.setup { options = { theme = background == 'light' and 'nord-light' or 'nord' } }
+      end
+    end
+
+    -- scripts/theme.sh writes this, so a new Neovim comes up matching the
+    -- terminal it was started in.
+    local state = vim.fn.expand(vim.env.XDG_STATE_HOME or '~/.local/state') .. '/theme-mode'
+    local saved = vim.fn.filereadable(state) == 1 and vim.fn.readfile(state)[1] or 'dark'
+
+    load_nord(saved == 'light' and 'light' or 'dark')
+
+    vim.keymap.set('n', '<leader>tt', function()
+      load_nord(vim.o.background == 'dark' and 'light' or 'dark')
+      vim.notify('background: ' .. vim.o.background)
+    end, { desc = '[T]oggle [T]heme light/dark' })
 
     -- Function to set menu borders to transparent
     -- local set_menu_border_transparency = function()

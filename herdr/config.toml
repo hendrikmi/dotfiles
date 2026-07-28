@@ -1,20 +1,27 @@
 onboarding = false
 
+# herdr has no config includes, so scripts/theme.sh rewrites everything
+# between the markers below. Do not edit that region by hand.
+#
+# herdr maps Nord onto Catppuccin token names: text is nord6, subtext0 is
+# nord4. overlay0 is what actually carries the sidebar, twenty uses against
+# six for text. All values are the neutralized ones used elsewhere.
+#
+# There is no built-in nord-light, so the light side is a hand-built palette
+# on top of the `terminal` base, with accents darkened to stay legible.
+# >>> theme (managed)
 [theme]
 name = "nord"
-
-# let the terminal background show through, like bg=default in tmux
 auto_switch = false
+
 [theme.custom]
 panel_bg = "reset"
-# Nord's whites are blue-tinted; these are the neutral equivalents used
-# across the rest of the setup. herdr maps Nord onto Catppuccin token
-# names, so text is nord6 and subtext0 is nord4, not the other way round.
-# overlay0 carries most of the sidebar, so it matters more than text.
-text = "#F7F7F7"     # was nord6 #ECEFF4
-subtext0 = "#E7E7E7" # was nord4 #D8DEE9
-overlay1 = "#6D6D6D" # was #646E82
-overlay0 = "#555555" # was nord3 #4C566A
+surface_dim = "reset"
+text = "#F7F7F7"
+subtext0 = "#E7E7E7"
+overlay1 = "#6D6D6D"
+overlay0 = "#555555"
+# <<< theme (managed)
 
 [terminal]
 default_shell = "zsh"
@@ -54,6 +61,14 @@ key = "prefix+m"
 type = "shell"
 command = "herdr pane zoom --current --toggle"
 description = "toggle zoom (tmux-style m)"
+
+# flip the whole setup between Nord and Nord Light (see scripts/theme.sh).
+# prefix+t is free in herdr's defaults; prefix+b is toggle_sidebar, do not use it.
+[[keys.command]]
+key = "prefix+t"
+type = "shell"
+command = "~/git/dotfiles/scripts/theme.sh toggle"
+description = "toggle light/dark theme"
 
 # move the current tab, like tmux swap-window on prefix+S-Left/Right (see herdr/move-tab.sh)
 [[keys.command]]

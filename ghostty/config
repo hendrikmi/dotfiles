@@ -1,8 +1,7 @@
 # Theme
-theme = nord
-background = #282c35
-# Neutral white instead of Nord's blue-tinted #d8dee9, 10% brighter
-foreground = #E7E7E7
+# themes/nord-neutral and themes/nord-light-neutral carry the palette plus
+# the neutralized fg/bg. theme.conf picks one and scripts/theme.sh flips it.
+config-file = theme.conf
 
 # Font
 font-size = 12.5

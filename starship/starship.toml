@@ -115,6 +115,21 @@ gray = '#434C5E'
 black = '#2E3440'
 white='#E7E7E7'
 
+# Nord Light. Accents are darkened to reach APCA 60 on the light background,
+# since Nord's own are tuned for a dark one and wash out here.
+[palettes.nord-light]
+dark_blue = '#54749A'
+blue = '#5C748C'
+teal = '#537781'
+red = '#AC575F'
+orange = '#9B6452'
+green = '#667756'
+yellow = '#826F4A'
+purple = '#856980'
+gray = '#A5ABB6'
+black = '#E8E8E8'
+white = '#474747'
+
 [palettes.onedark]
 dark_blue='#61afef'
 blue='#56b6c2'
