@@ -9,6 +9,8 @@ auto_switch = false
 panel_bg = "reset"
 # neutral white, matching the Ghostty/Neovim override
 text = "#E7E7E7"
+# nord's #4C566A is too dark for the agent panel headers and the dimmed second rows
+overlay0 = "#8B93A3"
 
 [terminal]
 default_shell = "zsh"
