@@ -1,7 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
-tap "peonping/tap"
 # Library for command-line editing
 brew "readline"
 # Official Amazon AWS command-line interface
@@ -60,8 +59,6 @@ brew "eza"
 brew "zoxide"
 # Simple terminal UI for git commands
 brew "lazygit"
-# Sound notifications for Claude Code hooks
-brew "peon-ping"
 # Application uninstaller
 cask "appcleaner"
 # Web browser focusing on privacy
