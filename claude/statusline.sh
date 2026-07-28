@@ -7,6 +7,14 @@ dir=$(printf '%s' "$input" | jq -r '.workspace.current_dir // .cwd // ""')
 model=$(printf '%s' "$input" | jq -r '.model.display_name // "?"')
 used=$(printf '%s' "$input" | jq -r '.context_window.used_percentage // empty')
 branch=$(git --no-optional-locks -C "$dir" branch --show-current 2>/dev/null)
+gitdir=$(git --no-optional-locks -C "$dir" rev-parse --git-dir 2>/dev/null)
+
+# In a linked worktree the leaf directory is named after the branch, which the
+# branch segment already shows. Fall back to the main repo name instead.
+label=$(basename "$dir")
+case "$gitdir" in
+    */.git/worktrees/*) label=$(basename "${gitdir%%/.git/worktrees/*}") ;;
+esac
 
 reset=$'\033[0m'
 dim=$'\033[2m'
@@ -15,7 +23,7 @@ magenta=$'\033[35m'
 cyan=$'\033[36m'
 sep="${dim} │ ${reset}"
 
-out="${blue} $(basename "$dir")${reset}"
+out="${blue} ${label}${reset}"
 [ -n "$branch" ] && out+="${sep}${magenta} ${branch}${reset}"
 out+="${sep}${cyan}󰧑 ${model}${reset}"
 
