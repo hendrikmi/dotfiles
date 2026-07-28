@@ -7,14 +7,8 @@ name = "nord"
 auto_switch = false
 [theme.custom]
 panel_bg = "reset"
-# Nord's whites are blue-tinted; these are the neutral equivalents used
-# across the rest of the setup. herdr maps Nord onto Catppuccin token
-# names, so text is nord6 and subtext0 is nord4, not the other way round.
-# overlay0 carries most of the sidebar, so it matters more than text.
-text = "#F7F7F7"     # was nord6 #ECEFF4
-subtext0 = "#E7E7E7" # was nord4 #D8DEE9
-overlay1 = "#6D6D6D" # was #646E82
-overlay0 = "#555555" # was nord3 #4C566A
+# neutral white, matching the Ghostty/Neovim override
+text = "#E7E7E7"
 
 [terminal]
 default_shell = "zsh"
