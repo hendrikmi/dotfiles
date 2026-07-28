@@ -4,6 +4,9 @@ My config files for maintaining a consistent dev environment across machines.
 
 ![screenshot](img/nvim-demo.png)
 
+> [!NOTE]
+> The screenshot above is outdated and does not reflect the current setup.
+
 ## Essential Tools
 
 - **Editor**: [NeoVim](https://neovim.io/), with a lightweight [Vim](https://www.vim.org/) fallback config (no dependencies) for maximum portability.
