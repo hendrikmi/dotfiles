@@ -29,11 +29,21 @@ ghostty_theme="$root/ghostty/themes/nord-neutral"
 
 # Repaint the running terminal. Inside tmux the sequences need wrapping so
 # they reach Ghostty rather than being swallowed; allow-passthrough is on.
+# Sent to /dev/tty rather than stdout, since herdr and Neovim both invoke
+# this with stdout captured. A -w test is not enough: /dev/tty passes it and
+# still fails to open when there is no controlling terminal, so try for real
+# and fall back to stdout.
+if { true >/dev/tty; } 2>/dev/null; then
+  exec 3>/dev/tty
+else
+  exec 3>&1
+fi
+
 emit() {
   if [[ -n ${TMUX:-} ]]; then
-    printf '\ePtmux;\e\e]%s\e\e\\\e\\' "$1"
+    printf '\ePtmux;\e\e]%s\e\e\\\e\\' "$1" >&3
   else
-    printf '\e]%s\e\\' "$1"
+    printf '\e]%s\e\\' "$1" >&3
   fi
 }
 

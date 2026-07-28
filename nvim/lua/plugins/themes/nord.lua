@@ -50,9 +50,17 @@ return {
 
     load_nord(saved == 'light' and 'light' or 'dark')
 
+    -- Neovim paints no background of its own (nord_disable_background), so
+    -- flipping only Neovim leaves dark text on a dark terminal. Drive the
+    -- shared script too, so one key switches everything.
     vim.keymap.set('n', '<leader>tt', function()
-      load_nord(vim.o.background == 'dark' and 'light' or 'dark')
-      vim.notify('background: ' .. vim.o.background)
+      local target = vim.o.background == 'dark' and 'light' or 'dark'
+      local script = vim.fn.expand '~/git/dotfiles/scripts/theme.sh'
+      if vim.fn.executable(script) == 1 then
+        vim.fn.system { script, target }
+      end
+      load_nord(target)
+      vim.notify('theme: ' .. target)
     end, { desc = '[T]oggle [T]heme light/dark' })
 
     -- Function to set menu borders to transparent
