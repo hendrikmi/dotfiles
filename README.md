@@ -36,10 +36,14 @@ The `claude/` directory holds everything I author myself: global instructions (`
 
 Anything tied to an employer, a client, or my private life stays out of this repo:
 
-- **Global instructions**: `CLAUDE.md` ends with two imports, `@~/.claude/work.md` for employer-specific rules and `@~/.claude/private.md` for personal ones. Neither file is part of this repo, both are created directly on the machine that needs them, and an absent import silently resolves to nothing. Same idea as `work.zsh` for the shell. Nothing syncs these files, so a fresh machine needs them copied over by hand.
+- **Global instructions**: `CLAUDE.md` ends with two imports, `@~/.claude/work.md` for employer-specific rules and `@~/.claude/private.md` for personal ones. Neither file is part of this repo, and an absent import silently resolves to nothing. `private.md` comes from the private counterpart described below. `work.md` is created directly on the machine that needs it, same idea as `work.zsh` for the shell, and nothing syncs it, so a fresh work machine needs it copied over by hand.
 - **Project-specific hooks, permissions, and MCP servers**: these belong in the respective repository under `.claude/settings.json` or `.claude/settings.local.json`. Claude Code has no machine-local layer above the user settings, so global settings must stay generic.
 
-Installed plugins, skills, and agents are not versioned. Plugins are restored from the `enabledPlugins` entry in `settings.json`.
+### Private Counterpart
+
+Skills, subagents, commands, and hooks that do not belong in a public repo live in `dotfiles-private`, cloned next to this one at `../dotfiles-private`. Its `link.sh` symlinks each entry individually into `~/.claude/skills`, `~/.claude/agents`, `~/.claude/commands`, and `~/.claude/hooks`, because those directories also hold Homebrew-managed and separately installed content that a directory-level symlink would hide. `install.sh` calls it at the end when the repo is present and skips the step otherwise, so a machine without it still installs cleanly.
+
+Plugins stay out of both repos. They are restored from the `enabledPlugins` entry in `settings.json`.
 
 The sound notification hooks in `settings.json` point at `~/.claude/hooks/peon-ping/`, which the Brewfile alone does not create. On a fresh machine, run `brew trust peonping/tap` before `brew bundle`, since Homebrew refuses third-party taps by default, and `peon-ping-setup` afterwards to lay down the hook scripts and sound packs.
 
@@ -61,7 +65,7 @@ To remove all symlinks created by the installation script:
 ./scripts/symlinks.sh --delete
 ```
 
-This only removes the symlinks, not the actual config files, so you can easily revert if needed.
+This only removes the symlinks, not the actual config files, so you can easily revert if needed. The private counterpart is removed separately with `../dotfiles-private/link.sh --delete`.
 
 ## Adding New Dotfiles and Software
 
