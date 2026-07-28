@@ -99,7 +99,7 @@ pane_history = true
 # active pane border in Nord green, like the tmux active border
 accent = "#A3BE8C"
 agent_panel_sort = "priority"
-show_agent_labels_on_pane_borders = false
+show_agent_labels_on_pane_borders = true
 
 [ui.toast]
 delivery = "herdr"
