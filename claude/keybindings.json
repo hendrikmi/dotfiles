@@ -7,6 +7,13 @@
       "bindings": {
         "space": null
       }
+    },
+    {
+      "context": "Scroll",
+      "bindings": {
+        "ctrl+u": "scroll:halfPageUp",
+        "ctrl+d": "scroll:halfPageDown"
+      }
     }
   ]
 }

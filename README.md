@@ -32,16 +32,13 @@ The `Tab` key acts as a regular `Tab` when tapped, but when held it becomes a mo
 
 ## Claude Code
 
-The `claude/` directory holds everything I author myself: global instructions (`CLAUDE.md`), settings, keybindings, and a status line script that shows the current directory, git branch, model, and remaining context window. Each file is symlinked individually into `~/.claude/`, because that directory also stores session state and credentials that must never be versioned.
+The `claude/` directory holds global instructions (`CLAUDE.md`), settings, keybindings, and a status line script. Each file is symlinked individually into `~/.claude/`, because that directory also stores session state and credentials that must never be versioned.
 
-Anything tied to an employer, a client, or my private life stays out of this repo:
+`CLAUDE.md` ends with two imports that are not part of this repo, `@~/.claude/work.md` and `@~/.claude/private.md`, and an absent import silently resolves to nothing. `private.md` comes from the private counterpart below. `work.md` stays machine-local, so a fresh work machine needs it copied over by hand.
 
-- **Global instructions**: `CLAUDE.md` ends with two imports, `@~/.claude/work.md` for employer-specific rules and `@~/.claude/private.md` for personal ones. Neither file is part of this repo, and an absent import silently resolves to nothing. `private.md` comes from the private counterpart described below. `work.md` is created directly on the machine that needs it, same idea as `work.zsh` for the shell, and nothing syncs it, so a fresh work machine needs it copied over by hand.
-- **Project-specific hooks, permissions, and MCP servers**: these belong in the respective repository under `.claude/settings.json` or `.claude/settings.local.json`. Claude Code has no machine-local layer above the user settings, so global settings must stay generic.
+Plugins are restored from the `enabledPlugins` entry in `settings.json`. Skills, subagents, commands, and hooks come from the private counterpart.
 
-Skills, subagents, commands, and hooks I do not want in a public repo live in the private counterpart described below. Plugins stay out of both repos, they are restored from the `enabledPlugins` entry in `settings.json`.
-
-The sound notification hooks in `settings.json` point at `~/.claude/hooks/peon-ping/`, which the Brewfile alone does not create. On a fresh machine, run `brew trust peonping/tap` before `brew bundle`, since Homebrew refuses third-party taps by default, and `peon-ping-setup` afterwards to lay down the hook scripts and sound packs.
+The sound notification hooks point at `~/.claude/hooks/peon-ping/`, which the Brewfile alone does not create. On a fresh machine, run `brew trust peonping/tap` before `brew bundle`, since Homebrew refuses third-party taps by default, and `peon-ping-setup` afterwards.
 
 ## Private Counterpart
 
