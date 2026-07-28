@@ -38,8 +38,6 @@ The `claude/` directory holds global instructions (`CLAUDE.md`), settings, keybi
 
 Plugins are restored from the `enabledPlugins` entry in `settings.json`. Skills, subagents, commands, and hooks come from the private counterpart.
 
-The sound notification hooks point at `~/.claude/hooks/peon-ping/`, which the Brewfile alone does not create. On a fresh machine, run `brew trust peonping/tap` before `brew bundle`, since Homebrew refuses third-party taps by default, and `peon-ping-setup` afterwards.
-
 ## Private Counterpart
 
 Anything personal or otherwise not publishable lives in `dotfiles-private`, cloned next to this repo at `../dotfiles-private`. Same structure as here, one directory per tool, driven by its own `symlinks.conf`. Today that is only Claude Code, but nothing about the setup is specific to it.
