@@ -3,12 +3,16 @@ onboarding = false
 [theme]
 name = "nord"
 
-# let the terminal background show through, like bg=default in tmux
-auto_switch = false
+# Follow Ghostty's light/dark appearance. herdr queries the host terminal for
+# its default colors, so flipping Ghostty is enough. There is no nord-light
+# built in; solarized-light is the coolest and most muted of its light themes.
+auto_switch = true
+dark_name = "nord"
+light_name = "solarized-light"
+
 [theme.custom]
+# let the terminal background show through, like bg=default in tmux
 panel_bg = "reset"
-# neutral white, matching the Ghostty/Neovim override
-text = "#E7E7E7"
 
 [terminal]
 default_shell = "zsh"
@@ -48,6 +52,14 @@ key = "prefix+m"
 type = "shell"
 command = "herdr pane zoom --current --toggle"
 description = "toggle zoom (tmux-style m)"
+
+# one key flips the macOS appearance; Ghostty, herdr and Neovim all follow
+# (see scripts/theme.sh). prefix+b is herdr's toggle_sidebar, do not use it.
+[[keys.command]]
+key = "prefix+t"
+type = "shell"
+command = "~/git/dotfiles/scripts/theme.sh toggle"
+description = "toggle light/dark theme"
 
 # move the current tab, like tmux swap-window on prefix+S-Left/Right (see herdr/move-tab.sh)
 [[keys.command]]

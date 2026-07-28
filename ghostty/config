@@ -1,8 +1,9 @@
 # Theme
-theme = nord
-background = #282c35
-# Neutral white instead of Nord's blue-tinted #d8dee9, 10% brighter
-foreground = #E7E7E7
+# Follows the macOS appearance. scripts/theme.sh flips that, everything else
+# follows from here: herdr queries this terminal, Neovim reads the state file.
+# The neutralized fg/bg live inside the theme files, since a top-level
+# foreground would apply to both variants.
+theme = dark:nord-neutral,light:nord-light-neutral
 
 # Font
 font-size = 12.5
