@@ -21,6 +21,7 @@ out+="${sep}${cyan}󰧑 ${model}${reset}"
 
 if [ -n "$used" ]; then
     pct=${used%.*}
+    [ "$pct" -gt 100 ] && pct=100
     if [ "$pct" -lt 50 ]; then
         color=$'\033[32m'
     elif [ "$pct" -lt 80 ]; then
@@ -28,7 +29,14 @@ if [ -n "$used" ]; then
     else
         color=$'\033[31m'
     fi
-    out+="${sep}${color}󰍛 ${pct}% used${reset}"
+
+    filled=$((pct / 10))
+    bar="${color}"
+    for ((i = 0; i < filled; i++)); do bar+="▰"; done
+    bar+="${dim}"
+    for ((i = filled; i < 10; i++)); do bar+="▱"; done
+
+    out+="${sep}${bar}${reset}${color} ${pct}%${reset}"
 fi
 
 printf '%s' "$out"
