@@ -13,6 +13,7 @@ My config files for maintaining a consistent dev environment across machines.
 - **Color Theme**: [Nord](https://www.nordtheme.com/docs/colors-and-palettes) across all tools.
 - **Window Management**: [Rectangle](https://github.com/rxhanson/Rectangle) + [Karabiner-Elements](https://karabiner-elements.pqrs.org/) for keyboard-driven window resizing and app switching.
 - **File Manager**: [Yazi](https://yazi-rs.github.io/) (Previously: [Ranger](https://github.com/ranger/ranger))
+- **Coding Agent**: [Claude Code](https://claude.com/claude-code), see [Claude Code](#claude-code) below.
 
 > [!NOTE]
 > This repo also includes the config for VSCode, which I no longer actively use. I keep it around as reference and for easy reactivation, its symlink and Brewfile entries are simply commented out.
@@ -25,6 +26,19 @@ The `Tab` key acts as a regular `Tab` when tapped, but when held it becomes a mo
 
 - **Window layer** (`Tab + W + ...`): Resize and position windows via Rectangle. E.g. `Tab + W + H` for left half, `Tab + W + L` for right half.
 - **Expose layer** (`Tab + E + ...`): Jump directly to a specific app. E.g. `Tab + E + J` for browser, `Tab + E + K` for terminal.
+
+## Claude Code
+
+The `claude/` directory holds everything I author myself: global instructions (`CLAUDE.md`), settings, keybindings, and a status line script that shows the current directory, git branch, model, and remaining context window. Each file is symlinked individually into `~/.claude/`, because that directory also stores session state and credentials that must never be versioned.
+
+Anything tied to an employer, a client, or my private life stays out of this repo:
+
+- **Global instructions**: `CLAUDE.md` ends with two imports, `@~/.claude/work.md` for employer-specific rules and `@~/.claude/private.md` for personal ones. Neither file is part of this repo, both are created directly on the machine that needs them, and an absent import silently resolves to nothing. Same idea as `work.zsh` for the shell. Nothing syncs these files, so a fresh machine needs them copied over by hand.
+- **Project-specific hooks, permissions, and MCP servers**: these belong in the respective repository under `.claude/settings.json` or `.claude/settings.local.json`. Claude Code has no machine-local layer above the user settings, so global settings must stay generic.
+
+Installed plugins, skills, and agents are not versioned. Plugins are restored from the `enabledPlugins` entry in `settings.json`.
+
+The sound notification hooks in `settings.json` point at `~/.claude/hooks/peon-ping/`, which the Brewfile alone does not create. On a fresh machine, run `brew trust peonping/tap` before `brew bundle`, since Homebrew refuses third-party taps by default, and `peon-ping-setup` afterwards to lay down the hook scripts and sound packs.
 
 ## Setup
 
