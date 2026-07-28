@@ -119,27 +119,13 @@ Expand only when asked, or when the decision genuinely needs the detail.
 - Use a comma, a colon, parentheses, or a separate sentence instead.
 - Hyphens in compound words (`fail-fast`, `copy-paste`) are fine. Only the long dashes are banned.
 
-**WhatsApp message drafts (casual chat style).**
-
-When I ask you to draft a WhatsApp (or similar casual chat) message:
-
-- Start each sentence with a capital letter; write everything else in lowercase, including proper names and (in German) nouns.
-- Only acronyms keep their capitals (API, PSP, CI).
-- No em/en dashes (rule above applies).
-- Keep it short and informal; this applies in every language, including German drafts.
-
-## Personal LLM Wiki
-
-A personal knowledge base lives at `~/git/llm-wiki` (private machine) or `~/code/llm-wiki` (work machine), whichever exists. It is maintained by you, not by me: I curate sources and decide what gets filed, you write every page.
-
-- **Before substantive answers** (architecture, debugging, tool or library choice, recurring patterns), check the wiki silently and cite hits inline. No hit means carry on normally without mentioning the check.
-- **At the end of a productive session**, propose a capture, at most once per session. Only for things that cannot be reconstructed from code or git log in two minutes: a decision and its why, a hard-won diagnosis, a non-obvious constraint of an external system. When in doubt, do not propose.
-- **Nothing is written without my yes.** Captures commit and push in the wiki repo (`git -C <WIKI_ROOT>`), never in the project I am working in.
-
 ## Machine-Local Instructions
 
-Anything that must not be published (employer name, internal systems, client work) lives in
-`~/.claude/work.md`. That file is never part of the dotfiles repo, and the import below resolves
-to nothing on machines where it is absent.
+Two files stay out of this repo and are imported below. An absent file resolves to nothing, and
+Claude Code says nothing about it, so a missing import fails silently.
+
+- `~/.claude/work.md`: anything tied to an employer or a client. Only exists on the machine that needs it.
+- `~/.claude/private.md`: personal rules that do not belong in a public repo. Nothing syncs it, copy it by hand when setting up a new machine.
 
 @~/.claude/work.md
+@~/.claude/private.md

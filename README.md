@@ -31,9 +31,9 @@ The `Tab` key acts as a regular `Tab` when tapped, but when held it becomes a mo
 
 The `claude/` directory holds everything I author myself: global instructions (`CLAUDE.md`), settings, keybindings, and a status line script that shows the current directory, git branch, model, and remaining context window. Each file is symlinked individually into `~/.claude/`, because that directory also stores session state and credentials that must never be versioned.
 
-Anything tied to an employer or a client stays out of this repo:
+Anything tied to an employer, a client, or my private life stays out of this repo:
 
-- **Global instructions**: `CLAUDE.md` ends with `@~/.claude/work.md`. That file is never part of this repo, it is created directly on the machine that needs it, and the import silently resolves to nothing everywhere else. Same idea as `work.zsh` for the shell.
+- **Global instructions**: `CLAUDE.md` ends with two imports, `@~/.claude/work.md` for employer-specific rules and `@~/.claude/private.md` for personal ones. Neither file is part of this repo, both are created directly on the machine that needs them, and an absent import silently resolves to nothing. Same idea as `work.zsh` for the shell. Nothing syncs these files, so a fresh machine needs them copied over by hand.
 - **Project-specific hooks, permissions, and MCP servers**: these belong in the respective repository under `.claude/settings.json` or `.claude/settings.local.json`. Claude Code has no machine-local layer above the user settings, so global settings must stay generic.
 
 Installed plugins, skills, and agents are not versioned. Plugins are restored from the `enabledPlugins` entry in `settings.json`.
