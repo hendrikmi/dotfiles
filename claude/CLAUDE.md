@@ -112,6 +112,7 @@ Expand only when asked, or when the decision genuinely needs the detail.
 - When you provide text meant to be copied verbatim (email drafts, message templates, letters, snippets), do **not** wrap it in a markdown blockquote (`>`). The `>` renders as a vertical pipe/bar in the terminal and is a pain to strip out when pasting.
 - Present such text as **plain text** or in a **fenced code block** (```), so it copies cleanly with no leading markers.
 - Reserve blockquotes for commentary/asides, never for content the user will copy.
+- **Never hard-wrap copy-paste text.** One paragraph = one continuous line, no manual line breaks inside a paragraph. Manual wrapping means I have to rejoin every line by hand after pasting into a mail client or web form. Blank lines between paragraphs are fine; let the terminal soft-wrap the rest.
 
 **Never use em dashes (—) or en dashes (–).**
 
