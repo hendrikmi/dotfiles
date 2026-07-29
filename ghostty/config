@@ -5,7 +5,7 @@ background = #282c35
 foreground = #E7E7E7
 
 # Font
-font-size = 12.5
+font-size = 13
 font-thicken = true
 font-thicken-strength = 0
 
