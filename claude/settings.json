@@ -6,6 +6,20 @@
     "type": "command",
     "command": "~/.claude/statusline.sh"
   },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__asana__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/asana-project-guard.py",
+            "statusMessage": "Checking Asana project scope"
+          }
+        ]
+      }
+    ]
+  },
   "enabledPlugins": {
     "ui-ux-pro-max@ui-ux-pro-max-skill": true,
     "superpowers@claude-plugins-official": true,
