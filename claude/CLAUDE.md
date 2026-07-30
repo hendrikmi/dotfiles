@@ -99,6 +99,14 @@ Write so it lands on the first read. A follow-up "explain that simply" means the
 - Prefer one concrete example over an abstract description.
 - This wins over Brevity when they conflict: one clear paragraph beats a short one plus a second round.
 
+**Never refer to anything by a bare number or ID.** Not a section number, backlog item, slice,
+work package, PR, migration, or ticket key standing on its own. I do not have the document open and
+I am not going to look it up. Say what the thing IS in plain words, then the number last, in
+parentheses, as a pointer for me to find it later. The number is never the name of the thing.
+Applies everywhere: chat, plans, the options inside a question, tables, commit messages, PR bodies.
+A table row or list item whose only identifier is a number is the same violation. If restating it
+makes the line long, the line gets long.
+
 ## Brevity
 
 Default to the shortest answer that is still complete. Lead with the conclusion.
