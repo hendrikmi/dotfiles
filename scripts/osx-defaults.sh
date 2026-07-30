@@ -70,6 +70,10 @@ apply_osx_system_defaults() {
     # Do not rearrange spaces automatically
     defaults write com.apple.dock "mru-spaces" -bool false
 
+    # Reduce Motion: cross-fade instead of the slide animation between spaces
+    defaults write com.apple.Accessibility ReduceMotionEnabled -bool true
+    defaults write com.apple.universalaccess reduceMotion -bool true
+
     # Set Dock autohide
     defaults write com.apple.dock autohide -bool true
     defaults write com.apple.dock largesize -float 128
