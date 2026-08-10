@@ -1,5 +1,5 @@
 -- Seamless <C-h/j/k/l> navigation between (Neo)vim splits and the surrounding
--- multiplexer (herdr or tmux). Herdr side: ~/git/dotfiles/herdr/nav.sh
+-- multiplexer (herdr or tmux). Herdr side: ~/.config/herdr/nav.sh
 
 local function nav(wincmd, dir)
   local prev = vim.api.nvim_get_current_win()

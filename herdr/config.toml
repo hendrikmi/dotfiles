@@ -55,38 +55,38 @@ description = "toggle zoom (tmux-style m)"
 [[keys.command]]
 key = "prefix+shift+left"
 type = "shell"
-command = "~/git/dotfiles/herdr/move-tab.sh left"
+command = "~/.config/herdr/move-tab.sh left"
 description = "move tab left"
 
 [[keys.command]]
 key = "prefix+shift+right"
 type = "shell"
-command = "~/git/dotfiles/herdr/move-tab.sh right"
+command = "~/.config/herdr/move-tab.sh right"
 description = "move tab right"
 
 # seamless ctrl+h/j/k/l across panes and nvim splits (see herdr/nav.sh)
 [[keys.command]]
 key = "ctrl+h"
 type = "shell"
-command = "~/git/dotfiles/herdr/nav.sh left"
+command = "~/.config/herdr/nav.sh left"
 description = "navigate left (vim/herdr)"
 
 [[keys.command]]
 key = "ctrl+j"
 type = "shell"
-command = "~/git/dotfiles/herdr/nav.sh down"
+command = "~/.config/herdr/nav.sh down"
 description = "navigate down (vim/herdr)"
 
 [[keys.command]]
 key = "ctrl+k"
 type = "shell"
-command = "~/git/dotfiles/herdr/nav.sh up"
+command = "~/.config/herdr/nav.sh up"
 description = "navigate up (vim/herdr)"
 
 [[keys.command]]
 key = "ctrl+l"
 type = "shell"
-command = "~/git/dotfiles/herdr/nav.sh right"
+command = "~/.config/herdr/nav.sh right"
 description = "navigate right (vim/herdr)"
 
 [advanced]
