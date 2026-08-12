@@ -2,10 +2,7 @@
   "permissions": {
     "defaultMode": "auto"
   },
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline.sh"
-  },
+  "model": "claude-opus-4-8",
   "hooks": {
     "PreToolUse": [
       {
@@ -19,6 +16,10 @@
         ]
       }
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
   },
   "enabledPlugins": {
     "ui-ux-pro-max@ui-ux-pro-max-skill": true,
@@ -56,12 +57,12 @@
       ]
     }
   },
+  "effortLevel": "medium",
   "autoUpdatesChannel": "latest",
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "skipWorkflowUsageWarning": true,
   "theme": "dark",
   "editorMode": "vim",
-  "skipAutoPermissionPrompt": true,
-  "effortLevel": "medium"
+  "skipAutoPermissionPrompt": true
 }
