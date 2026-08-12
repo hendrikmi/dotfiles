@@ -122,6 +122,19 @@ Expand only when asked, or when the decision genuinely needs the detail.
 - Reserve blockquotes for commentary/asides, never for content the user will copy.
 - **Never hard-wrap copy-paste text.** One paragraph = one continuous line, no manual line breaks inside a paragraph. Manual wrapping means I have to rejoin every line by hand after pasting into a mail client or web form. Blank lines between paragraphs are fine; let the terminal soft-wrap the rest.
 
+**Never describe your own working method in a document you write for me.**
+
+- No "I checked X, then Y", no "this is deliberately short", no "my questions are three and they are open", no references to rounds, agents, drafts, or how the text came about.
+- The reader wants the content, not a report on how it was produced. In a drafted email or letter this is worse than noise, it reads as if the text is talking about itself.
+- If the *reliability* of a number matters, state the fact ("independently recalculated", "not verified"), never the workflow that produced it.
+- Applies to documents, drafts, emails, memos. In chat it is fine to explain what you did.
+
+**Never use the inverted question mark (¿) or inverted exclamation mark (¡) when writing Spanish.**
+
+- Applies to everything: emails, letters, messages, documents.
+- Use only the closing `?` and `!`, as in English.
+- Yes, this is non-standard Spanish. Do it anyway, do not "correct" it back, and do not point out that it is non-standard.
+
 **Never use em dashes (—) or en dashes (–).**
 
 - Applies to everything you write: chat replies, drafted messages and emails, commit messages, docs, code comments.
