@@ -38,11 +38,12 @@ if [ -n "$used" ]; then
         color=$'\033[31m'
     fi
 
-    filled=$((pct / 10))
+    filled=$(((pct + 5) / 10))
+    [ "$filled" -gt 10 ] && filled=10
     bar="${color}"
-    for ((i = 0; i < filled; i++)); do bar+="▰"; done
+    for ((i = 0; i < filled; i++)); do bar+="█"; done
     bar+="${dim}"
-    for ((i = filled; i < 10; i++)); do bar+="▱"; done
+    for ((i = filled; i < 10; i++)); do bar+="█"; done
 
     out+="${sep}${bar}${reset}${color} ${pct}%${reset}"
 fi

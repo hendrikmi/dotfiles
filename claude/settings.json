@@ -15,6 +15,18 @@
           }
         ]
       }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -f ~/.claude/hooks/comment-guard.py ]; then python3 ~/.claude/hooks/comment-guard.py; else exit 0; fi",
+            "statusMessage": "Checking code comments"
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
@@ -64,5 +76,6 @@
   "skipWorkflowUsageWarning": true,
   "theme": "dark",
   "editorMode": "vim",
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "agentPushNotifEnabled": true
 }
