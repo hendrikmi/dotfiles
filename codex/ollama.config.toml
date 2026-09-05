@@ -1,6 +1,4 @@
-# Ollama Cloud profile for Codex. Use: codex -p ollama
-# Base config keeps OpenAI as the default; this layers Ollama on top.
-# Needs OLLAMA_API_KEY in the environment.
+# Ollama Cloud. Use: codex -p ollama (needs OLLAMA_API_KEY)
 model          = "glm-5.2:cloud"
 model_provider = "ollama_cloud"
 
