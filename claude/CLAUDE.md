@@ -35,6 +35,8 @@ Ask only when different readings would produce materially different work. Otherw
 - Validate early, return early (fail fast).
 - If you write 200 lines and it could be 50, rewrite it.
 
+Building what a ticket specifies, including parts later tickets will call, is not speculative.
+
 Would a senior engineer say this is overcomplicated? If yes, simplify.
 
 > **Bad:** "Add a discount function" → Strategy pattern with abstract base class, config dataclass, multiple discount types, 150 lines.
