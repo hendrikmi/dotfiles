@@ -34,7 +34,7 @@ The `Tab` key acts as a regular `Tab` when tapped, but when held it becomes a mo
 
 The `claude/` directory holds global instructions (`CLAUDE.md`), settings, keybindings, and a status line script. Each file is symlinked individually into `~/.claude/`, because that directory also stores session state and credentials that must never be versioned.
 
-`CLAUDE.md` ends with two imports that are not part of this repo, `@~/.claude/work.md` and `@~/.claude/private.md`, and an absent import silently resolves to nothing. `private.md` comes from the private counterpart below. `work.md` stays machine-local, so a fresh work machine needs it copied over by hand.
+The shared rules live in `agents/AGENTS.md`, symlinked to `~/.codex/AGENTS.md` for Codex. `CLAUDE.md` only imports that file, because Codex cannot import and Claude Code can. It also imports two files that are not part of this repo, `@~/.claude/work.md` and `@~/.claude/private.md`, and an absent import silently resolves to nothing. `private.md` comes from the private counterpart below. `work.md` stays machine-local, so a fresh work machine needs it copied over by hand.
 
 Plugins are restored from the `enabledPlugins` entry in `settings.json`. Skills, subagents, commands, and hooks come from the private counterpart.
 
